@@ -1,10 +1,10 @@
 # 一、移动端开发
 
-自从 iOS 和 Android 系统诞生以来，移动端开发主要由 iOS 和 Android 这两大平台占据。 
+自从 iOS 和 Android 系统诞生以来，移动端开发主要由 iOS 和 Android 这两大平台占据。
 
-传统移动端开发人员，主要是针对 iOS 和 Android 两个平台进行开发。 
+传统移动端开发人员，主要是针对 iOS 和 Android 两个平台进行开发。
 
-## 1.缺点
+## 1.优点
 
 原生 App 的体验、性能、兼容性都非常好，并可以非常方便使用硬件设备的所有功能，比如：摄像头、罗盘等等。
 
@@ -20,11 +20,11 @@
 
 # 二、跨平台开发
 
-原生开发存在诸多缺点，“一套代码，多段运行”的跨平台理念应运而生。
+原生开发存在诸多缺点，“一套代码，多端运行”的跨平台理念应运而生。
 
 ## 1.优点
 
-一套代码搞定 iOS、Android、微信小程序、H5应用等多端应用。 
+一套代码搞定 iOS、Android、微信小程序、H5应用等多端应用。
 
 开发成本较低，开发周期较短。
 
@@ -33,7 +33,7 @@
 ## 2.缺点
 
 
-对开发者要求高，除了本身 JS 的了解，还必须熟悉一点原生开发。
+对开发者要求高，除了本身对 web 前端的了解，还必须熟悉一点原生开发。
 
 不适合做高性能、复杂用户体验，以及定制高的应用程序。比如：抖音、微信、QQ 等等。
 
@@ -41,13 +41,13 @@
 
 # 三、跨平台发展史
 
-2009 年以前，当时主要使用最原始的 HTML + CSS + JS 进行移动端 App 开发。 
+2009 年以前，当时主要使用最原始的 HTML + CSS + JS 进行移动端 App 开发。
 
-2009-2014 年 间， 出现了 *PhoneGap* 、*Cordova* 等跨平台框架，以及 *Ionic* 轻量级的手机端UI库。 
+2009-2014 年间， 出现了 *PhoneGap* 、*Cordova* 等跨平台框架，以及 *Ionic* 轻量级的手机端 UI 库。
 
-2015 年，*ReactNative*（跨平台框架）掀起了国内跨平台开发热潮，一些互联网大厂纷纷投入 *ReactNative* 开发阵营。 
+2015 年，*ReactNative*（跨平台框架）掀起了国内跨平台开发热潮，一些互联网大厂纷纷投入 *ReactNative* 开发阵营。
 
-2016 年，阿里开源了 *Weex*，它是一个可以使用现代化 Web 技术开发高性能原生应用的框架。 
+2016 年，阿里开源了 *Weex*，它是一个可以使用现代化 Web 技术开发高性能原生应用的框架。
 
 2017 年 Google I/O 大会上，Google 正式向外界公布了 *Flutter*，
 
@@ -57,9 +57,9 @@
 
 # 四、方案选择
 
-需要做高性能、复杂用户体验、定制高的 APP、需硬件支持的选原生开发；
+需要做高性能、复杂用户体验、定制高的 APP、需硬件支持的，选原生开发；
 
-需要性能较好、体验好、跨 Android、iOS 平台、H5 平台、也需要硬件支持的选 Flutter（采用 Dart 开发） 
+需要性能较好、体验好、跨 Android、iOS、H5 平台、也需要硬件支持的，选 Flutter（采用 Dart 开发）
 
 需要跨小程序、H5 平台、Android、iOS 平台、不太复杂的先选 uni-app，其次选 Taro
 
@@ -80,18 +80,16 @@
 
 # 六、uni-app 是什么？
 
-uni-app 中的 uni，意为 unitive，是统一的意思。 
+uni-app 中的 uni，意为 unitive，是统一的意思。
 
 
-uni-app 是一个使用 Vue.js 开发前端应用的框架。 
-
-即开发者编写一套代码，便可发布到 iOS、Android、Web（响应式）、各种小程序、快应用等多个平台。
+uni-app 是一个使用 Vue.js 开发前端应用的框架。开发者编写一套代码，便可发布到 iOS、Android、Web（响应式）、各种小程序、快应用等多个平台。
 
 # 七、uni-app 发展历史
 
-DCloud 于 2012 年开始研发的小程序技术，并推出了 HBuilder X 开发工具。 
+DCloud 于 2012 年开始研发的小程序技术，并推出了 HBuilderX 开发工具。
 
-2015 年，DCloud 正式商用了自己的小程序，产品名为“流应用”， 
+2015 年，DCloud 正式商用了自己的小程序，产品名为“流应用”，
 - 并捐献给了工信部旗下的 HTML5 中国产业联盟。
 
 该应用能接近原生功能和性能的 App，并且即点即用，不需要安装。
@@ -108,11 +106,11 @@ DCloud 于 2012 年开始研发的小程序技术，并推出了 HBuilder X 开�
 
 ## 2.不同点
 
-uni-app 支持跨平台，编写一套代码，可以发布到多个平台；而微信小程序不支持 
+uni-app 支持跨平台，编写一套代码，<-> 可以发布到多个平台；而微信小程序不支持。
 
-uni-app 纯 Vue 体验、高效、统一、工程化强；微信小程序工程化弱，使用小程序开发语言。 
+uni-app 纯 Vue 体验、高效、统一、工程化强；<-> 微信小程序工程化弱，使用小程序开发语言。
 
-uni-app 适合不太复杂的应用，可兼容多端，但增加了开发者心智负担；微信小程序适合较复杂、定制性较高、兼容和稳定性更好的应用。
+uni-app 适合不太复杂的应用，可兼容多端，但增加了开发者心智负担；<-> 微信小程序适合较复杂、定制性较高、兼容和稳定性更好的应用。
 
 # 八、uni-app 架构图
 
@@ -126,9 +124,9 @@ uni-app 适合不太复杂的应用，可兼容多端，但增加了开发者心
 
 - HBuilderX 内置了相关环境，开箱即用。
 
-- 点工具栏里的文件 -> 新建 -> 项目（快捷键Ctrl+N） 
+- 点工具栏里的文件 -> 新建 -> 项目（快捷键 Ctrl + N）
 
-- 选择uni-app类型，输入工程名，选择模板，选择Vue版本，点击创建即可。
+- 选择 uni-app 类型，输入工程名，选择默认模板，选择 Vue 版本，点击创建即可。
 
 
 方式二：Vue-Cli
@@ -136,7 +134,7 @@ uni-app 适合不太复杂的应用，可兼容多端，但增加了开发者心
 - 全局安装 Vue-CLI （目前仍推荐使用 vue-cli 4.x ）：
 
   ```shell
-  npm install -g @vue/cli@4 
+  npm install -g @vue/cli@4
   ```
 
 - 创建项目
@@ -149,9 +147,9 @@ uni-app 适合不太复杂的应用，可兼容多端，但增加了开发者心
 
 HbuilderX 是通用的前端开发工具，但为 uni-app 做了特别强化。
 
-HBuilderX 从 v3.2.5（包含）开始优化了对 vue3 的支持。
+HBuilderX 从 v3.2.5（包含）开始优化了对 Vue3 的支持。
 
-HBuilderX 支持各种表达式语法，如less、scss、stylus、typescript 等高亮，无需安装插件
+HBuilderX 支持各种表达式语法，如 less、scss、stylus、typescript 等高亮，无需安装插件
 
 1.下载 HBuilderX，注册帐号。
 
@@ -160,7 +158,6 @@ HBuilderX 支持各种表达式语法，如less、scss、stylus、typescript 等
 2.创建一个项目，点击起始标签页“新建项目”。
 
 - 选择默认模板。
-
 - 选择 Vue3 版本。
 
 3.运行该项目到 Chrome 浏览器。
@@ -179,7 +176,7 @@ HBuilderX 支持各种表达式语法，如less、scss、stylus、typescript 等
 
 1. 下载 mumu 模拟器。在其中新增一个 iphone6 尺寸的预设。
 2. 在 HBuilderX 中，安装在手机运行的插件，会自动下载 adb 调试桥。
-3. 安卓的要配置 **adb 调试桥命令行工具**。用于 HBuilderX 和 Android 模拟器建立连接，实时调试和热重载
+3. 安卓端调试，要配置 **adb 调试桥命令行工具**。用于 HBuilderX 和 Android 模拟器建立连接，实时调试和热重载
   - 当点击“运行到手机模拟器”后，HBuilderX 会自动下载 adb 。
 
   - 自动安装的目录在 HBuilderX 安装目录下 `./plugins/launcher/tools/adbs`
@@ -199,13 +196,13 @@ HBuilderX 支持各种表达式语法，如less、scss、stylus、typescript 等
 
 为了实现多端兼容，综合考虑编译速度、运行性能等因素，uni-app 约定了如下开发规范：
 
-- 页面文件遵循 Vue 单文件组件 (SFC) 规范 
+- 页面文件遵循 Vue 单文件组件 (SFC) 规范；
 
-- 组件标签靠近小程序规范，详见 uni-app 组件规范 
+- 组件标签靠近小程序规范，详见 uni-app 组件规范；
 
-- 接口能力（JS API）靠近微信小程序规范，但需将前缀 `wx` 替换为 `uni`，详见 uni-app 接口规范 
+- 接口能力（JS API）靠近微信小程序规范，但需将前缀 `wx` 替换为 `uni`，详见 uni-app 接口规范；
 
-- 数据绑定及事件处理同 Vue.js 规范，同时补充了 App 及页面的生命周期 
+- 数据绑定及事件处理同 Vue.js 规范，同时补充了 App 及页面的生命周期；
 
 - 为兼容多端运行，建议使用 flex 布局进行开发，推荐使用 rpx 单位（750 设计稿）。
 
@@ -214,15 +211,15 @@ HBuilderX 支持各种表达式语法，如less、scss、stylus、typescript 等
 
 # 十三、main.js 文件
 
-main.js 是 uni-app 的入口文件，主要作用是： 
+`main.js` 是 uni-app 的入口文件，主要作用是：
 
-- 初始化 vue 实例。 
+- 初始化 vue 实例。
 
-- 定义全局组件。 
+- 定义全局组件。
 
 - 定义全局属性。
 
-- 安装插件，如：pinia、vuex 等。
+- 安装插件，如 pinia、vuex 等。
 
 ./main.js
 
@@ -252,21 +249,19 @@ export function createApp() {
 
 # 十四、App.vue 文件
 
-App.vue 入口组件 
+`App.vue` 是 uni-app 的入口组件，所有页面都是在 `App.vue` 下进行切换
 
-- App.vue 是 uni-app 的入口组件，所有页面都是在 App.vue 下进行切换 
+`App.vue` 本身不是页面，这里不能编写视图元素，也就是没有 `<template>` 元素
 
-- App.vue 本身不是页面，这里不能编写视图元素，也就是没有 `<template>` 元素
+`App.vue` 的作用：
 
-App.vue 的作用： 
+- 应用的生命周期；
 
-- 应用的生命周期 
-
-- 编写全局样式 
+- 编写全局样式；
 
 - 定义全局数据 `globalData`
 
-> 注意：应用的生命周期仅可在 App.vue 中监听，在页面监听无效。
+> 注意：应用的生命周期仅可在 `App.vue` 中监听，在页面监听无效。
 
 ./App.vue
 
@@ -305,6 +300,14 @@ App.vue 的作用：
 </template>
 ```
 
+01-uni-app\demo-project\01-hello-uniapp\static\css\common.css
+
+```css
+.name {
+	color: blue;
+}
+```
+
 01-uni-app\demo-project\01-hello-uniapp\static\css\common.less
 
 ```less
@@ -329,8 +332,8 @@ App.vue 的作用：
 </script>
 
 <style lang="less">
-	/*每个页面公共css */
-	/* 默认以配置好别名 */
+	/* 每个页面公共css */
+	/* 默认已配置好别名 */
 	@import url(@/static/css/common.css);
 	@import url(@/static/css/common.less);
 	.title {

@@ -168,7 +168,7 @@ $uni-color-primary: #007aff;
 
 [page.json](https://uniapp.dcloud.net.cn/collocation/pages.html) 是全局页面配置文件（兼容 h5、weapp、app ）；
 
-决定页面的路径、窗口样式、原生的导航栏、底部的原生 tabbar 等等。
+决定页面的路径、窗口样式、原生的导航栏、原生的 tabbar 等等。
 
 01-uni-app\demo-project\01-hello-uniapp\pages.json
 
@@ -353,7 +353,7 @@ $uni-color-primary: #007aff;
 	.zt-h-scroll {
 		white-space: nowrap;
 
-		// 隐藏原生实现的滚动条。
+		/* 隐藏原生实现的滚动条。*/
 		/* &::-webkit-scrollbar {
 			display: none;
 		} */
@@ -493,9 +493,7 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 </style>
 ```
 
-uni-app 支持在 css 里设置背景图片，使用方式与普通 web 项目大体相同，但需要注意以下几点：
-
-默认支持 base64 图片、网络路径图片。
+uni-app 支持在 css 里设置背景图片，使用方式与普通 web 项目大体相同，默认支持 base64 图片、网络路径图片。
 
 使用本地背景图片或字体图标需注意：
 
@@ -520,6 +518,8 @@ uni-app 支持使用字体图标，使用方式与普通 web 项目相同，
 	@import url('@/static/custom-font/iconfont.css');
 </style>
 ```
+
+4.使用字体图标。
 
 01-uni-app\demo-project\01-hello-uniapp\pages\style\style.vue
 

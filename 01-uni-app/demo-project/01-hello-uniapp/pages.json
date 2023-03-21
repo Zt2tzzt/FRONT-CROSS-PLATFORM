@@ -8,6 +8,13 @@
 			}
 		},
 		{
+			"path": "pages/login/Login",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/style/style",
 			"style": {
 				"navigationBarTitleText": "",

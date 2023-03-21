@@ -3,7 +3,7 @@
 		<uni-badge text="100" type="primary"></uni-badge>
 		<uni-badge text="80" type="success"></uni-badge>
 		<uni-badge text="90" type="info" absolute="rightTop">
-			<button>button</button>
+			<button type="primary">button</button>
 		</uni-badge>
 
 		<uni-countdown color="white" background-color="#cdcdcd" :day="0" :show-day="false" :hour="6" :minute="12"

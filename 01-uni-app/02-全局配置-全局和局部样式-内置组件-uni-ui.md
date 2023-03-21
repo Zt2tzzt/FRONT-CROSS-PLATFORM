@@ -497,7 +497,7 @@ uni-app 支持在 css 里设置背景图片，使用方式与普通 web 项目�
 
 使用本地背景图片或字体图标需注意：
 
-- 小程序不支持本地的图片，也不能自动转 base64 格式.
+- 小程序不支持本地的图片，也不能自动转 base64 格式，除非将图片直接放在 static 目录下.
 - 需自行将其转换为 base64 格式，或将其挪到服务器上，从网络地址引用。
 - 本地背景图片的引用路径推荐使用以 `~@` 开头的绝对路径。
 
@@ -575,21 +575,22 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 ## 3.安装
 
-方式一（推荐）：通过 `uni_modules`（插件模块化规范）单独安装组件，即按需安装某个组件：
+方式一（推荐）：通过 `uni_modules`（插件模块化规范）**按需安装**组件。
 
 1. 官网找到[扩展组件](https://uniapp.dcloud.net.cn/component/uniui/quickstart.html#%E9%80%9A%E8%BF%87-uni-modules-%E5%8D%95%E7%8B%AC%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6)清单，然后将所需要的组件导入到项目，导入后直接使用，无需 `import` 和注册。
 2. 如果还想切换应用风格，这时可以在 `uni.scss` 导入 uni-ui 提供的内置 scss 变量，然后重启应用。
 
 > 需要登录 DCloud 账号才能安装
 
-方式二（推荐）：通过 `uni_modules` 导入全部组件
+方式二（推荐）：通过 `uni_modules` **安装全部**组件；[官方文档](https://uniapp.dcloud.net.cn/component/uniui/quickstart.html#%E9%80%9A%E8%BF%87-uni-modules-%E5%AF%BC%E5%85%A5%E5%85%A8%E9%83%A8%E7%BB%84%E4%BB%B6)
 
-- 如想把所有 uni-ui 组件导入到项目，可以借用 HbuilderX 插件导入。
-- 如没自动导入其他组件，可在 uni-ui 组件目录上右键选择 安装三方插件依赖即可。
+- 一次性把所有 uni-ui 组件导入到项目，可以借用 HbuilderX 插件导入。
+- 如果没有自动导入其他组件，可在 uni-ui 组件目录上右键选择 安装三方插件依赖即可。
 
 方式三：在 HBuilderX 新建 uni-app 项目时，在模板中选择 uni-ui 模板来创建项目 
 
-- 由于 uni-app 独特的 easycom（自动导包）技术，可以免引入、注册，就直接使用符合规则的 vue 组件。
+- 由于 uni-app 独特的 easycom（自动导包）技术，可以免引入、注册，
+- 创建项目时，选择提供的项目模板，就直接使用符合规则的 vue 组件。
 
 方式四：npm 安装 
 

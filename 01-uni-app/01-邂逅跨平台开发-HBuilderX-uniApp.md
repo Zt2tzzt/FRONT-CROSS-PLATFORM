@@ -8,7 +8,7 @@
 
 原生 App 的性能、兼容性都非常好，能够使用硬件设备的所有功能，比如：摄像头、罗盘等等。
 
-用户体验好；
+总结：用户体验更好；
 
 ## 2.缺点
 
@@ -28,7 +28,7 @@
 
 ## 1.优点
 
-一套代码搞定 iOS、Android、微信小程序、H5应用等多端应用。
+一套代码搞定 iOS、Android、微信小程序、H5 应用等多端应用。
 
 开发成本较低，开发周期较短。
 
@@ -63,9 +63,9 @@
 
 # 四、方案选择
 
-需要做高性能、复杂用户体验、定制高的 APP、需硬件支持的，选原生开发；
+需要做高性能、复杂用户体验、定制高、硬件支持的 APP，选原生开发；
 
-需要性能较好、体验好、跨 Android、iOS、H5 平台、也需要硬件支持的，选 Flutter（采用 Dart 开发）
+需要性能较好、体验好、跨 Android、iOS、H5 平台、硬件支持的，选 Flutter（采用 Dart 开发）
 
 需要跨小程序、H5 平台、Android、iOS 平台、不太复杂的先选 uni-app，其次选 Taro
 
@@ -114,9 +114,9 @@ DCloud 于 2012 年开始研发的小程序技术，并推出了 HBuilderX 开�
 
 ## 2.不同点
 
-uni-app 支持跨平台，编写一套代码，<-> 可以发布到多个平台；而微信小程序不支持。
+uni-app 支持跨平台，编写一套代码，可以发布到多个平台；<-> 微信小程序不支持。
 
-uni-app 纯 Vue 体验、高效、统一、工程化强；<-> 微信小程序工程化弱，使用小程序开发语言。
+uni-app 有 Vue 的体验、高效、统一、工程化强；<-> 微信小程序工程化弱，使用小程序开发语言。
 
 uni-app 适合不太复杂的应用，可兼容多端，但增加了开发者心智负担；<-> 微信小程序适合较复杂、定制性较高、兼容和稳定性更好的应用。
 
@@ -132,7 +132,7 @@ uni-app 适合不太复杂的应用，可兼容多端，但增加了开发者心
 
 - HBuilderX 内置了相关环境，开箱即用。
 
-- 点工具栏里的文件 -> 新建 -> 项目（快捷键 Ctrl + N）
+- 点工具栏里的文件 -> 新建 -> 项目（Ctrl + N）
 
 - 选择 uni-app 类型，输入工程名，选择默认模板，选择 Vue 版本，点击创建即可。
 
@@ -153,7 +153,7 @@ uni-app 适合不太复杂的应用，可兼容多端，但增加了开发者心
 
 # 十、HBuilderX 开发工具
 
-HbuilderX 是通用的前端开发工具，但为 uni-app 做了特别强化。
+HbuilderX 是通用的前端开发工具，并为 uni-app 做了特别强化。
 
 HBuilderX 从 v3.2.5（包含）开始优化了对 Vue3 的支持。
 
@@ -187,10 +187,14 @@ HBuilderX 支持各种表达式语法，如 less、scss、stylus、typescript �
 3. 安卓端调试，要配置 **adb 调试桥命令行工具**。用于 HBuilderX 和 Android 模拟器建立连接，实时调试和热重载
   - 当点击“运行到手机模拟器”后，HBuilderX 会自动下载 adb 。
 
-  - 自动安装的目录在 HBuilderX 安装目录下 `./plugins/launcher/tools/adbs`
+  - adb 自动安装的，默认放在 HBuilderX 安装目录下的 `./plugins/launcher/tools/adbs`
 
-  - 在该目录下运行 `./adb` 命令，即可使用 adb 命令。
+  - 在该目录下运行如下命令，即可使用 adb 命令。
 
+    ```shell
+    ./adb
+    ```
+    
     > 如果想要全局中使用 adb。需要为 adb 配置环境变量，
     >
     > 如果使用外部的 adb 插件，需要在 HBuilder 中配置 adb 的运行路径。
@@ -207,7 +211,7 @@ HBuilderX 支持各种表达式语法，如 less、scss、stylus、typescript �
 - 页面文件遵循 Vue 单文件组件 (SFC) 规范；
 - 组件标签靠近小程序规范，详见 uni-app 组件规范；
 - 接口能力（JS API）靠近微信小程序规范，
-- 但需将前缀 `wx` 替换为 `uni`，详见 uni-app 接口规范；
+  - 需将前缀 `wx` 替换为 `uni`。
 - 数据绑定及事件处理同 Vue.js 规范，同时补充了 App 及页面的生命周期；
 - 为兼容多端运行，建议使用 flex 布局进行开发，推荐使用 rpx 单位（750 设计稿）。
 
@@ -230,7 +234,7 @@ HBuilderX 支持各种表达式语法，如 less、scss、stylus、typescript �
 ```javascript
 import App from './App'
 
-// #ifndef VUE3 条件编译。编译非 Vue3 版本时，执行如下代码。
+// #ifndef 条件编译。编译非 Vue3 版本时，执行如下代码。
 import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
@@ -240,7 +244,7 @@ const app = new Vue({
 app.$mount()
 // #endif
 
-// #ifdef VUE3 条件编译。编译 Vue3 版本时，执行如下代码。
+// #ifdef 条件编译。编译 Vue3 版本时，执行如下代码。
 import { createSSRApp } from 'vue'
 export function createApp() {
   const app = createSSRApp(App)
@@ -266,6 +270,8 @@ export function createApp() {
 - 定义全局数据 `globalData`
 
 > 【注意】：应用的生命周期仅可在 `App.vue` 中监听，在页面监听无效。
+
+应用的生命周期
 
 ./App.vue
 
@@ -293,6 +299,8 @@ export function createApp() {
 
 全局样式的练习。
 
+全局样式的应用：
+
 01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
 
 ```vue
@@ -303,6 +311,8 @@ export function createApp() {
 	</view>
 </template>
 ```
+
+全局样式的编写和导入：
 
 01-uni-app\demo-project\01-hello-uniapp\static\css\common.css
 

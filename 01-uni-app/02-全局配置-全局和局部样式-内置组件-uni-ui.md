@@ -93,7 +93,6 @@
   }
 
 </style>
-
 ```
 
 > 【注意】：`page` 会编译成 `<uni-page-body>` 自定义元素。
@@ -116,9 +115,9 @@
 
 然后在该组件的 `<style>` 上加 `lang=“scss”`，重启即可生效。
 
-> 【注意】：这里的 uni-app 框架内置变量，和后面 uni-ui 组件库的内置变量是不一样的。
+> 【注意】：这里的 uni-app 框架内置变量，和 uni-ui 组件库的内置变量是不一样的。
 
-> 【注意】：`App.vue` 中放的是公共样式，对全局生效，但不能定义全局样式；
+> 【注意】：`App.vue` 中放的是公共样式，对全局生效。
 >
 > `uni.scss` 中放的是全局样式变量。
 
@@ -154,7 +153,7 @@ $uni-color-primary: #007aff;
 
 局部样式：
 
-在 pages 目录下的 vue 文件的 `<style>` 中的样式为局部样式；
+在 pages 目录下 vue 文件的 `<style>` 中的样式为局部样式；
 
 作用对应的页面，会覆盖 `App.vue` 中相同的选择器；
 
@@ -296,11 +295,11 @@ $uni-color-primary: #007aff;
 
 ## 5.scroll-viwe 组件
 
-[\<scroll-view\>](https://uniapp.dcloud.net.cn/component/scroll-view.html)：可滚动视图区域，用于区域滚动。
+[\<scroll-view\>](https://uniapp.dcloud.net.cn/component/scroll-view.html)：可滚动视图区域。
 
-- 使用竖向滚动时，要给 `<scroll-view>` 一个固定高度，通过 css 设置 `height`；
+- 竖向滚动时，须给 `<scroll-view>` 一个固定高度；
 
-- 使用横向滚动时，要给 `<scroll-view>` 添加 `white-space: nowrap;` 样式，子元素设置为行内块级元素。
+- 横向滚动时，须给 `<scroll-view>` 添加 `white-space: nowrap;` 样式；且子元素设置为行内块级元素。
 
 - APP 和小程序中，不要在 `<scroll-view>` 中使用 `<map>`、`<video>` 等原生组件。
 
@@ -421,8 +420,7 @@ $uni-color-primary: #007aff;
 
 uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 
-- px 即屏幕像素。
-- rpx 是响应式像素（responsive pixel），可以根据屏幕宽度进行自适应。
+- px 即屏幕像素。rpx 是响应式像素（responsive pixel），可以根据屏幕宽度进行自适应。
 
 规定屏幕宽为 `750rpx`；如在 iPhone6 上：
 
@@ -599,7 +597,7 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 ## 4.使用
 
-安装 `<uni-badge>`，`<uni-countdown>` 倒计时，`<uni-goods-nav>` 商品导航组件。
+安装 `<uni-badge>` 徽章组件，`<uni-countdown>` 倒计时组件，`<uni-goods-nav>` 商品导航组件。
 
 1.使用 [uni-badge](https://ext.dcloud.net.cn/plugin?name=uni-badge) 组件，用于展示徽标。
 

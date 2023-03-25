@@ -8,7 +8,7 @@ API 总结：
 
 - `uni.$on(eventName, callback)` - 监听由 `uni.$emit` 发射的全局自定义事件。
 
-- `uni.$once(eventName, callback)` - 只监听一次由 `uni.$emit` 发射的全局自定义事件。
+- `uni.$once(eventName, callback)` - 仅监听一次，由 `uni.$emit` 发射的全局自定义事件。
 
 - `uni.$off(eventName, callback)` - 移除全局自定义事件监听器。如果没有提供参数，则移除所有的事件监听器；
 
@@ -105,7 +105,7 @@ uni-app 常用的页面生命周期函数：[更多](https://uniapp.dcloud.net.c
 
 ### 1.Options API
 
-在 `home.vue`，`detail04.vue`中进行测试。
+在 `home.vue` 中进行页面跳转。
 
 01-uni-app\demo-project\01-hello-uniapp\pages\home\home.vue
 
@@ -156,6 +156,8 @@ export default {
 }
 </script>
 ```
+
+在 `detail04.vue` 中进行测试页面的生命周期。
 
 01-uni-app\demo-project\01-hello-uniapp\pages\detail04\detail04.vue
 
@@ -224,11 +226,11 @@ export default {
 >
 > tabbar 页面不会销毁，只是隐藏。
 >
-> 通过 overflow 进行的滚动，不会触发 `onReachBottom` 回调
+> 通过 overflow 进行的滚动，不会触发 `onReachBottom` 回调。
 
 ### 2.Composition API
 
-在 `home.vue`，`detail05.vue`，中进行测试。
+在 `home.vue` 中进行页面跳转。
 
 01-uni-app\demo-project\01-hello-uniapp\pages\home\home.vue
 
@@ -254,6 +256,8 @@ export default {
 }
 </script>
 ```
+
+在 `detail05.vue `中进行页面生命周期的测试。
 
 01-uni-app\demo-project\01-hello-uniapp\pages\detail05\detail05.vue
 
@@ -325,7 +329,12 @@ onReachBottom(() => {
 </style>
 ```
 
-> 【注意】：`vue` 和 `@dcloudio/uni-app` 依赖库，不需要安装，可直接使用。
+> 【注意】：`vue` 和 `@dcloudio/uni-app` 库，不需要安装，可直接使用。
+>
+> ```javascript
+> import { onLoad } from '@dcloudio/uni-app'
+> import { ref } from 'vue'
+> ```
 
 ## 2.组件
 
@@ -337,15 +346,15 @@ uni-app 中，常用组件生命周期有：
 - `mounted`
 - `beforeUpdate`
 - `updated`
-- `beforeDestroy`
-- `destroyed`
+- `beforeDestroy`（对应 Vue 中 `beforeUnmount`）
+- `destroyed`（对应 Vue 中 `unmounted`）
 - `errorCaptured`
 
 ### 1.Options API
 
 在 `zt-button.vue` 中，进行测试。
 
-页面生命周期，在组件的 Options API 中无效。
+> 【注意】：页面生命周期，在组件的 Options API 中无效。
 
 01-uni-app\demo-project\01-hello-uniapp\components\zt-button\zt-button.vue
 
@@ -400,7 +409,7 @@ export default {
 
 在 `zt-button-setup.vue` 中，进行测试。
 
-页面生命周期，在组件的 Composition API 中分情况执行。
+> 【注意】：页面生命周期，在组件的 Composition API 中分情况执行。
 
 01-uni-app\demo-project\01-hello-uniapp\components\zt-button-setup\zt-button-setup.vue
 
@@ -428,10 +437,10 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['btnClick'])
-
 function onBtnClick() {
 	emit('btnClick')
 }
+
 // 1.是组件的生命周期
 onBeforeMount(() => {
 	console.log('zt-buton-setup onBeforeMount')
@@ -467,11 +476,11 @@ onReady(() => {
 
 调试网络请求时，要注意：
 
-- 登录各个小程序管理后台，给网络相关的 API 配置合法域名（域名白名单）
+- 登录各个小程序管理后台，给网络相关的 API 配置合法域名（域名白名单）；
 
 - 微信小程序开发工具，在开发阶段可以配置：不校验合法域名；
 
-- 运行到手机时，资源没有出来时可以打开手机的调试模式
+- 运行到手机时，资源没有出来时可以打开手机的调试模式。
 
 ## 1.封装
 
@@ -515,7 +524,7 @@ export default new ZtRequest()
 
 ## 2.使用
 
-新建一个页面，用于测试发送网络请求。
+在 `category.vue` 页面中，测试发送网络请求。
 
 01-uni-app\demo-project\01-hello-uniapp\pages\category\category.vue
 
@@ -550,31 +559,19 @@ export default {
 
 # 四、数据缓存
 
-API 总结，类似于微信小程序的 API。
+常用 API（类似于微信小程序的 API）。
 
-[uni.setStorage(OBJECT)](https://uniapp.dcloud.net.cn/api/storage/storage.html#setstorage)
+[uni.setStorage(OBJECT)](https://uniapp.dcloud.net.cn/api/storage/storage.html#setstorage)，将数据存储在本地缓存中指定的 key 中，会覆盖掉原来该 key 对应的内容，这是一个异步接口。
 
-将数据存储在本地缓存中指定的 key 中，会覆盖掉原来该 key 对应的内容，这是一个异步接口。
+[uni.setStorageSync(KEY, DATA)](https://uniapp.dcloud.net.cn/api/storage/storage.html#setstoragesync)，将数据存储在本地缓存中指定的 key 中，会覆盖掉原来该 key 对应的内容，这是一个同步接口。
 
-[uni.setStorageSync(KEY, DATA)](https://uniapp.dcloud.net.cn/api/storage/storage.html#setstoragesync)
+[uni.getStorage(OBJECT)](https://uniapp.dcloud.net.cn/api/storage/storage.html#getstorage)，从本地缓存中异步获取指定 key 对应的内容。
 
-将数据存储在本地缓存中指定的 key 中，会覆盖掉原来该 key 对应的内容，这是一个同步接口。
+[uni.getStorageSync(KEY)](https://uniapp.dcloud.net.cn/api/storage/storage.html#getstoragesync)，从本地缓存中同步获取指定 key 对应的内容。
 
-[uni.getStorage(OBJECT)](https://uniapp.dcloud.net.cn/api/storage/storage.html#getstorage)
+[uni.removeStorage(OBJECT)](https://uniapp.dcloud.net.cn/api/storage/storage.html#removestorage)，从本地缓存中异步移除指定 key。
 
-从本地缓存中异步获取指定 key 对应的内容。
-
-[uni.getStorageSync(KEY)](https://uniapp.dcloud.net.cn/api/storage/storage.html#getstoragesync)
-
-从本地缓存中同步获取指定 key 对应的内容。
-
-[uni.removeStorage(OBJECT)](https://uniapp.dcloud.net.cn/api/storage/storage.html#removestorage)
-
-从本地缓存中异步移除指定 key。
-
-[uni.removeStorageSync(KEY)](https://uniapp.dcloud.net.cn/api/storage/storage.html#removestoragesync)
-
-从本地缓存中同步移除指定 key。
+[uni.removeStorageSync(KEY)](https://uniapp.dcloud.net.cn/api/storage/storage.html#removestoragesync)，从本地缓存中同步移除指定 key。
 
 01-uni-app\demo-project\01-hello-uniapp\pages\category\category.vue
 
@@ -617,17 +614,17 @@ export default {
 </script>
 ```
 
-# 五、组件（easycom）
+# 五、组件（easycom 规范）
 
 uni-app 组件与 Vue 标准组件基本相同，但是也有区别，比如：
 
-Vue 标准组件，需要”创建“、”引用“、”注册“后才能使用；而 uni-app 的 easycom 组件规范，可以将其精简为一步。
+Vue 标准组件，需要”创建“、”引用“、”注册“后才能使用；而 uni-app 的 **easycom 组件**规范，可以将其精简为一步。
 
 easycom 组件规范：
 
 - 组件需符合 `components/组件名称/组件名称.vue` 的目录结构。
 
-- 符合以上目录结构的 Vue 组件，可不用”引用“、”注册“直接在页面中使用。
+- 符合以上目录结构的 Vue 组件，无需”引用“、”注册“，可直接在页面中使用。
 
 创建一个自定义组件 `zt-button.vue`
 
@@ -652,9 +649,6 @@ export default {
 		}
 	},
 	emits: ['btnClick'],
-	data() {
-		return {}
-	},
 	methods: {
 		onBtnClick() {
 			this.$emit('btnClick')
@@ -693,6 +687,16 @@ export default {
 		<zt-button type="primary" @btnClick="handleZtBtnClick">ZTBtn</zt-button>
 	</view>
 </template>
+
+<script>
+	export default {
+		methods: {
+			handleZtBtnClick() {
+				console.log('zt-btn click');
+			}
+		}
+	}
+</script>
 ```
 
 # 六、页面通讯（Composition API）
@@ -726,7 +730,7 @@ onUnload(() => {
 })
 
 function acceptDataFormDetail03(value) {
-	console.log('接收到detail03传递给home页面的数据:', value)
+	console.log('接收到 detail03 传递给 home 页面的数据:', value)
 }
 
 function goToDetail01() {
@@ -735,7 +739,7 @@ function goToDetail01() {
 		url: '/pages/detail01/detail01?name=liujun&id=100',
 		success(res) {
 			res.eventChannel.emit('acceptDataFormHomePage', {
-				data: '我是home页面传递给detail01的数据'
+				data: '我是 home 页面传递给 detail01 的数据'
 			})
 		}
 	})
@@ -746,7 +750,7 @@ function goToDetail02() {
 		url: '/pages/detail02/detail02?name=liujun&id=200',
 		events: {
 			acceptDataFormDetail02(value) {
-				console.log('接收到detail02传递过来的数据', value)
+				console.log('接收到 detail02 传递过来的数据', value)
 			}
 		}
 	})
@@ -780,21 +784,23 @@ const props = defineProps({
 	name: String,
 	id: String
 })
-console.log('在props中接受home传递过来url的数据:', props.name, props.id)
+console.log('在 props 中接受 home 传递过来 url 的数据:', props.name, props.id)
 
 // 1.方式一: ?name=liujun&id=100
 // $instance => this
 const $instance = ref(getCurrentInstance().proxy)
 onLoad(options => {
-	console.log('接受到home传递过来url的数据:', options)
+	console.log('接受到 home 传递过来 url 的数据:', options)
 	// const eventChannel = this.getOpenerEventChannel();
 	const eventChannel = $instance.value.getOpenerEventChannel()
 	eventChannel.on('acceptDataFormHomePage', value => {
-		console.log('接收到home页面eventchannel传递过来的数据:', value)
+		console.log('接收到 home 页面 eventchannel 传递过来的数据:', value)
 	})
 })
 </script>
 ```
+
+> 【注意】：使用 `getCurrentInstance().proxy.getOpenerEventChannel()` 拿到 `eventChannel` 对象。
 
 ## 2.逆向传递
 
@@ -819,7 +825,7 @@ function goBack() {
 	const eventChannel = $instance.value.getOpenerEventChannel()
 	// 触发事件, 将detail02的数据传递给Home页面
 	eventChannel.emit('acceptDataFormDetail02', {
-		data: '这里是detail02传递给Home页面的数据'
+		data: '这里是 detail02 传递给 Home 页面的数据'
 	})
 }
 </script>
@@ -844,7 +850,7 @@ function goBack() {
 
 	// 触发事件( 通过事件总线 )
 	uni.$emit('acceptDataFormDetail03', {
-		data: '这里的数据是从detail03传递到home页面'
+		data: '这里的数据是从 detail03 传递到 home 页面'
 	})
 }
 </script>

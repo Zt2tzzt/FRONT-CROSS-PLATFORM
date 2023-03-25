@@ -107,15 +107,15 @@
 
 `uni.scss` 主要有如下作用：
 
-- 重写 uni-app 内置的样式变量。
 - 用于存放全局样式变量。
+- 重写 uni-app 内置的样式变量。
 - 重写 uni-ui 内置框架的样式变量。
 
 `uni.scss` 中定义的变量，无需 `@import` 就可以在任意组件中直接使用。
 
 然后在该组件的 `<style>` 上加 `lang=“scss”`，重启即可生效。
 
-> 【注意】：这里的 uni-app 框架内置变量，和 uni-ui 组件库的内置变量是不一样的。
+> 【注意】：这里的 *uni-app* 框架内置变量，和 *uni-ui* 组件库的内置变量是不一样的。
 
 > 【注意】：`App.vue` 中放的是公共样式，对全局生效。
 >
@@ -141,11 +141,13 @@ $uni-color-primary: #007aff;
 
 # 三、全局和局部样式
 
-全局样式：
+App.vue 全局样式：
 
 `App.vue` 中 `<style>` 中的样式为全局样式，作用于每一个页面（`style` 标签不支持 `scoped`，写了样式无效）。
 
 `App.vue` 中，通过 `@import` 语句可以引入外联样式，同样可作用于每一个页面。
+
+uni.scss 全局样式：
 
 `uni.scss` 文件也是用来编写全局样式的，通常用来定义全局变量。
 
@@ -227,7 +229,7 @@ $uni-color-primary: #007aff;
 ```vue
 <template>
 	<view class="content">
-		<!-- div 可以用，但是不推荐,不跨平台，且编译效率低 -->
+		<!-- div 也不是不能用，但是不推荐，它不跨平台，且编译效率低 -->
 		<div>我是一个 div</div>
 		<view class="title">1.全局样式测试</view>
 		<view class="name">2.全局样式测试</view>
@@ -299,7 +301,7 @@ $uni-color-primary: #007aff;
 
 - 竖向滚动时，须给 `<scroll-view>` 一个固定高度；
 
-- 横向滚动时，须给 `<scroll-view>` 添加 `white-space: nowrap;` 样式；且子元素设置为行内块级元素。
+- 横向滚动时，须给 `<scroll-view>` 添加 `white-space: nowrap;` 样式；且子元素设置为**行内块级元素**。
 
 - APP 和小程序中，不要在 `<scroll-view>` 中使用 `<map>`、`<video>` 等原生组件。
 
@@ -313,43 +315,43 @@ $uni-color-primary: #007aff;
 	<view class="content">
 
 		<!-- 纵向滚动 -->
-		<scroll-view scroll-y="true" class="zt-v-scroll">
-			<view class="v-item">item1</view>
-			<view class="v-item">item2</view>
-			<view class="v-item">item3</view>
-			<view class="v-item">item4</view>
-			<view class="v-item">item5</view>
-			<view class="v-item">item6</view>
-			<view class="v-item">item7</view>
+		<scroll-view scroll-y="true" class="zt-y-scroll">
+			<view class="y-item">item1</view>
+			<view class="y-item">item2</view>
+			<view class="y-item">item3</view>
+			<view class="y-item">item4</view>
+			<view class="y-item">item5</view>
+			<view class="y-item">item6</view>
+			<view class="y-item">item7</view>
 		</scroll-view>
 
 		<!-- 横向滚动 -->
-    <scroll-view scroll-x="true" class="zt-h-scroll" :show-scrollbar="false">
-			<view class="h-item">item1</view>
-			<view class="h-item">item2</view>
-			<view class="h-item">item3</view>
-			<view class="h-item">item4</view>
-			<view class="h-item">item5</view>
-			<view class="h-item">item6</view>
-			<view class="h-item">item7</view>
+    <scroll-view scroll-x="true" class="zt-x-scroll" :show-scrollbar="false">
+			<view class="x-item">item1</view>
+			<view class="x-item">item2</view>
+			<view class="x-item">item3</view>
+			<view class="x-item">item4</view>
+			<view class="x-item">item5</view>
+			<view class="x-item">item6</view>
+			<view class="x-item">item7</view>
 		</scroll-view>
 
 	</view>
 </template>
 
 <style lang="less">
-	.zt-v-scroll {
+	.zt-y-scroll {
 		height: 400rpx;
 		border: 2rpx red solid;
 		box-sizing: border-box;
 
-		.v-item {
+		.y-item {
 			height: 200rpx;
 			border-bottom: 2rpx solid blue;
 		}
 	}
 
-	.zt-h-scroll {
+	.zt-x-scroll {
 		white-space: nowrap;
 
 		/* 隐藏原生实现的滚动条。*/
@@ -357,12 +359,12 @@ $uni-color-primary: #007aff;
 			display: none;
 		} */
 
-		:deep(.zt-h-scroll .uni-scroll-view::-webkit-scrollbar) {
+		:deep(.zt-x-scroll .uni-scroll-view::-webkit-scrollbar) {
 			display: none;
 		}
 		/* :global { } 在全局查找选择器 */
 
-		.h-item {
+		.x-item {
 			display: inline-block;
 			height: 200rpx;
 			width: 200rpx;
@@ -493,10 +495,11 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 
 uni-app 支持在 css 里设置背景图片，使用方式与普通 web 项目大体相同，默认支持 base64 图片、网络路径图片。
 
-使用本地背景图片或字体图标需注意：
+使用本地背景图片或字体图标时：
 
-- 小程序不支持本地的图片，也不能自动转 base64 格式，除非将图片直接放在 static 目录下.
-- 需自行将其转换为 base64 格式，或将其挪到服务器上，从网络地址引用。
+- 小程序要注意：
+  - 不支持本地的图片，也不能自动转 base64 格式，除非将图片直接放在 static 目录下.
+  - 需自行将其转换为 base64 格式，或将其挪到服务器上，从网络地址引用。
 - 本地背景图片的引用路径推荐使用以 `~@` 开头的绝对路径。
 
 # 十、字体图标
@@ -575,15 +578,16 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 方式一（推荐）：通过 `uni_modules`（插件模块化规范）**按需安装**组件。
 
-1. 官网找到[扩展组件](https://uniapp.dcloud.net.cn/component/uniui/quickstart.html#%E9%80%9A%E8%BF%87-uni-modules-%E5%8D%95%E7%8B%AC%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6)清单，然后将所需要的组件导入到项目，导入后直接使用，无需 `import` 和注册。
-2. 如果还想切换应用风格，这时可以在 `uni.scss` 导入 uni-ui 提供的内置 scss 变量，然后重启应用。
+1. 官网找到[扩展组件](https://uniapp.dcloud.net.cn/component/uniui/quickstart.html#%E9%80%9A%E8%BF%87-uni-modules-%E5%8D%95%E7%8B%AC%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6)清单，将所需组件导入到项目 `uni_modules` 目录中，
+2. 导入后直接使用，无需 `import` 和注册。
+3. 如果还想改变组件风格，在 `uni.scss` 导入 *uni-ui* 提供的内置 scss 变量，然后重启应用。
 
-> 需要登录 DCloud 账号才能安装
+> 需要登录 DCloud 账号才能安装。
 
 方式二（推荐）：通过 `uni_modules` **安装全部**组件；[官方文档](https://uniapp.dcloud.net.cn/component/uniui/quickstart.html#%E9%80%9A%E8%BF%87-uni-modules-%E5%AF%BC%E5%85%A5%E5%85%A8%E9%83%A8%E7%BB%84%E4%BB%B6)
 
-- 一次性把所有 uni-ui 组件导入到项目，可以借用 HbuilderX 插件导入。
-- 如果没有自动导入其他组件，可在 uni-ui 组件目录上右键选择 安装三方插件依赖即可。
+- 一次性把所有 uni-ui 组件导入到项目，可以借用 HbuilderX 插件直接导入。
+- 如果没有自动导入其他组件，可在 `uni_modules` 组件目录上右键选择安装三方插件依赖即可。
 
 方式三：在 HBuilderX 新建 uni-app 项目时，在模板中选择 uni-ui 模板来创建项目 
 
@@ -597,7 +601,7 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 ## 4.使用
 
-安装 `<uni-badge>` 徽章组件，`<uni-countdown>` 倒计时组件，`<uni-goods-nav>` 商品导航组件。
+安装 `<uni-badge>` 徽章组件；`<uni-countdown>` 倒计时组件；`<uni-goods-nav>` 商品导航组件。
 
 1.使用 [uni-badge](https://ext.dcloud.net.cn/plugin?name=uni-badge) 组件，用于展示徽标。
 

@@ -198,7 +198,11 @@ HBuilderX 支持各种表达式语法，如 less、scss、stylus、typescript �
     > 如果想要全局中使用 adb。需要为 adb 配置环境变量，
     >
     > 如果使用外部的 adb 插件，需要在 HBuilder 中配置 adb 的运行路径。
-6. 执行命令 `adb connect 127.0.0.1:7555` mumu 模拟器，默认运行在 7555 端口。
+6. 执行如下命令：
+
+   ```shell
+   adb connect 127.0.0.1:7555 # mumu 模拟器，默认运行在 7555 端口。
+   ```
 
 # 十一、uni-app 项目目录结构
 
@@ -297,22 +301,8 @@ export function createApp() {
 
 ```
 
-全局样式的练习。
 
-全局样式的应用：
-
-01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
-
-```vue
-<template>
-	<view class="content">
-		<view class="title">1.全局样式测试</view>
-		<view class="name">2.全局样式测试</view>
-	</view>
-</template>
-```
-
-全局样式的编写和导入：
+全局样式的编写：
 
 01-uni-app\demo-project\01-hello-uniapp\static\css\common.css
 
@@ -327,6 +317,8 @@ export function createApp() {
 ```less
 @mainColor: orange;
 ```
+
+全局样式的导入：
 
 01-uni-app\demo-project\01-hello-uniapp\App.vue
 
@@ -355,5 +347,18 @@ export function createApp() {
 		border: 5px @mainColor solid;
 	}
 </style>
+```
+
+全局样式在页面中应用：
+
+01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
+
+```vue
+<template>
+	<view class="content">
+		<view class="title">1.全局样式测试</view>
+		<view class="name">2.全局样式测试</view>
+	</view>
+</template>
 ```
 

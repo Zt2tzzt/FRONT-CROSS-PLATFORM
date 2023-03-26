@@ -132,7 +132,7 @@ uni-app 适合不太复杂的应用，可兼容多端，但增加了开发者心
 
 - HBuilderX 内置了相关环境，开箱即用。
 
-- 点工具栏里的文件 -> 新建 -> 项目（Ctrl + N）
+- 点工具栏里的文件 -> 新建 -> 项目（Ctrl + N）；
 
 - 选择 uni-app 类型，输入工程名，选择默认模板，选择 Vue 版本，点击创建即可。
 
@@ -178,7 +178,7 @@ HBuilderX 支持各种表达式语法，如 less、scss、stylus、typescript �
   - 设置 - 安全设置 - 开启服务端口
 - 在 HBuilderx 中，配置微信开发者工具的安装路径。
 
-> 在微信开发者工具中，手动打开打包后的项目，路径是 `.\unpackage\dist\dev\mp-weixin`
+> 在微信开发者工具中，手动打开打包后的项目，路径是 `./unpackage/dist/dev/mp-weixin`
 
 5.运行到手机模拟器：
 
@@ -212,9 +212,9 @@ HBuilderX 支持各种表达式语法，如 less、scss、stylus、typescript �
 
 为了实现多端兼容，综合考虑编译速度、运行性能等因素，uni-app 约定了如下开发规范：
 
-- 页面文件遵循 Vue 单文件组件 (SFC) 规范；
-- 组件标签靠近小程序规范，详见 uni-app 组件规范；
-- 接口能力（JS API）靠近微信小程序规范，
+- 页面文件，遵循 Vue 单文件组件 (SFC) 规范；
+- 组件标签，靠近小程序规范，详见 uni-app 组件规范；
+- 接口能力（JS API），靠近微信小程序规范，
   - 需将前缀 `wx` 替换为 `uni`。
 - 数据绑定及事件处理同 Vue.js 规范，同时补充了 App 及页面的生命周期；
 - 为兼容多端运行，建议使用 flex 布局进行开发，推荐使用 rpx 单位（750 设计稿）。
@@ -261,7 +261,7 @@ export function createApp() {
 
 # 十四、App.vue 文件
 
-`App.vue` 是 uni-app 的入口组件，所有页面都是在 `App.vue` 下进行切换
+`App.vue` 是 uni-app 的入口组件，所有页面都是在 `App.vue` 下进行切换的。
 
 `App.vue` 本身不是页面，这里不能编写视图元素，也就是没有 `<template>` 元素
 

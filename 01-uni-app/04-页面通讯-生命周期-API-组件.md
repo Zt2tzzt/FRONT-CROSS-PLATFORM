@@ -123,10 +123,6 @@ export default {
 		console.log('home onLoad')
 		uni.$on('detail03ToHome', this.detail03ToHome)
 	},
-	onUnload() {
-		console.log('home onUnload')
-		uni.$off('detail03ToHome', this.detail03ToHome)
-	},
 	onShow() {
 		console.log('home onShow')
 	},
@@ -138,6 +134,7 @@ export default {
 	},
 	onUnload() {
 		console.log('home onUnload')
+		uni.$off('detail03ToHome', this.detail03ToHome)
 		uni.$off('acceptDataFromDetail03', this.acceptDataFromDetail03)
 	},
 	onPullDownRefresh() {
@@ -329,7 +326,9 @@ onReachBottom(() => {
 </style>
 ```
 
-> 【注意】：`vue` 和 `@dcloudio/uni-app` 库，不需要安装，可直接使用。
+> 【注意】：在 HBuilderX 中编写 uni-app 项目时：
+>
+> `vue` 和 `@dcloudio/uni-app` 库，不需要安装，可直接使用。
 >
 > ```javascript
 > import { onLoad } from '@dcloudio/uni-app'
@@ -539,6 +538,7 @@ export default new ZtRequest()
 
 <script>
 import { getHomeMutidata } from '@/service/home.js'
+  
 export default {
 	data() {
 		return {
@@ -721,18 +721,24 @@ home.vue
 
 <script setup>
 import { onLoad, onUnload } from '@dcloudio/uni-app'
-
+  
+// 全局事件总线
+function goToDetail03() {
+	uni.navigateTo({
+		url: '/pages/detail03/detail03?name=liujun&id=300'
+	})
+}
 onLoad(() => {
 	uni.$on('acceptDataFormDetail03', acceptDataFormDetail03)
 })
 onUnload(() => {
 	uni.$off('acceptDataFormDetail03', acceptDataFormDetail03)
 })
-
 function acceptDataFormDetail03(value) {
 	console.log('接收到 detail03 传递给 home 页面的数据:', value)
 }
 
+// 正向传递数据
 function goToDetail01() {
 	console.log('goToDetail01')
 	uni.navigateTo({
@@ -745,6 +751,7 @@ function goToDetail01() {
 	})
 }
 
+// 逆向传递数据
 function goToDetail02() {
 	uni.navigateTo({
 		url: '/pages/detail02/detail02?name=liujun&id=200',
@@ -753,12 +760,6 @@ function goToDetail02() {
 				console.log('接收到 detail02 传递过来的数据', value)
 			}
 		}
-	})
-}
-
-function goToDetail03() {
-	uni.navigateTo({
-		url: '/pages/detail03/detail03?name=liujun&id=300'
 	})
 }
 </script>

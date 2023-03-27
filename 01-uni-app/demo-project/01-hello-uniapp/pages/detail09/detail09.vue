@@ -1,11 +1,7 @@
 <template>
-	<view class="content">
-		<button @click="onAddNumber">加1</button>
-		<button @click="onSubNumber">减1</button>
+	<view>
+		<button @click="onAddNumberClick">加1</button>
 		<view>{{ count }}</view>
-		<navigator url="/pages/detail09/detail09">
-			<button>GoToDetail09</button>
-		</navigator>
 	</view>
 </template>
 
@@ -16,12 +12,10 @@
 	const counterStore = useCounterStore()
 	const { count } = storeToRefs(counterStore)
 	
-	const onAddNumber = () => {
+	const onAddNumberClick = () => {
 		counterStore.increment()
 	}
-	const onSubNumber = () => {
-		counterStore.decrement()
-	}
+	
 </script>
 
 <style lang="less">

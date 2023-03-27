@@ -46,7 +46,7 @@
 				<image class="swiper-image" src="@/static/images/banners/banner02.jpeg"></image>
 			</swiper-item>
 		</swiper>
-
+		
 	</view>
 </template>
 

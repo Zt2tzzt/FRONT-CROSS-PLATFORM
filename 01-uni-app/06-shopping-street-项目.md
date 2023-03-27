@@ -93,7 +93,7 @@ $gFontSize: 28rpx;
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "购物街",
+		"navigationBarTitleText": "购物街", // 统一配置 App 标题名称
 		"navigationBarBackgroundColor": "#ff8190",
 		"backgroundColor": "#F8F8F8"
 	},
@@ -207,7 +207,7 @@ export function createApp() {
 
 创建 store 的 home 模块。
 
-在其中创建 action，发送网络请求，将轮播图和推荐数据保存到 store 在。
+在其中创建 action，发送网络请求，将轮播图和推荐数据保存到 store 中。
 
 01-uni-app\demo-project\02-shopping-street\store\home.js
 
@@ -342,7 +342,7 @@ export const useHomeStore = defineStore('home', {
 </script>
 ```
 
-新建一个 `webview.vue` 页面，跳转后来到该页面。接收链接，展示页面。
+创建一个 `webview.vue` 页面，跳转后来到该页面。接收链接，展示对应的 webvieqw 页面。
 
 01-uni-app\demo-project\02-shopping-street\pages\webview\webview.vue
 
@@ -444,7 +444,7 @@ export const useHomeStore = defineStore('home', {
 	import HomeRecommend from './cpns/home-recommend.vue'
 	
 	const homeStore = useHomeStore()
-	const { banners, recommends } = storeToRefs(homeStore)
+	const { recommends } = storeToRefs(homeStore)
 	
 	onLoad(() => {
 		homeStore.fetchHomeMultiDataAction()
@@ -458,7 +458,7 @@ export const useHomeStore = defineStore('home', {
 
 ## 3.HomePopular 区域
 
-封装热门组件 `homew-popular.vue`；
+封装热门组件 `home-popular.vue`；
 
 使用 `<image>` 组件后，小程序服务，可能需要重启才能正常展示。
 

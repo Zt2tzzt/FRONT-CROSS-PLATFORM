@@ -585,7 +585,7 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 1. 官网找到[扩展组件](https://uniapp.dcloud.net.cn/component/uniui/quickstart.html#%E9%80%9A%E8%BF%87-uni-modules-%E5%8D%95%E7%8B%AC%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6)清单，将所需组件导入到项目 `uni_modules` 目录中，
 2. 导入后直接使用，无需 `import` 和注册。
-3. 如果要自定义组件风格，在 `uni.scss` 修改 *uni-ui* 提供的内置 scss 变量，然后重启应用。
+3. 如果要自定义组件风格，在 `uni.scss` 导入 *uni-ui* 提供的内置 scss 变量而文件，并覆盖，然后重启应用。
 
 > 需要登录 DCloud 账号才能安装。
 

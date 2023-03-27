@@ -29,7 +29,7 @@
 
 在页面中拿到 `globalData`
 
-在页面的生命周期 `onLoad` 中，使用 `getApp()` 拿到 `app` 实例;
+在 `index.vue` 页面的生命周期 `onLoad` 中，使用 `getApp()` 拿到 `app` 实例;
 
 再通过它拿到 `globalData`。
 
@@ -53,7 +53,7 @@
 
 使用 `getCurrentPages` 拿到当前页面的路由。
 
-用于获取当前页面栈的实例，以数组形式按栈的顺序排列；
+用于获取当前页面栈的实例，以数组形式，按栈的顺序排列；
 
 - 第一个元素为首页，最后一个元素为当前页面。
 
@@ -75,9 +75,9 @@
 
 > 【注意】：`getApp` 和 `getCurrentPages` 都是跨端 api。兼容 h5、weapp、app.
 
-> 【注意】：在 `App.vue` 中一般使用 *Option API*，在页面中使用 *Composition API*。
+> 【注意】：在 `App.vue` 中要使用 *Option API*，在页面/组件中可使用 *Composition API*。
 
-> 【注意】：`<style>` 标签不支持写 `scope`
+> 【注意】：`<style>` 标签不支持写 `scope`，默认已有作用域。
 
 在 `App.vue` 中，一般定义全局样式，使用 `page` 选择器：
 
@@ -95,7 +95,7 @@
 </style>
 ```
 
-> 【注意】：`page` 会编译成 `<uni-page-body>` 自定义元素。
+> 【注意】：`page` 会选到 H5 端渲染的 `<uni-page-body>` 自定义元素。
 >
 > 在原生调试页面，看不到元素，需要将文件改为 `.nvue` 格式的文件。
 
@@ -107,13 +107,15 @@
 
 `uni.scss` 主要有如下作用：
 
-- 用于存放全局样式变量。
+- 存放全局样式变量。
 - 重写 uni-app 内置的样式变量。
 - 重写 uni-ui 内置框架的样式变量。
 
 `uni.scss` 中定义的变量，无需 `@import` 就可以在任意组件中直接使用。
 
-然后在该组件的 `<style>` 上加 `lang=“scss”`，重启即可生效。
+然后在该组件的 `<style>` 上加 `lang=“scss”`。
+
+> 【注意】：修改 `uni.scss` 后，重启才能生效。
 
 > 【注意】：这里的 *uni-app* 框架内置变量，和 *uni-ui* 组件库的内置变量是不一样的。
 
@@ -165,7 +167,7 @@ uni.scss 全局样式：
 
 # 四、page.json 文件
 
-类似于小程序中的 app.json 文件。
+类似于小程序中的 `app.json` 文件。
 
 [page.json](https://uniapp.dcloud.net.cn/collocation/pages.html) 是全局页面配置文件（兼容 h5、weapp、app ）；
 
@@ -222,7 +224,7 @@ uni.scss 全局样式：
 
 类似于 html 中的 `<div>`，用于包裹各种元素内容。
 
-也可以使用 `<div>`，但不跨平台。
+也可以使用 `<div>`，但不跨平台，所以不推荐。
 
 01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
 
@@ -300,13 +302,15 @@ uni.scss 全局样式：
 [\<scroll-view\>](https://uniapp.dcloud.net.cn/component/scroll-view.html)：可滚动视图区域。
 
 - 竖向滚动时，须给 `<scroll-view>` 一个固定高度；
-
 - 横向滚动时，须给 `<scroll-view>` 添加 `white-space: nowrap;` 样式；且子元素设置为**行内块级元素**。
 
-- APP 和小程序中，不要在 `<scroll-view>` 中使用 `<map>`、`<video>` 等原生组件。
-
-- 小程序的 `<scroll-view>` 中也不要使用 `<canvas>`、`<textarea>` 原生组件。
-- 若要使用下拉刷新，建议使用页面的滚动，而不是 `<scroll-view>`。
+> 【注意】：
+>
+> APP、小程序中，不要在 `<scroll-view>` 中使用 `<map>`、`<video>` 等原生组件。
+>
+> 小程序中，不要在 `<scroll-view>` 中使用 `<canvas>`、`<textarea>` 等原生组件。
+>
+> 若要使用下拉刷新，建议使用页面的滚动，而不是 `<scroll-view>`。
 
 01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
 
@@ -341,7 +345,7 @@ uni.scss 全局样式：
 
 <style lang="less">
 	.zt-y-scroll {
-		height: 400rpx;
+		height: 400rpx; // 须有固定高度
 		border: 2rpx red solid;
 		box-sizing: border-box;
 
@@ -352,7 +356,7 @@ uni.scss 全局样式：
 	}
 
 	.zt-x-scroll {
-		white-space: nowrap;
+		white-space: nowrap; // 须有该设置
 
 		/* 隐藏原生实现的滚动条。*/
 		/* &::-webkit-scrollbar {
@@ -378,7 +382,7 @@ uni.scss 全局样式：
 
 ## 6.swiper 组件
 
-[\<swiper\>](https://uniapp.dcloud.net.cn/component/swiper.html)：滑块视图容器，一般用于左右滑动或上下滑动，比如轮播图。
+[\<swiper\>](https://uniapp.dcloud.net.cn/component/swiper.html)：滑块视图容器，一般用于左右或上下区域滚动，比如轮播图。
 
 默认宽 `100%`，高为 `150px`；
 
@@ -493,13 +497,14 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 </style>
 ```
 
-uni-app 支持在 css 里设置背景图片，使用方式与普通 web 项目大体相同，默认支持 base64 图片、网络路径图片。
+uni-app 支持在 css 里设置背景图片，使用方式与普通 web 项目大体相同；
 
-使用本地背景图片或字体图标时：
+默认支持 base64 图片、网络路径图片。
+
+在 css 中，使用本地背景图片、字体图标时：
 
 - 小程序要注意：
   - 不支持本地的图片，也不能自动转 base64 格式，除非将图片直接放在 static 目录下.
-  - 需自行将其转换为 base64 格式，或将其挪到服务器上，从网络地址引用。
 - 本地背景图片的引用路径推荐使用以 `~@` 开头的绝对路径。
 
 # 十、字体图标
@@ -580,7 +585,7 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 1. 官网找到[扩展组件](https://uniapp.dcloud.net.cn/component/uniui/quickstart.html#%E9%80%9A%E8%BF%87-uni-modules-%E5%8D%95%E7%8B%AC%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6)清单，将所需组件导入到项目 `uni_modules` 目录中，
 2. 导入后直接使用，无需 `import` 和注册。
-3. 如果还想改变组件风格，在 `uni.scss` 导入 *uni-ui* 提供的内置 scss 变量，然后重启应用。
+3. 如果要自定义组件风格，在 `uni.scss` 修改 *uni-ui* 提供的内置 scss 变量，然后重启应用。
 
 > 需要登录 DCloud 账号才能安装。
 
@@ -697,7 +702,6 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 			},
 			buttonClick(e) {
 				console.log('buttonClick e:', e);
-				console.log(e)
 				this.options[2].info++
 			}
 		}

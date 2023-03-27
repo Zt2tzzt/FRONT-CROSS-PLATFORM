@@ -75,11 +75,13 @@ export default {
 >
 > 事件总线的 API 是全局的，可以跨组件通讯。
 >
-> 先监听，再触发事件,否则无法监听。
+> 先监听，再触发；否则无法监听。
 >
 > 通常 on 和 off 是同时使用，避免重复监听，更加规范。
 >
-> 适合页面返回传递参数（即”逆向“传递）、不适合界面跳转传递参数（即”正向“传递），因为要先监听事件，后发射事件。
+> 适合页面返回传递参数（即”逆向“传递）、不适合界面跳转传递参数（即”正向“传递）。
+>
+> - 因为要先监听事件，后发射事件。
 
 # 二、生命周期
 
@@ -149,6 +151,7 @@ export default {
 				url: '/pages/detail04/detail04'
 			})
 		}
+    //...
 	}
 }
 </script>
@@ -369,13 +372,16 @@ uni-app 中，常用组件生命周期有：
 <script>
 export default {
 	name: 'zt-button',
+  
 	props: {
 		type: {
 			type: String,
 			default: 'default' // default primary
 		}
 	},
+  
 	emits: ['btnClick'],
+  
 	// 1.组件的生命周期函数
 	beforeCreate() {
 		console.log('zt-btn beforeCreate')
@@ -422,7 +428,7 @@ export default {
 </template>
 
 <script setup>
-// 是组件的生命周期
+// 组件的生命周期
 import { onBeforeMount, onMounted, ref, watch, computed } from 'vue'
 
 // 页面的生命周期
@@ -436,15 +442,15 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['btnClick'])
+
 function onBtnClick() {
 	emit('btnClick')
 }
 
-// 1.是组件的生命周期
+// 1.组件的生命周期
 onBeforeMount(() => {
 	console.log('zt-buton-setup onBeforeMount')
 })
-
 onMounted(() => {
 	console.log('zt-buton-setup onMounted')
 })
@@ -492,11 +498,11 @@ const TIMEOUT = 60000
 const BASE_URL = 'http://152.136.185.210:7878/api/hy66'
 
 class ZtRequest {
-	request(url, method, data) {
+	request(url, method = 'GET', data = {}) {
 		return new Promise((resolve, reject) => {
 			uni.request({
 				url: BASE_URL + url,
-				method: method || 'GET',
+				method,
 				timeout: TIMEOUT,
 				data,
 				success(res) {
@@ -642,13 +648,16 @@ easycom 组件规范：
 <script>
 export default {
 	name: 'zt-button',
+  
 	props: {
 		type: {
 			type: String,
 			default: 'default' // default primary
 		}
 	},
+  
 	emits: ['btnClick'],
+  
 	methods: {
 		onBtnClick() {
 			this.$emit('btnClick')
@@ -722,7 +731,7 @@ home.vue
 <script setup>
 import { onLoad, onUnload } from '@dcloudio/uni-app'
   
-// 全局事件总线
+// 全局事件总线 detail03 逆向传回数据
 function goToDetail03() {
 	uni.navigateTo({
 		url: '/pages/detail03/detail03?name=liujun&id=300'
@@ -738,7 +747,7 @@ function acceptDataFormDetail03(value) {
 	console.log('接收到 detail03 传递给 home 页面的数据:', value)
 }
 
-// 正向传递数据
+// 正向传递数据，向 detail01 传数据。
 function goToDetail01() {
 	console.log('goToDetail01')
 	uni.navigateTo({
@@ -751,7 +760,7 @@ function goToDetail01() {
 	})
 }
 
-// 逆向传递数据
+// 逆向传递数据 detail02 传回数据
 function goToDetail02() {
 	uni.navigateTo({
 		url: '/pages/detail02/detail02?name=liujun&id=200',
@@ -832,7 +841,7 @@ function goBack() {
 </script>
 ```
 
-## 3.事件总线
+## 3.事件总线（逆向传递）
 
 detail03.vue
 

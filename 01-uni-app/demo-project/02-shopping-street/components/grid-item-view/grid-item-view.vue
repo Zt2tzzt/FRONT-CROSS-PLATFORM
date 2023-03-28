@@ -1,5 +1,6 @@
 <template>
 	<view class="goods-item" @click="onItemClick">
+		
 		<!-- #ifndef H5-->
 		<image class="image" :lazy-load="true" :src="itemInfo.show.img" mode="widthFix"></image>
 		<!-- #endif -->

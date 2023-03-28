@@ -1,11 +1,6 @@
 import goodsType from '@/static/data/home-goods-type.json'
-import {
-	defineStore
-} from 'pinia'
-import {
-	getHomeMutidata,
-	getHomeGoodsData
-} from '@/service/home.js'
+import { defineStore } from 'pinia'
+import { getHomeMutidata, getHomeGoodsData } from '@/service/home.js'
 
 export const useHomeStore = defineStore('home', {
 	state: () => ({
@@ -38,15 +33,17 @@ export const useHomeStore = defineStore('home', {
 	actions: {
 		fetchHomeMultiDataAction() {
 			getHomeMutidata().then(res => {
-				console.log('getHomeMutidata res:', res);
+				console.log('getHomeMutidata res:', res)
 				this.banners = res.data.banner.list || []
 				this.recommends = res.data.recommend.list || []
 			})
 		},
 		fetchHomeGoodsDataAction(type, page) {
 			getHomeGoodsData(type, page).then(res => {
-				console.log('fetchHomeGoodsDataAction res:', res);
-				this.goodsList[type].list = this.goodsList[type].list.concat(res.data.list)
+				console.log('fetchHomeGoodsDataAction res:', res)
+				this.goodsList[type].list = this.goodsList[type].list.concat(
+					res.data.list
+				)
 				this.goodsList[type].page = page
 			})
 		},

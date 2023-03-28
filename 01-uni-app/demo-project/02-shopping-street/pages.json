@@ -2,7 +2,8 @@
 	"pages": [{
 		"path": "pages/home/home",
 		"style": {
-			"enablePullDownRefresh": false
+			"enablePullDownRefresh": false,
+			"onReachBottomDistance": 300
 		}
 
 	}, {
@@ -29,6 +30,13 @@
 			"navigationBarTitleText": "",
 			"enablePullDownRefresh": false
 		}
+	}, {
+		"path": "pages/detail/detail",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false
+		}
+
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

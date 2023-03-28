@@ -10,9 +10,9 @@ class ZtRequest {
 	request(url, method = 'GET', data = {}) {
 		return new Promise((resolve, reject) => {
 			uni.request({
-				url: this.timeout + url,
+				url: this.baseUrl + url,
 				method,
-				timeout: this.baseUrl,
+				timeout: this.timeout,
 				data,
 				success(res) {
 					resolve(res.data)

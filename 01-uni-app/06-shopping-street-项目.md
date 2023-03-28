@@ -10,13 +10,13 @@
 
 在 static 目录下，存放图片。
 
-> 【注意】：小程序中样式引用图片，仅支持 base64 和网络图片。
+> 【注意】：小程序中的样式，引用图片，仅支持 base64 和网络图片。
 
 新建 styles 目录，存放全局样式 `global.scss`（项目中未使用）。
 
 01-uni-app\demo-project\02-shopping-street\styles\global.scss
 
-```less
+```scss
 // 这些是scss变量
 $gPrimaryColor: #ff5777;
 $gTintColor: #ff8198;
@@ -88,7 +88,6 @@ $gFontSize: 28rpx;
 			"style": {
 				"enablePullDownRefresh": false
 			}
-
 		}
 	],
 	"globalStyle": {
@@ -139,14 +138,18 @@ $gFontSize: 28rpx;
 const TIME_OUT = 60000
 const BASE_URL = 'http://123.207.32.32:7888/api/hy66'
 
-class ZtRequest{
-	
+class ZtRequest {
+	constructor(timeout, baseUrl) {
+		this.timeout = timeout
+		this.baseUrl = baseUrl
+	}
+
 	request(url, method = 'GET', data = {}) {
 		return new Promise((resolve, reject) => {
 			uni.request({
-				url: BASE_URL + url,
+				url: this.timeout + url,
 				method,
-				timeout: TIME_OUT,
+				timeout: this.baseUrl,
 				data,
 				success(res) {
 					resolve(res.data)
@@ -157,16 +160,17 @@ class ZtRequest{
 			})
 		})
 	}
-	
+
 	get(url, params) {
-		return this.request(url, "GET", params)
+		return this.request(url, 'GET', params)
 	}
-	
+
 	post(url, data) {
-		return this.request(url, "POST", params)
+		return this.request(url, 'POST', data)
 	}
 }
-export default new ZtRequest()
+
+export default new ZtRequest(TIME_OUT, BASE_URL)
 ```
 
 封装首页轮播图的网络请求。
@@ -207,7 +211,7 @@ export function createApp() {
 
 创建 store 的 home 模块。
 
-在其中创建 action，发送网络请求，将轮播图和推荐数据保存到 store 中。
+在其中创建 action，发送网络请求，将“轮播图”和“推荐”数据保存到 store 中。
 
 01-uni-app\demo-project\02-shopping-street\store\home.js
 
@@ -504,7 +508,9 @@ export const useHomeStore = defineStore('home', {
 
 ## 4.TabControl 组件
 
-在 components 目录下，封装选项卡 `tab-control.vue` 组件；
+在 components 目录下：
+
+封装选项卡 `tab-control.vue` 组件，使用 **easycom 组件规范**。
 
 点击切换选项卡。
 
@@ -564,7 +570,7 @@ export const useHomeStore = defineStore('home', {
 			&.active {
 				.title {
 					color: var(--gTintColor);
-					border-bottom: 6px solid var(--gTintColor);
+					border-bottom-color: var(--gTintColor);
 				}
 			}
 		}

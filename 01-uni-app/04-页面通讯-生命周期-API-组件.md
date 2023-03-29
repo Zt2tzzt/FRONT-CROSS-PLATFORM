@@ -77,9 +77,9 @@ export default {
 >
 > 先监听，再触发；否则无法监听。
 >
-> 通常 on 和 off 是同时使用，避免重复监听，更加规范。
+> 通常”有 on 就有 off“，避免重复监听，更加规范。
 >
-> 适合页面返回传递参数（即”逆向“传递）、不适合界面跳转传递参数（即”正向“传递）。
+> 全局事件总线，适合页面返回传递参数（即”逆向“传递）、不适合界面跳转传递参数（即”正向“传递）。
 >
 > - 因为要先监听事件，后发射事件。
 
@@ -329,12 +329,10 @@ onReachBottom(() => {
 </style>
 ```
 
-> 【注意】：在 HBuilderX 中编写 uni-app 项目时：
->
-> `vue` 和 `@dcloudio/uni-app` 库，不需要安装，可直接使用。
+> 【注意】：在 HBuilderX 中编写 uni-app 项目时：`vue` 和 `@dcloudio/uni-app` 库，不需要安装，可直接使用。
 >
 > ```javascript
-> import { onLoad } from '@dcloudio/uni-app'
+>import { onLoad } from '@dcloudio/uni-app'
 > import { ref } from 'vue'
 > ```
 
@@ -401,6 +399,7 @@ export default {
 	onShow() {
 		console.log('zt-btn onShow')
 	},
+  
 	methods: {
 		onBtnClick() {
 			this.$emit('btnClick')
@@ -731,7 +730,7 @@ home.vue
 <script setup>
 import { onLoad, onUnload } from '@dcloudio/uni-app'
   
-// 全局事件总线 detail03 逆向传回数据
+// 全局事件总线 接收 detail03 逆向传回的数据
 function goToDetail03() {
 	uni.navigateTo({
 		url: '/pages/detail03/detail03?name=liujun&id=300'
@@ -751,7 +750,7 @@ function acceptDataFormDetail03(value) {
 function goToDetail01() {
 	console.log('goToDetail01')
 	uni.navigateTo({
-		url: '/pages/detail01/detail01?name=liujun&id=100',
+		url: '/pages/detail01/detail01?name=zzt&id=111',
 		success(res) {
 			res.eventChannel.emit('acceptDataFormHomePage', {
 				data: '我是 home 页面传递给 detail01 的数据'
@@ -763,7 +762,7 @@ function goToDetail01() {
 // 逆向传递数据 detail02 传回数据
 function goToDetail02() {
 	uni.navigateTo({
-		url: '/pages/detail02/detail02?name=liujun&id=200',
+		url: '/pages/detail02/detail02?name=zzt&id=222',
 		events: {
 			acceptDataFormDetail02(value) {
 				console.log('接收到 detail02 传递过来的数据', value)
@@ -789,14 +788,14 @@ detail01.vue
 import { ref, getCurrentInstance } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 
-// 2.方式二: ?name=liujun&id=100
+// 2.方式二: ?name=zzt&id=111
 const props = defineProps({
 	name: String,
 	id: String
 })
 console.log('在 props 中接受 home 传递过来 url 的数据:', props.name, props.id)
 
-// 1.方式一: ?name=liujun&id=100
+// 1.方式一: ?name=zzt&id=111
 // $instance => this
 const $instance = ref(getCurrentInstance().proxy)
 onLoad(options => {

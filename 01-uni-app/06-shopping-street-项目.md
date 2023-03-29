@@ -4,7 +4,7 @@
 
 # 二、依赖安装
 
-在项目中安装 vue-lazy 依赖（项目中暂未安装）。
+在项目中安装 vue3-lazy 依赖（后续图片懒加载优化时会用到）。
 
 # 三、全局样式
 
@@ -242,7 +242,7 @@ export const useHomeStore = defineStore('home', {
 
 # 七、home 页面
 
-## 1.HomeBanner 区域
+## 1.HomeBanner 组件
 
 在 `home.vue` 中，派发 action 获取轮播图和推荐数据。
 
@@ -346,7 +346,7 @@ export const useHomeStore = defineStore('home', {
 </script>
 ```
 
-创建一个 `webview.vue` 页面，跳转后来到该页面。接收链接，展示对应的 webvieqw 页面。
+创建一个 `webview.vue` 页面，跳转后来到该页面。接收链接，展示对应的 webview 页面。
 
 01-uni-app\demo-project\02-shopping-street\pages\webview\webview.vue
 
@@ -464,11 +464,11 @@ export const useHomeStore = defineStore('home', {
 
 封装热门组件 `home-popular.vue`；
 
-使用 `<image>` 组件后，小程序服务，可能需要重启才能正常展示。
+使用 `<image>` 组件展示图片后，小程序服务，可能需要重启才能正常展示。
 
 > [注意】：小程序在 css 中引用背景图片，才需要将图片放到 static 根目录，
 >
-> 这样才能自动编译成 base63 格式。
+> 这样才能自动编译成 base64 格式。
 > 
 
 01-uni-app\demo-project\02-shopping-street\pages\home\cpns\home-popular.vue
@@ -528,9 +528,7 @@ export const useHomeStore = defineStore('home', {
 </template>
 
 <script setup>
-	import {
-		ref
-	} from 'vue'
+	import { ref } from 'vue'
 
 	const currentIndex = ref(0)
 

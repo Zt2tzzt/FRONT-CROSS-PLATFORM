@@ -1,3 +1,5 @@
+import path from 'path'
+
 const config = {
   projectName: '01-hello-taro',
   date: '2023-3-29',
@@ -11,6 +13,10 @@ const config = {
   outputRoot: 'dist',
   plugins: [],
   defineConstants: {
+    VERSION: "'1.0.0'"
+  },
+  alias: {
+    "@": path.resolve(__dirname, "..", "src")
   },
   copy: {
     patterns: [

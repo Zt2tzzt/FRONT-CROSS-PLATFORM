@@ -1,18 +1,35 @@
-import { Component } from 'react'
-import './app.less'
+import { Component } from "react";
+import "./app.less";
 
 class App extends Component {
 
-  componentDidMount () {}
+  componentDidMount() {
+    console.log("app componentDidMount");
+  }
+  
+  taroGlobalData = {
+    name: "zzt",
+    age: 18,
+    id: 111,
+  };
 
-  componentDidShow () {}
+  // 应用的生命周期
+  onLaunch() {
+    console.log("app onLaunch");
+  }
 
-  componentDidHide () {}
+  componentDidShow() {
+    console.log("app componentDidShow");
+  }
 
-  render () {
+  componentDidHide() {
+    console.log("app componentDidHide");
+  }
+
+  render() {
     // this.props.children 是将要会渲染的页面
-    return this.props.children
+    return this.props.children;
   }
 }
 
-export default App
+export default App;

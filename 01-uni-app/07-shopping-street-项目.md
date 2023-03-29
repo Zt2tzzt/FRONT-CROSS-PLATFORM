@@ -26,7 +26,7 @@ export const getHomeGoodsData = (type, page) =>
 
 在 home store 的 state 中，加入 `goodList` 状态，用于存储商品列表数据。
 
-`goodList` 数据结构为对象，key 分别为"`pop`"、“`new`"、”`sell`“，分别对应”流行“、“新款”、“精选”，
+`goodList` 数据结构为对象，key 分别为"`pop`"、“`new`"、”`sell`“，分别对应”流行“、“新款”、“精选”的数据，
 
 01-uni-app\demo-project\02-shopping-street\store\home.js
 
@@ -54,8 +54,9 @@ export const useHomeStore = defineStore('home', {
 		fetchHomeGoodsDataAction(type, page) {
 			getHomeGoodsData(type, page).then(res => {
 				console.log('fetchHomeGoodsDataAction res:', res)
-				const list = this.goodsList[type].list
-				list = list.concat(res.data.list)
+				this.goodsList[type].list = this.goodsList[type].list.concat(
+					res.data.list
+				)
 				this.goodsList[type].page = page
 			})
 		}
@@ -318,7 +319,7 @@ onReachBottom(() => {
 
 在 `grid-item-view.vue` 组件中，使用条件编译；
 
-在`<image>` 组件上添加 `lazu-load` 属性（仅针对小程序生效）。
+在 `<image>` 组件上添加 `lazu-load` 属性。
 
 01-uni-app\demo-project\02-shopping-street\components\grid-item-view\grid-item-view.vue
 
@@ -337,13 +338,13 @@ onReachBottom(() => {
 
 需要使用 npm 安装插件 _vue3-lazy_ 插件。
 
-1. 先创建 `package.json` 文件；
+1. 先初始化 `package.json` 文件；
 
    ```shell
    npm init -y
    ```
 
-2. 再安装 vue-lazy 插件，该插件针对 H5 进行懒加载。
+2. 再安装 *vue3-lazy* 插件，该插件针对 H5 进行懒加载。
 
    ```shell
    npm install vue3-lazy

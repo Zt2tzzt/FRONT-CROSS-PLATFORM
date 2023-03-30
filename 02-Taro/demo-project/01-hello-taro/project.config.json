@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "01-hello-taro",
   "description": "01-hello-taro",
-  "appid": "touristappid",
+  "appid": "wx32e8b99f64cfb28c",
   "setting": {
     "urlCheck": true,
     "es6": false,

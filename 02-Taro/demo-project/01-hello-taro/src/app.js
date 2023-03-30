@@ -6,7 +6,8 @@ class App extends Component {
   componentDidMount() {
     console.log("app componentDidMount");
   }
-  
+
+  // 要放在 componentDidMount 后面，否则会报 lint 警告
   taroGlobalData = {
     name: "zzt",
     age: 18,

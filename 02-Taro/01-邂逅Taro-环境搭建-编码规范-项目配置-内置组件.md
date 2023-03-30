@@ -647,5 +647,29 @@ src\pages\01-cpn\index.less
 
 Taro UI 是 Taro 提供的 UI 组件库，使用时，要按需引入。
 
+# 十八、配置 prettier
+
+安装 *prettier*：
+
+```shell
+pnpm install prettier -D
+```
+
+消除与 eslint 冲突，[参考文档](https://juejin.cn/post/7012160233061482532)：
+
+安装依赖：
+
+```shell
+npm install eslint-plugin-prettier eslint-config-prettier -D
+```
+
+配置 `.eslintrc`：
+
+```json
+{
+  "extends": ["taro/react", "prettier"],
+}
+```
+
 
 

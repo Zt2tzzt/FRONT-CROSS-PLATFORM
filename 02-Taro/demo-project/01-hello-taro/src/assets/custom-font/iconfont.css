@@ -1,48 +1,48 @@
 @font-face {
-  font-family: "iconfont"; /* Project id  */
-  src: url("./iconfont.ttf") format("truetype");
+	font-family: 'iconfont'; /* Project id  */
+	src: url('./iconfont.ttf') format('truetype');
 }
 
 .iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-family: 'iconfont' !important;
+	font-size: 16px;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .icon-shouye:before {
-  content: "\e668";
+	content: '\e668';
 }
 
 .icon-touxiang-kong:before {
-  content: "\e660";
+	content: '\e660';
 }
 
 .icon-video:before {
-  content: "\e63e";
+	content: '\e63e';
 }
 
 .icon-video1:before {
-  content: "\e624";
+	content: '\e624';
 }
 
 .icon-music:before {
-  content: "\e664";
+	content: '\e664';
 }
 
 .icon-Video:before {
-  content: "\e69e";
+	content: '\e69e';
 }
 
 .icon-music1:before {
-  content: "\e654";
+	content: '\e654';
 }
 
 .icon-tupian:before {
-  content: "\f1cb";
+	content: '\f1cb';
 }
 
 .icon-dache:before {
-  content: "\f1cc";
+	content: '\f1cc';
 }

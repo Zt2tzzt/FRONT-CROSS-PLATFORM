@@ -1,12 +1,12 @@
 {
-  "extends": ["taro/react"],
-  "rules": {
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
-  },
-  "globals": {
-    "definePageConfig": "readonly",
-    "defineAppConfig": "readonly",
-    "VERSION": "readonly"
-  }
+	"extends": ["taro/react", "prettier"],
+	"rules": {
+		"react/jsx-uses-react": "off",
+		"react/react-in-jsx-scope": "off"
+	},
+	"globals": {
+		"definePageConfig": "readonly",
+		"defineAppConfig": "readonly",
+		"VERSION": "readonly"
+	}
 }

@@ -10,25 +10,25 @@
 
 在 static 目录下，存放图片。
 
-> 【注意】：小程序中的样式，引用图片，仅支持 base64 和网络图片。
+> 【注意】：小程序中的**样式**，引用图片，仅支持 base64 和网络图片。
 
-新建 styles 目录，存放全局样式 `global.scss`（项目中未使用）。
+新建 styles 目录，存放全局样式 `global.scss`。
 
-01-uni-app\demo-project\02-shopping-street\styles\global.scss
+styles\global.scss
 
 ```scss
 // 这些是scss变量
 $gPrimaryColor: #ff5777;
 $gTintColor: #ff8198;
 
-$gPriceColor:#ff5f3e;
+$gPriceColor: #ff5f3e;
 $gNormalColor: #666;
 
-$gBgColor:#f2f2f2;
+$gBgColor: #f2f2f2;
 $gFontSize: 28rpx;
 
 // 定义混合
-@mixin normalFlex ($direction: row, $justify: space-between){
+@mixin normalFlex($direction: row, $justify: space-between) {
 	display: flex;
 	flex-direction: $direction;
 	justify-content: $justify;
@@ -43,12 +43,12 @@ $gFontSize: 28rpx;
 
 在全局引入（项目中未使用）
 
-01-uni-app\demo-project\02-shopping-street\App.vue
+App.vue
 
 ```vue
 <style>
-	/*每个页面公共css */
-	@import url("@/styles/global.less");
+/*每个页面公共css */
+@import url('@/styles/global.less');
 </style>
 ```
 
@@ -56,34 +56,35 @@ $gFontSize: 28rpx;
 
 新建 `home.vue`、`category.vue`、`cart.vue`、`profile.vue` 页面。
 
-配置每个页面头部的标题名称和背景颜色。
+配置 App 应用（每个页面）的头部的标题名称和背景颜色。
 
 配置 tabbar。
 
-01-uni-app\demo-project\02-shopping-street\pages.json
+pages.json
 
 ```json
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/home/home",
 			"style": {
 				"enablePullDownRefresh": false
 			}
-
-		}, {
+		},
+		{
 			"path": "pages/category/category",
 			"style": {
 				"enablePullDownRefresh": false
 			}
-
-		}, {
+		},
+		{
 			"path": "pages/cart/cart",
 			"style": {
 				"enablePullDownRefresh": false
 			}
-
-		}, {
+		},
+		{
 			"path": "pages/profile/profile",
 			"style": {
 				"enablePullDownRefresh": false
@@ -92,14 +93,15 @@ $gFontSize: 28rpx;
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "购物街", // 统一配置 App 标题名称
-		"navigationBarBackgroundColor": "#ff8190",
+		"navigationBarTitleText": "购物街", // 标题名称
+		"navigationBarBackgroundColor": "#ff8190", // 背景颜色
 		"backgroundColor": "#F8F8F8"
 	},
 	"uniIdRouter": {},
 	"tabBar": {
 		"selectedColor": "#ff8190",
-		"list": [{
+		"list": [
+			{
 				"text": "首页",
 				"pagePath": "pages/home/home",
 				"iconPath": "static/images/tabbar/home.png",
@@ -132,7 +134,7 @@ $gFontSize: 28rpx;
 
 封装网络请求。
 
-01-uni-app\demo-project\02-shopping-street\service\index.js
+service\index.js
 
 ```js
 const TIME_OUT = 60000
@@ -175,7 +177,7 @@ export default new ZtRequest(TIME_OUT, BASE_URL)
 
 封装首页轮播图的网络请求。
 
-01-uni-app\demo-project\02-shopping-street\service\home.js
+service\home.js
 
 ```js
 import ztRequest from './index.js
@@ -189,7 +191,7 @@ export const getHomeMutidata = () => ztRequest.get('/home/multidata')
 
 在项目中集成 Pinia。
 
-01-uni-app\demo-project\02-shopping-street\main.js
+main.js
 
 ```js
 import App from './App'
@@ -198,13 +200,13 @@ import * as Pinia from 'pinia'
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
 export function createApp() {
-  const app = createSSRApp(App)
-	
+	const app = createSSRApp(App)
+
 	app.use(Pinia.createPinia())
-  return {
-    app,
+	return {
+		app,
 		Pinia
-  }
+	}
 }
 // #endif
 ```
@@ -213,15 +215,11 @@ export function createApp() {
 
 在其中创建 action，发送网络请求，将“轮播图”和“推荐”数据保存到 store 中。
 
-01-uni-app\demo-project\02-shopping-street\store\home.js
+store\home.js
 
 ```js
-import {
-	defineStore
-} from 'pinia'
-import {
-	getHomeMutidata
-} from '@/service/home.js'
+import { defineStore } from 'pinia'
+import { getHomeMutidata } from '@/service/home.js'
 
 export const useHomeStore = defineStore('home', {
 	state: () => ({
@@ -229,9 +227,9 @@ export const useHomeStore = defineStore('home', {
 		recommends: []
 	}),
 	actions: {
-		async fetchHomeMultiDataAction() {
+		fetchHomeMultiDataAction() {
 			getHomeMutidata().then(res => {
-				console.log('getHomeMutidata res:', res);
+				console.log('getHomeMutidata res:', res)
 				this.banners = res.data.banner.list || []
 				this.recommends = res.data.recommend.list || []
 			})
@@ -246,37 +244,41 @@ export const useHomeStore = defineStore('home', {
 
 在 `home.vue` 中，派发 action 获取轮播图和推荐数据。
 
-01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
+pages\home\home.vue
 
 ```vue
 <template>
-	<view>
-		home
-	</view>
+	<view> home </view>
 </template>
 
 <script setup>
-	import { useHomeStore } from '@/store/home.js'
-	import { storeToRefs } from 'pinia'
-	import { onLoad } from '@@dcloudio/uni-app'
-	
-	const homeStore = useHomeStore()
-	const { banners } = storeToRefs(homeStore)
-	
-	onLoad(() => {
-		homeStore.fetchHomeMultiDataAction()
-	})
+import { useHomeStore } from '@/store/home.js'
+import { storeToRefs } from 'pinia'
+import { onLoad } from '@@dcloudio/uni-app'
+
+const homeStore = useHomeStore()
+const { banners } = storeToRefs(homeStore)
+
+onLoad(() => {
+	homeStore.fetchHomeMultiDataAction()
+})
 </script>
 ```
 
 封装轮播图组件 `home-banner.vue`
 
-01-uni-app\demo-project\02-shopping-street\pages\home\cpns\home-banner.vue
+pages\home\cpns\home-banner.vue
 
 ```vue
 <template>
-	<swiper class="banner" :indicator-dots="true" indicator-active-color="#ff8190" :autoplay="true" :interval="3000"
-		:duration="1000">
+	<swiper
+		class="banner"
+		:indicator-dots="true"
+		indicator-active-color="#ff8190"
+		:autoplay="true"
+		:interval="3000"
+		:duration="1000"
+	>
 		<template v-for="item of banners" :key="item.title">
 			<swiper-item @click="onBannerItemClick(item)">
 				<image class="image" :src="item.image" mode="widthFix"></image>
@@ -286,26 +288,26 @@ export const useHomeStore = defineStore('home', {
 </template>
 
 <script setup>
-	defineProps({
-		banners: {
-			type: Array,
-			dafault: () => []
-		}
-	})
-	
-	const emit = defineEmits(['bannerItemClick'])
-	
-	const onBannerItemClick = banenrItem => {
-		emit('bannerItemClick', banenrItem.link)
+defineProps({
+	banners: {
+		type: Array,
+		dafault: () => []
 	}
+})
+
+const emit = defineEmits(['bannerItemClick'])
+
+const onBannerItemClick = banenrItem => {
+	emit('bannerItemClick', banenrItem.link)
+}
 </script>
 
 <style lang="less">
-	.banner {
-		.image {
-			width: 100%;
-		}
+.banner {
+	.image {
+		width: 100%;
 	}
+}
 </style>
 ```
 
@@ -313,42 +315,45 @@ export const useHomeStore = defineStore('home', {
 
 点击轮播图。实现跳转。
 
-01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
+pages\home\home.vue
 
 ```vue
 <template>
 	<view>
 		<!-- 轮播图组件 -->
-		<HomeBanner :banners="banners" @bannerItemClick="handleBannerItemClick"></HomeBanner>
+		<HomeBanner
+			:banners="banners"
+			@bannerItemClick="handleBannerItemClick"
+		></HomeBanner>
 	</view>
 </template>
 
 <script setup>
-	import { useHomeStore } from '@/store/home.js'
-	import { storeToRefs } from 'pinia'
-	import { onLoad } from '@dcloudio/uni-app'
-	
-	import HomeBanner from './cpns/home-banner.vue'
-	
-	const homeStore = useHomeStore()
-	const { banners } = storeToRefs(homeStore)
-	
-	onLoad(() => {
-		homeStore.fetchHomeMultiDataAction()
+import { useHomeStore } from '@/store/home.js'
+import { storeToRefs } from 'pinia'
+import { onLoad } from '@dcloudio/uni-app'
+
+import HomeBanner from './cpns/home-banner.vue'
+
+const homeStore = useHomeStore()
+const { banners } = storeToRefs(homeStore)
+
+onLoad(() => {
+	homeStore.fetchHomeMultiDataAction()
+})
+
+// 轮播图点击
+const handleBannerItemClick = link => {
+	uni.navigateTo({
+		url: '/pages/webview/webview?link=' + link
 	})
-	
-	// 轮播图点击
-	const handleBannerItemClick = link => {
-		uni.navigateTo({
-			url: '/pages/webview/webview?link=' + link
-		})
-	}
+}
 </script>
 ```
 
 创建一个 `webview.vue` 页面，跳转后来到该页面。接收链接，展示对应的 webview 页面。
 
-01-uni-app\demo-project\02-shopping-street\pages\webview\webview.vue
+pages\webview\webview.vue
 
 ```vue
 <template>
@@ -356,12 +361,12 @@ export const useHomeStore = defineStore('home', {
 </template>
 
 <script setup>
-	defineProps({
-		link: {
-			type: String,
-			default: ''
-		}
-	})
+defineProps({
+	link: {
+		type: String,
+		default: ''
+	}
+})
 </script>
 ```
 
@@ -369,7 +374,7 @@ export const useHomeStore = defineStore('home', {
 
 封装推荐组件 `HomeRecommend.vue`；
 
-01-uni-app\demo-project\02-shopping-street\pages\home\cpns\home-recommend.vue
+pages\home\cpns\home-recommend.vue
 
 ```vue
 <template>
@@ -384,79 +389,79 @@ export const useHomeStore = defineStore('home', {
 </template>
 
 <script setup>
-	defineProps({
-		recommends: {
-			type: Array,
-			default: () => []
-		}
-	})
-	
-	const emit = defineEmits(['recommendItemClick'])
-	
-	const onRecommendItemClick = item => {
-		emit('recommendItemClick', item)
+defineProps({
+	recommends: {
+		type: Array,
+		default: () => []
 	}
-	
+})
+
+const emit = defineEmits(['recommendItemClick'])
+
+const onRecommendItemClick = item => {
+	emit('recommendItemClick', item)
+}
 </script>
 
 <style lang="less">
-	.recommend {
+.recommend {
+	display: flex;
+	justify-content: space-between;
+	padding: 20rpx;
+
+	.recommend-item {
+		// less 混入
 		display: flex;
+		flex-direction: column;
 		justify-content: space-between;
-		padding: 20rpx;
-		
-		.recommend-item {
-			// less 混入
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			align-items: center;
-			font-size: var(--gFontSize);
-			
-			.image {
-				width: 150rpx;
-				height: 150rpx;
-			}
-			
-			.title {
-				margin-top: 10rpx;
-			}
+		align-items: center;
+		font-size: var(--gFontSize);
+
+		.image {
+			width: 150rpx;
+			height: 150rpx;
+		}
+
+		.title {
+			margin-top: 10rpx;
 		}
 	}
+}
 </style>
 ```
 
 在 `home.vue` 中展示。
 
-01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
+pages\home\home.vue
 
 ```vue
 <template>
 	<view>
-    
 		<!-- 推荐 -->
-		<HomeRecommend :recommends="recommends" @recommendItemClick="handleRecommendItemClick"></HomeRecommend>
-    
+		<HomeRecommend
+			:recommends="recommends"
+			@recommendItemClick="handleRecommendItemClick"
+		></HomeRecommend>
 	</view>
 </template>
 
 <script setup>
-	import { useHomeStore } from '@/store/home.js'
-	import { storeToRefs } from 'pinia'
-	import { onLoad } from '@dcloudio/uni-app'
-  
-	import HomeRecommend from './cpns/home-recommend.vue'
-	
-	const homeStore = useHomeStore()
-	const { recommends } = storeToRefs(homeStore)
-	
-	onLoad(() => {
-		homeStore.fetchHomeMultiDataAction()
-	})
-	
-	const handleRecommendItemClick = item => {
-		console.log('recommend item:', item);
-	}
+import { useHomeStore } from '@/store/home.js'
+import { storeToRefs } from 'pinia'
+import { onLoad } from '@dcloudio/uni-app'
+
+import HomeRecommend from './cpns/home-recommend.vue'
+
+const homeStore = useHomeStore()
+const { recommends } = storeToRefs(homeStore)
+
+onLoad(() => {
+	homeStore.fetchHomeMultiDataAction()
+})
+
+const handleRecommendItemClick = item => {
+	console.log('recommend item:', item)
+}
 </script>
 ```
 
@@ -469,9 +474,8 @@ export const useHomeStore = defineStore('home', {
 > [注意】：小程序在 css 中引用背景图片，才需要将图片放到 static 根目录，
 >
 > 这样才能自动编译成 base64 格式。
-> 
 
-01-uni-app\demo-project\02-shopping-street\pages\home\cpns\home-popular.vue
+pages\home\cpns\home-popular.vue
 
 ```vue
 <template>
@@ -480,22 +484,20 @@ export const useHomeStore = defineStore('home', {
 	</view>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style lang="less">
-	.popular {
-		.image {
-			width: 100%;
-		}
+.popular {
+	.image {
+		width: 100%;
 	}
+}
 </style>
-
 ```
 
 在 `home.vue` 中展示。
 
-01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
+pages\home\home.vue
 
 ```vue
 <template>
@@ -512,66 +514,68 @@ export const useHomeStore = defineStore('home', {
 
 封装选项卡 `tab-control.vue` 组件，使用 **easycom 组件规范**。
 
-点击切换选项卡。
+点击，切换选项卡。
 
-01-uni-app\demo-project\02-shopping-street\components\tab-control\tab-control.vue
+components\tab-control\tab-control.vue
 
 ```vue
 <template>
 	<view class="tab-control">
 		<template v-for="(title, index) of titles" :key="title">
-			<view :class="['item', { active: currentIndex === index }]" @click="onTabItemClick(index)">
-				<text class="title">{{title}}</text>
+			<view
+				:class="['item', { active: currentIndex === index }]"
+				@click="onTabItemClick(index)"
+			>
+				<text class="title">{{ title }}</text>
 			</view>
 		</template>
 	</view>
 </template>
 
 <script setup>
-	import { ref } from 'vue'
+import { ref } from 'vue'
 
-	const currentIndex = ref(0)
+const currentIndex = ref(0)
 
-	defineProps({
-		titles: {
-			type: Array,
-			default: () => []
-		}
-	})
-
-	const emit = defineEmits(['tabItemClick'])
-
-	const onTabItemClick = index => {
-		currentIndex.value = index
-		emit('tabItemClick', index)
+defineProps({
+	titles: {
+		type: Array,
+		default: () => []
 	}
+})
+
+const emit = defineEmits(['tabItemClick'])
+
+const onTabItemClick = index => {
+	currentIndex.value = index
+	emit('tabItemClick', index)
+}
 </script>
 
 <style lang="less">
 .tab-control {
-	
-		display: flex;
-		justify-content: space-between;
-		padding: 10rpx;
-		margin-top: 10rpx;
-		text-align: center;
-		
-		.item {
-			flex: 1;
-			
+	display: flex;
+	justify-content: space-between;
+	padding: 10rpx;
+	margin-top: 10rpx;
+	text-align: center;
+
+	.item {
+		flex: 1;
+
+		.title {
+			display: inline-block; // 让外侧轮廓变小
+			padding: 16rpx;
+			border-bottom: 6px solid #fff;
+		}
+
+		&.active {
 			.title {
-				display: inline-block; // 让外侧轮廓变小
-				padding: 16rpx;
-				border-bottom: 6px solid #fff;
-			}
-			
-			&.active {
-				.title {
-					color: var(--gTintColor);
-					border-bottom-color: var(--gTintColor);
-				}
+				color: var(--gTintColor);
+				border-bottom-color: var(--gTintColor);
 			}
 		}
+	}
 }
 </style>
 ```
@@ -580,24 +584,25 @@ export const useHomeStore = defineStore('home', {
 
 获取当前点击的选项卡索引。
 
-01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
+pages\home\home.vue
 
 ```vue
 <template>
 	<view>
-    
 		<!-- 选项卡，easycom 组件，直接使用 -->
-		<tab-control :titles="['流行', '新款', '精选']" @tabItemClick="handleTabControlClick"></tab-control>
-		
+		<tab-control
+			:titles="['流行', '新款', '精选']"
+			@tabItemClick="handleTabControlClick"
+		></tab-control>
 	</view>
 </template>
 
 <script setup>
-  //...
-	
-	// 选项卡点击
-	const handleTabControlClick = index => {
-		console.log('tab control currentIndex:', index);
-	}
+//...
+
+// 选项卡点击
+const handleTabControlClick = index => {
+	console.log('tab control currentIndex:', index)
+}
 </script>
 ```

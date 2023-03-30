@@ -10,7 +10,7 @@
 
 ### 1.封装网络请求
 
-01-uni-app\demo-project\02-shopping-street\service\home.js
+service\home.js
 
 ```js
 import ztRequest from './index.js'
@@ -28,7 +28,7 @@ export const getHomeGoodsData = (type, page) =>
 
 `goodList` 数据结构为对象，key 分别为"`pop`"、“`new`"、”`sell`“，分别对应”流行“、“新款”、“精选”的数据，
 
-01-uni-app\demo-project\02-shopping-street\store\home.js
+store\home.js
 
 ```js
 export const useHomeStore = defineStore('home', {
@@ -66,7 +66,7 @@ export const useHomeStore = defineStore('home', {
 
 在 `home.vue` 中，派发三次 action，分别请求三部分数据。
 
-01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
+pages\home\home.vue
 
 ```vue
 <script setup>
@@ -94,7 +94,7 @@ onLoad(() => {
 
 点击商品 item，跳转到详情页 `detail.vue`
 
-01-uni-app\demo-project\02-shopping-street\components\grid-item-view\grid-item-view.vue
+components\grid-item-view\grid-item-view.vue
 
 ```vue
 <template>
@@ -134,7 +134,7 @@ const onItemClick = () => {
 </style>
 ```
 
-01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
+pages\home\home.vue
 
 ```vue
 <template>
@@ -185,7 +185,7 @@ const handleGridItemClick = item => {
 - onLoad option。
 - props（项目中采用）
 
-01-uni-app\demo-project\02-shopping-street\pages\detail\detail.vue
+pages\detail\detail.vue
 
 ```vue
 <template>
@@ -210,7 +210,7 @@ defineProps({
 
 在 hoem store 中，新增状态 `currentType`，用来保存当前选项卡选中信息。
 
-01-uni-app\demo-project\02-shopping-street\store\home.js
+store\home.js
 
 ```js
 import goodsType from '@/static/data/home-goods-type.json'
@@ -231,7 +231,7 @@ export const useHomeStore = defineStore('home', {
 
 在 `home.vue` 中进行实现。
 
-01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
+pages\home\home.vue
 
 ```vue
 <template>
@@ -289,7 +289,7 @@ const handleTabControlClick = index => {
 
 在 `package.json` 中，配置 `home.vue` 页面，距离底部一定距离时，就触发 `onReachBottom` 生命周期。
 
-01-uni-app\demo-project\02-shopping-street\pages.json
+pages.json
 
 ```json
 {
@@ -301,7 +301,7 @@ const handleTabControlClick = index => {
 }
 ```
 
-01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
+pages\home\home.vue
 
 ```js
 onReachBottom(() => {
@@ -321,7 +321,7 @@ onReachBottom(() => {
 
 在 `<image>` 组件上添加 `lazu-load` 属性。
 
-01-uni-app\demo-project\02-shopping-street\components\grid-item-view\grid-item-view.vue
+components\grid-item-view\grid-item-view.vue
 
 ```vue
 <!-- #ifdef H5 -->
@@ -344,7 +344,7 @@ onReachBottom(() => {
    npm init -y
    ```
 
-2. 再安装 *vue3-lazy* 插件，该插件针对 H5 进行懒加载。
+2. 再安装 _vue3-lazy_ 插件，该插件针对 H5 进行懒加载。
 
    ```shell
    npm install vue3-lazy
@@ -376,7 +376,7 @@ onReachBottom(() => {
 
 4. 在 `<grid-view-item>` 组件中，使用条件编译
 
-01-uni-app\demo-project\02-shopping-street\components\grid-item-view\grid-item-view.vue
+components\grid-item-view\grid-item-view.vue
 
 ```vue
 <!-- #ifdef H5 -->

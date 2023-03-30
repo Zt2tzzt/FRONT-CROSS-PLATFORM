@@ -1,7 +1,7 @@
 # 一、Taro 是什么？
 
 
-Taro 是由京东凹凸实验室打造的一个开放式跨端、跨框架解决方案，并于 2018 年 6 月 7 日正式开源；
+Taro 是由京东凹凸实验室，打造的一个开放式跨端、跨框架解决方案，并于 2018 年 6 月 7 日正式开源；
 
 Taro 支持使用【React / Vue / Preact】等框架来开发【微信/京东/百度/支付宝/字节跳动/QQ 等小程序 / H5 / RN 等应用】。
 
@@ -12,7 +12,7 @@ Taro 支持使用【React / Vue / Preact】等框架来开发【微信/京东/�
 >
 > Taro 并非直接支持开发 Andriod / IOS 应用，而是 RN 应用；
 >
-> 即使用 uni-app，主要是用来开发小程序，很少有多端兼容的需求。
+> 即使用 uni-app，主要是用来开发小程序多平台兼容，很少有多端兼容的需求。
 
 # 二、跨平台发展历史
 
@@ -34,7 +34,7 @@ Taro 1.x / 2.x 版的文档，现已**不再积极维护**。
 
 2021 年 3 月，Taro 3.1 版本正式发布，主要改动是打造开放式架构，支持以插件的形式，编译到任意小程序平台。
 
-2021 年 4 月，Taro 3.2 版本正式发布，新增了对 ReactNative 的支持，主要是由 **58 同城团队**主导。
+同年 4 月，Taro 3.2 版本正式发布，新增了对 ReactNative 的支持，主要是由 **58 同城团队**主导。
 
 同年同月，Taro 3.3 alpha 发布，主要改动是支持使用 HTML 标签进行开发。
 
@@ -47,10 +47,10 @@ Taro 1.x / 2.x 版的文档，现已**不再积极维护**。
 
 多端支持
 
-- Taro 3 支持编译到 H5、RN 以及任意小程序平台（**重心是小程序端**）。
+- Taro 3 支持编译到 H5、各小程序平台（**重心**）、RN。
 - 目前官方支持的平台如下：
   - H5、RN；
-  - 微信小程序：
+  - 微信小程序，包括：
     - 京东小程序、百度小程序、支付宝小程序、字节跳动小程序 QQ 小程序、钉钉小程序、企业微信小程序、支付宝小程序等
 
 多框架支持
@@ -62,7 +62,7 @@ Taro 1.x / 2.x 版的文档，现已**不再积极维护**。
 
 Taro 有自己 UI 的组件库：*Taro UI*；
 
-- 仅支持 weapp、h5 的适配。
+- 仅对 weapp、h5 适配，目前不支持 RN。
 
 # 五、Taro 对比 uni-app
 
@@ -77,7 +77,7 @@ Taro 有自己 UI 的组件库：*Taro UI*；
 | H5 端        | ❌        | ❌    | ❌     | 上拉加载/下拉刷新失败 | ✔       | 上拉加载/下拉刷新失败                   |
 | App 端       | ❌        | ❌    | ❌     | 上拉加载失败          | ✔       | 列表无法滚动，无法测试上拉加载/下拉刷新 |
 
-社区活跃度
+社区活跃度。
 
 | 框架      | 官方技术支持         | 社区活跃度               |
 | --------- | -------------------- | ------------------------ |
@@ -96,7 +96,7 @@ Taro 有自己 UI 的组件库：*Taro UI*；
 
 工具和周边生态
 
-- Taro：官方的 Taro UI，只支持小程序和 H5（不支持 RN），截至 2019 年 10 月 28 日， Taro 只有 64 个插件。
+- Taro：官方组件库 Taro UI，只支持小程序和 H5（不支持 RN），截至 2019 年 10 月 28 日， Taro 只有 64 个插件。
 - uni-app：官方的 uni-ui 支持多端、周边模板丰富、完善的插件市场，截至到 2019 年 10 月 28 日，有 850 个插件。
 
 总结：
@@ -138,7 +138,7 @@ WebStorm 收费，但基本不需要配置。
 # 八、Taro 安装
 
 
-Taro 项目基于 node，确保 node 版本 >=12.0.0
+Taro 项目基于 node，确保 node 版本 >= 12.0.0
 
 Taro CLI 工具安装
 
@@ -185,9 +185,9 @@ Taro 编译分为 dev 和 build 模式：
 dev 命令启动 Taro 项目的开发环境：
 
 ```shell
-pnpm run dev:h5 #启动 H5 端
+npm run dev:h5 #启动 H5 端
 
-pnpm run dev:weapp # 启动小程序端
+npm run dev:weapp # 启动小程序端
 ```
 
 build 命令，可以把 Taro 代码编译成不同端的代码，然后在对应的开发工具中查看效果，比如：
@@ -199,7 +199,7 @@ build 命令，可以把 Taro 代码编译成不同端的代码，然后在对�
 
 运行项目到 h5 端：
 
-通过注释，解决 eslint 报错。或者在 `.eslintrc` 里配置 `global`。
+通过注释，解决 eslint 报错。或者在 `.eslintrc` 里配置 `global` 全局变量。
 
 .eslintrc
 
@@ -239,7 +239,8 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 
 - 在 React 中使用 Taro 内置组件前，必须从 `@tarojs/components` 进行引入（导包）。
 
-- 查看更多 [Taro 的官网文档](https://docs.taro.zone/docs)。
+
+查看更多 [Taro 的官网文档](https://docs.taro.zone/docs)。
 
 
 
@@ -257,7 +258,7 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 - `date`：项目创建时间；
 - `designWidth`: 设计稿尺寸；
 - `sourceRoot`：项目源码目录；
-- `outputRoot`：项目产出目录；
+- `outputRoot`：项目打包的目录；
 - `defineConstants`: 定义全局的变量（DefinePlugin）；
 - `alias`: 配置路径别名；
 - `h5.webpackChain`： webpack 配置
@@ -288,7 +289,7 @@ const config = {
 
 # 十四、全局配置文件（app.config.js）
 
-`app.config.js`用来对小程序进行全局配置，配置项遵循微信小程序规范；
+`app.config.js` 用来对小程序进行全局配置，配置项遵循微信小程序规范；
 
 类似微信小程序的 `app.json`，并对所有平台进行统一；
 
@@ -326,9 +327,9 @@ export default definePageConfig({
 
 # 十七、项目配置（project.xxx.json）
 
-为了适配不同的小程序， Taro 支持为各个小程序平台添加各自项目配置文件。
+为了适配不同的小程序平台， Taro 支持为各小程序平台添加各自项目配置文件。
 
-- 默认 `project.config.json` 配置只能用于微信小程序。
+默认的 `project.config.json` 配置只能用于微信小程序。
 
 `project.config.json` 常用配置：
 
@@ -418,7 +419,7 @@ class App extends Component {
     console.log("app componentDidMount");
   }
 
-  // 要放在 componentDidMount 后面，否则会报 lint 警告
+  // taroGlobalData 要放在 componentDidMount 后面，否则会报 lint 警告
   taroGlobalData = {
     name: "zzt",
     age: 18,
@@ -443,8 +444,8 @@ src\pages\index\index.jsx
 
 ```jsx
 import { Component } from 'react'
-import { View, Text } from '@tarojs/components'
-import Taro from '@tarojs/taro';
+import { View, Text } from '@tarojs/components' // 组件导报
+import Taro from '@tarojs/taro'; // 导报
 import './index.less'
 
 export default class Index extends Component {
@@ -483,7 +484,7 @@ export default class Index extends Component {
 }
 ```
 
-在页面中使用：
+在页面中使用全局样式：
 
 src\pages\index\index.jsx
 
@@ -495,13 +496,13 @@ src\pages\index\index.jsx
 
 # 十七、常用内置组件
 
-`View`：视图容器。用于包裹各种元素内容（Taro3.3 以后支持使用 HTML 标签 进行开发）。
+`View`：视图容器。用于包裹各种元素内容（Taro3.3 以后支持使用 HTML 标签进行开发）。
 
 `Text`：文本组件。用于包裹文本内容。
 
-`Button`: 按钮组件，多端主题色一样。
+`Button`: 按钮组件（多端主题色一样，默认绿色）。
 
-`Image`：图片。H5 默认为图片本身宽高，weapp 为默认组件宽高
+`Image`：图片（H5 端默认为图片本身宽高，weapp 端为默认组件宽高）。
 
 - 支持 JPG、PNG、SVG、WEBP、GIF 等格式以及云文件 ID；
 - 支持 `import` 导入 和网络图片 url；
@@ -519,8 +520,6 @@ src\pages\index\index.jsx
 
 新建一个页面 `01-cpns` 进行测试，在 `app.config.json` 文件中，注册该页面（放在第一位）。
 
-重新编译项目；
-
 src\app.config.js
 
 ```json
@@ -531,6 +530,10 @@ export default defineAppConfig({
   ],
 })
 ```
+
+重新编译项目；
+
+编写页面：
 
 src\pages\01-cpn\index.jsx
 
@@ -548,15 +551,16 @@ import HomeImg from '../../assets/images/tabbar/home_active.png';
 import './index.less';
 
 export default class CpnsTaro extends Component {
+  
   render() {
     return (
       <View>
         <View>
-          <Text>我是一个Text</Text>
+          <Text>我是一个 Text</Text>
         </View>
-        <Button type='primary'>我是一个Button</Button>
+        <Button type='primary'>我是一个 Button</Button>
 
-        {/* 图片 <Image> 组件不支持路径引用本地图片，只能导入。 */}
+        {/* 图片 <Image> 组件不支持路径引用本地图片，只能通过 ESModule 模块导入的形式。 */}
         {/* h5 端用的是图片本身大小，小程序端有默认宽高。 */}
         <Image className='image' src={EmptyCartImg}></Image>
         <Image className='image' src={HomeImg}></Image>
@@ -566,18 +570,7 @@ export default class CpnsTaro extends Component {
         ></Image>
 
         {/* ScrollView */}
-        <ScrollView scrollY className='v-scroll'>
-          <View className='v-item'>item1</View>
-          <View className='v-item'>item1</View>
-          <View className='v-item'>item1</View>
-          <View className='v-item'>item1</View>
-          <View className='v-item'>item1</View>
-          <View className='v-item'>item8</View>
-          <View className='v-item'>item9</View>
-          <View className='v-item'>item10</View>
-        </ScrollView>
-
-        <ScrollView scrollX className='h-scroll'>
+        <ScrollView scrollY className='h-scroll'>
           <View className='h-item'>item1</View>
           <View className='h-item'>item1</View>
           <View className='h-item'>item1</View>
@@ -586,6 +579,17 @@ export default class CpnsTaro extends Component {
           <View className='h-item'>item8</View>
           <View className='h-item'>item9</View>
           <View className='h-item'>item10</View>
+        </ScrollView>
+
+        <ScrollView scrollX className='w-scroll'>
+          <View className='w-item'>item1</View>
+          <View className='w-item'>item1</View>
+          <View className='w-item'>item1</View>
+          <View className='w-item'>item1</View>
+          <View className='w-item'>item1</View>
+          <View className='w-item'>item8</View>
+          <View className='w-item'>item9</View>
+          <View className='w-item'>item10</View>
         </ScrollView>
 
         {/* 轮播图组件 */}
@@ -616,22 +620,22 @@ src\pages\01-cpn\index.less
   height: 200px;
 }
 
-.v-scroll {
+.h-scroll {
   height: 400px;
   background-color: pink;
 }
 
-.v-item {
+.w-item {
   height: 200px;
   border-bottom: 2px solid green;
 }
 
-.h-scroll {
+.w-scroll {
   white-space: nowrap;
   background-color: purple;
 }
 
-.h-item {
+.w-item {
   display: inline-block;
   height: 200px;
   width: 200px;
@@ -642,7 +646,6 @@ src\pages\01-cpn\index.less
   width: 100%;
   height: 100%;
 }
-
 ```
 
 Taro UI 是 Taro 提供的 UI 组件库，使用时，要按需引入。

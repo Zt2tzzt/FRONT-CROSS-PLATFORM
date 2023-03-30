@@ -10,10 +10,12 @@
 
 ### 1.封装网络请求
 
-service\home.js
+01-uni-app\demo-project\02-shopping-street\service\home.js
 
 ```js
 import ztRequest from './index.js'
+
+//...
 
 export const getHomeGoodsData = (type, page) =>
 	ztRequest.get('/home/data', {
@@ -28,7 +30,7 @@ export const getHomeGoodsData = (type, page) =>
 
 `goodList` 数据结构为对象，key 分别为"`pop`"、“`new`"、”`sell`“，分别对应”流行“、“新款”、“精选”的数据，
 
-store\home.js
+01-uni-app\demo-project\02-shopping-street\store\home.js
 
 ```js
 export const useHomeStore = defineStore('home', {
@@ -66,7 +68,7 @@ export const useHomeStore = defineStore('home', {
 
 在 `home.vue` 中，派发三次 action，分别请求三部分数据。
 
-pages\home\home.vue
+01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
 
 ```vue
 <script setup>
@@ -94,7 +96,7 @@ onLoad(() => {
 
 点击商品 item，跳转到详情页 `detail.vue`
 
-components\grid-item-view\grid-item-view.vue
+01-uni-app\demo-project\02-shopping-street\components\grid-item-view\grid-item-view.vue
 
 ```vue
 <template>
@@ -134,7 +136,7 @@ const onItemClick = () => {
 </style>
 ```
 
-pages\home\home.vue
+01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
 
 ```vue
 <template>
@@ -185,7 +187,7 @@ const handleGridItemClick = item => {
 - onLoad option。
 - props（项目中采用）
 
-pages\detail\detail.vue
+01-uni-app\demo-project\02-shopping-street\pages\detail\detail.vue
 
 ```vue
 <template>
@@ -210,7 +212,7 @@ defineProps({
 
 在 hoem store 中，新增状态 `currentType`，用来保存当前选项卡选中信息。
 
-store\home.js
+01-uni-app\demo-project\02-shopping-street\store\home.js
 
 ```js
 import goodsType from '@/static/data/home-goods-type.json'
@@ -231,11 +233,13 @@ export const useHomeStore = defineStore('home', {
 
 在 `home.vue` 中进行实现。
 
-pages\home\home.vue
+01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
 
 ```vue
 <template>
 	<view>
+    <!--...-->
+    
 		<!-- 选项卡，easycom 组件，直接使用 -->
 		<tab-control
 			:titles="goodsType.map(item => item.label)"
@@ -287,9 +291,9 @@ const handleTabControlClick = index => {
 
 上拉加载更多，滚动到底部，加载下一页。
 
-在 `package.json` 中，配置 `home.vue` 页面，距离底部一定距离时，就触发 `onReachBottom` 生命周期。
+在 `page.json` 中，配置 `home.vue` 页面，距离底部一定距离时，就触发 `onReachBottom` 生命周期。
 
-pages.json
+01-uni-app\demo-project\02-shopping-street\pages.json
 
 ```json
 {
@@ -301,7 +305,7 @@ pages.json
 }
 ```
 
-pages\home\home.vue
+01-uni-app\demo-project\02-shopping-street\pages\home\home.vue
 
 ```js
 onReachBottom(() => {
@@ -313,7 +317,7 @@ onReachBottom(() => {
 
 ## 2.优化（图片懒加载）
 
-在 `home.vue` 页面中，实现商品列表中的图片懒加载，对 H5 端、非 H5 端，两种情况进行优化：
+在 `home.vue` 页面中，实现商品列表中的图片懒加载，对非 H5 端（小程序、App）、 H5 端两种情况进行优化：
 
 ### 1.非 H5 端：
 
@@ -321,7 +325,7 @@ onReachBottom(() => {
 
 在 `<image>` 组件上添加 `lazu-load` 属性。
 
-components\grid-item-view\grid-item-view.vue
+01-uni-app\demo-project\02-shopping-street\components\grid-item-view\grid-item-view.vue
 
 ```vue
 <!-- #ifdef H5 -->
@@ -344,7 +348,7 @@ components\grid-item-view\grid-item-view.vue
    npm init -y
    ```
 
-2. 再安装 _vue3-lazy_ 插件，该插件针对 H5 进行懒加载。
+2. 再安装 *vue3-lazy* 插件，该插件针对 H5 进行懒加载。
 
    ```shell
    npm install vue3-lazy
@@ -364,7 +368,7 @@ components\grid-item-view\grid-item-view.vue
 
    	app.use(Pinia.createPinia())
    	app.use(lazyPlugin, {
-   		loading: '../static/images/common/placeholder.png'
+   		loading: '../static/images/common/placeholder.png' // 图片未加载时，默认显示的图片
    	})
    	return {
    		app,
@@ -376,7 +380,7 @@ components\grid-item-view\grid-item-view.vue
 
 4. 在 `<grid-view-item>` 组件中，使用条件编译
 
-components\grid-item-view\grid-item-view.vue
+01-uni-app\demo-project\02-shopping-street\components\grid-item-view\grid-item-view.vue
 
 ```vue
 <!-- #ifdef H5 -->

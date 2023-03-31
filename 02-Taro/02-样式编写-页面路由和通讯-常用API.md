@@ -2,7 +2,9 @@
 
 ## 1.设计稿及尺寸单位
 
-Taro 默认以 750px 作为换算尺寸标准，如设计稿不是 750px 为标准需修改 `config/index.js` 中的 `designWidth`
+Taro 默认以 750px 作为换算尺寸标准；
+
+如设计稿不是 750px，修改 `config/index.js` 中的 `designWidth`
 
 - 比如：设计稿是 640px：
 
@@ -12,11 +14,13 @@ const config = {
 }
 ```
 
-Taro 中单位建议使用 px、百分比 %；
+Taro 中单位建议使用 px 或百分比 %；
 
 Taro 默认会按照设计稿，对所有单位进行转换。
 
-- 在 Taro 中写尺寸按照 1:1 关系来写，即设计稿量长度 100px，那么尺寸就写 100px;
+通常按照 1:1 关系来编写尺寸大小；
+
+- 即设计稿量长度 100px，那么尺寸就写 100px;
 - 当转成微信小程序时尺寸为 100rpx；
 - 当转成 H5 时尺寸以 rem 为单位。
 
@@ -49,10 +53,9 @@ src\pages\02-style\index.less
 
 ### 1.CSS 编译时忽略
 
-忽略单个属性
+忽略单个属性：
 
-- 当前忽略单个属性的最简单的方法，就是 px 单位使用大写字母。
-- 如你希望部分 px 单位不被转换成 rpx 或 rem ，最简单做法就是在 px 单位中增加一个大写字母。
+如希望部分 px 单位不被进行转换（转换成 rpx 或 rem），最简单做法，“px” 单位使用大写字母，如 “Px”。
 
 src\pages\02-style\index.less
 
@@ -65,8 +68,8 @@ src\pages\02-style\index.less
 
 忽略样式文件：
 
-- 对于头部包含注释 /*postcss-pxtransform disable*/ 的文件，插件不予转换处理。
-- 通常会把不需要转换的单位，抽取到一个文件中。`no-transform-unit.less`：
+- 对于头部包含注释 `/* postcss-pxtransform disable */` 的文件，插件不予转换处理。
+- 通常会把不需要转换的单位，抽取到一个文件中，如 `no-transform-unit.less`：
 
 src\pages\02-style\index.jsx
 
@@ -91,7 +94,7 @@ src\pages\02-style\no-transform-unit.less
 ```less
 /*postcss-pxtransform disable*/
 
-// 有上方注释时，小写的单位（如 px），都不会进行转换
+// 有上方注释时，小写的单位（如 px），也不会进行转换
 
 .no-transform-unit {
   border: 6px solid red;
@@ -100,13 +103,11 @@ src\pages\02-style\no-transform-unit.less
 
 ```
 
-JS 中行内样式的转换
+### 2.JS 行内样式转换
 
-- 在编译时，Taro 会帮你对样式做尺寸转换操作
+如果是 JS 中编写了行内样式，那么无法自动替换；
 
-- 但是如果是在 JS 中书写了行内样式，那么编译时就无法做替换了
-
-- 针对这种情况，Taro 提供了 API `Taro.pxTransform` 来做运行时的尺寸转换。
+针对这种情况，Taro 提供了 API `Taro.pxTransform` 来做运行时的尺寸转换。
 
 src\pages\02-style\index.jsx
 
@@ -131,21 +132,21 @@ export default class extends Component {
 
 ## 2.全局和局部样式
 
-全局样式
+全局样式：
 
-- Taro 页面和普通组件导入的样式文件，默认都在全局生效。
+- Taro 页面和普通组件导入的样式文件，默认在全局生效。
 
+局部样式：
 
-那在 Taro 中应该如何编写局部的样式呢？使用 CSS Modules 功能
+首先明确，React 项目流行的 *styled-components* 方案，在小程序中无效，
 
-局部样式
+在 Taro 项目中，一般使用要 CSS Modules 方案，编写局部样式。
 
-styled-components 在小程序中无效，要用另一种 CSS IN JS 方案，参考文档。
+1. 在 `config/index.js` 配置文件中，启用 H5 和小程序的 CSS Modules 的功能。
+2. 编写的样式文件需要加上 `.module` 关键字
+   - 比如：`index.module.scss` 文件。
 
-- 1.在 `config/index.js` 配置文件中，启用 H5 和小程序的 CSS Modules 的功能。
-- 2.编写的样式文件需要加上 `.module` 关键字。
-- 比如： `index.module.scss` 文件
-- 3.然后在组件中导入该样式文件，即可以按照模块的方式使用了。
+3. 在组件中导入该样式文件，即可按照模块的方式使用了。
 
 config\index.js
 
@@ -203,7 +204,7 @@ export default class extends Component {
 
 		return (
 			<View className='02-style'>
-				{/* 全局和局部样式，如果使用了 less，也要按照嵌套来写。 */}
+				{/* 局部样式，如果使用了 less，也要按照嵌套来写。 */}
 				<View className={styles['local-style']}>
           编写局部样式
           <View className={styles['name']}>name</View>
@@ -215,7 +216,7 @@ export default class extends Component {
 ```
 
 
-CSS Modules 中也支持编写全局样式,使用 global
+CSS Modules 中，也支持编写全局样式,使用 `:global`
 
 src\pages\02-style\index.module.less
 

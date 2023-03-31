@@ -247,19 +247,19 @@ export default class extends Component {
 
 ## 3.背景图片
 
-Taro 支持使用在 css 里设置背景图片，使用方式与普通 web 项目大体相同，但需要注意以下几点：
+Taro 支持使用在 css 里设置背景图片，使用方式与普通 web 项目大体相同：
 
-- 支持 base64 格式图片，支持网络路径图片。
+- 支持 base64 格式图片，
+- 支持支持网络路径图片。
 
-使用本地背景图片需注意：
+使用本地资源（图片、字体）需注意：
 
-- 小程序不支持在 css 中使用本地文件，包括本地的背景图和字体文件。需以 base64 方式方可使用。
-- 为了方便开发，Taro 提供了直接在样式文件中引用本地资源的方式；
-  - 其原理是通过 PostCSS 的 postcss-url 插件将样式中本地资源引用，转换成 Base64 格式，从而能正常加载。
+- 小程序不支持在 css 中使用本地文件（背景图、字体）。须以 base64 格式替换。
+- 为了方便开发，Taro 提供了在样式文件中，直接引用本地资源的方式；
+  - 其原理是通过 *PostCSS* 的 *postcss-url* 插件，将样式中本地资源引用，转换成 Base64 格式，从而能正常加载。
 - 不建议使用太大的背景图，大图需挪到服务器上，从网络地址引用。
-- 本地背景图片的引用支持：相对路径和绝对路径。
 
-在 `config/index.js` 中配置。
+在 `config/index.js` 中配置最大转 base64 格式的文件大小。
 
 config\index.js
 
@@ -281,6 +281,8 @@ const config = {
 	},
 }
 ```
+
+在样式中，直接引用本地图片路径。
 
 src\pages\02-style\index.module.less
 
@@ -318,11 +320,11 @@ export default class extends Component {
 
 ## 4.字体图标
 
-Taro 支持使用字体图标，使用方式与普通 web 项目相同：
+Taro 支持使用字体图标，使用方式与普通 web 项目相同，步骤如下：
 
-- 第一步：先生成字体图标文件
-- 第二步：`app.lcss` 引入字体图标
-- 第三步：组件中使用自定义字体
+1. 先生成字体图标文件；
+2. `app.lcss` 引入字体图标；
+3. 组件中使用自定义字体
 
 src\app.less
 
@@ -363,28 +365,28 @@ export default class extends Component {
 
 快速创建新页面
 
-- 1.命令行创建：
+1. 命令行创建：
 
-	```shell
-	Taro create --name [页面名称]
-	```
+```shell
+Taro create --name [页面名称]
+```
 
-	- 能够在当前项目的pages目录下快速生成新的页面文件，并填充基础代码，是一个提高开发效率的利器。
+在当前项目的 pages 目录下，根据固定模板生成新的页面文件，是一个提高开发效率的利器。
 
-- 2.手动创建页面
+2. 手动创建页面
 
-	- 在目录根目录下的pages目录下新建即可。
+在目录根目录下的 pages 目录下新建即可。
 
-注意事项：新建的页面，都需在 `app.config.json` 中的 `pages` 列表上配置。
+两种方式：新建的页面，都需在 `app.config.json` 中的 `pages` 列表上配置注册。
 
-删除页面，需做两件工作
+删除页面，也要做两件工作：
 
-- 删除页面对应的文件
-- 删除 `app.config.json` 中对应的配置
+- 删除页面对应的文件；
+- 删除 `app.config.json` 中对应的配置。
 
 # 三、tabbar 配置
 
-创建 home, category, cart, profile 四个页面。
+创建 `home.jsx`, `category.jsx`, `cart.jsx`, `profile.jsx` 四个页面。
 
 配置 tabbar
 
@@ -429,11 +431,11 @@ export default defineAppConfig({
 
 # 四、页面路由
 
-Taro 有两种页面路由跳转方式：使用Navigator组件跳转、调用API跳转。
+Taro 有两种页面路由跳转方式：
 
-- 组件：Navigator
+- 组件：`<Navigator>`；
 
-- 常用API：navigate、redirectTo、switchTab、navigateBack
+- 常用 API：`navigate`、`redirectTo`、`switchTab`、`navigateBack`。
 
 创建 detail01 页面，进行测试。从 home 跳转到 detail01.
 
@@ -492,23 +494,29 @@ export default class Home extends Component {
 
 在 Taro 中，常见页面通讯方式：
 
-- 方式一：url 查询字符串；
-- 方式二：EventChannel（只支持小程序端）；
-- 方式三：全局事件总线：`Taro.eventCenter`；
-- 方式四：全局数据：`taroGloabalData`；
-- 方式五：本地数据存储: `Taro.setStorageSync(key, data)`；
-- 方式五：Redux 状态管理库
+方式一：url 查询字符串；
+
+方式二：EventChannel（只支持小程序端）；
+
+方式三：全局事件总线：`Taro.eventCenter`；
+
+方式四：全局数据：`taroGloabalData`；
+
+方式五：本地数据存储: `Taro.setStorageSync(key, data)`；
+
+方式五：Redux 状态管理库
 
 ## 1.正向传递
 
 ### 1.url 查询字符串
 
-- 传递参数：`?name=zzt&age=100`
-- 获取参数：
-	- `onLoad`、`useLoad` 生命周期获取路由参数；
-	- `Taro.getCurrentInstance().router.params` 获取路由参数。
+传递参数：`?name=zzt&age=100`
 
-home 传递给 detail01 页面。
+获取参数：
+- `onLoad`、`useLoad` 生命周期获取路由参数；
+- `Taro.getCurrentInstance().router.params` 获取路由参数。
+
+`home.jsx` 页面传递给 `detail01.jsx` 页面。
 
 src\pages\home\index.jsx
 
@@ -552,7 +560,7 @@ export default class Detail01 extends Component {
     console.log('detail01 parms:', this.$instance.router.params);
   }
 
-  $instance = Taro.getCurrentInstance() // 获取 page 实例，其中有 router 对象。
+  $instance = Taro.getCurrentInstance() // 其中有 page 实例对象，也有 router 对象。
 
   onLoad(options) {
     // 方式二
@@ -569,7 +577,7 @@ export default class Detail01 extends Component {
 }
 ```
 
-### 2.EventChannel
+### 2.EventChannel // TODO
 
 该方式仅支持小程序。
 

@@ -1,0 +1,27 @@
+.local-style {
+  color: purple;
+  border: 4px solid purple;
+
+  .name {
+    color: red;
+  }
+
+  &:hover {
+    color: blue;
+  }
+}
+
+.bg-img {
+  height: 400px;
+  border: 1px solid red;
+
+  background-image: url(../../assets/images/empty_cart.png); // 相对路径，适用于 h5, weapp
+  // background-image: url(~&/assets/images/empty_cart.png); // 别名路径，适用于 h5
+
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+:global(.title) {
+  color: orange;
+}

@@ -27,6 +27,7 @@ const config = {
 	cache: {
 		enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
 	},
+  // 用于微信小程序的配置。
 	mini: {
 		postcss: {
 			pxtransform: {

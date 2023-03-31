@@ -229,7 +229,7 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 
 - 页面文件遵循 React 组件 (JSX) 规范。
 
-- 组件标签靠近小程序规范（但遵从大驼峰，且需要导包），详见 Taro 组件规范；
+- 组件标签靠近小程序规范（但遵从大驼峰，且需要导包，属性遵循小驼峰），详见 Taro 组件规范；
 
 - 接口能力（JS API）靠近微信小程序规范，但需将前缀 `wx` 替换为 `Taro`（需导包），详见 Taro 接口规范；
 
@@ -261,6 +261,7 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 - `outputRoot`：项目打包的目录；
 - `defineConstants`: 定义全局的变量（DefinePlugin）；
 - `alias`: 配置路径别名；
+- `mini`：用于微信小程序的配置。
 - `h5.webpackChain`： webpack 配置
 - `h5.devServer` ：开发者服务配置
 

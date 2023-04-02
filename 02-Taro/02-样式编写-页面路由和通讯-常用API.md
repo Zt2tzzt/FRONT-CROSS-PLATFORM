@@ -577,7 +577,7 @@ export default class Detail01 extends Component {
 }
 ```
 
-### 2.EventChannel // TODO
+### 2.EventChannel
 
 该方式仅支持小程序。
 
@@ -656,7 +656,9 @@ export default class Detail01 extends Component {
 
 该方式仅支持小程序。
 
-创建 detail02 页面，home 跳转 detail02 页面，从 detail02 返回值，向 home 传递数据。
+创建 `detail02.jsx` 页面，`home.jsx` 跳转 `detail02.jsx` 页面；
+
+从 `detail02.jsx` 返回时，向 `home.jsx` 传递数据。
 
 src\pages\home\index.jsx
 
@@ -738,11 +740,11 @@ export default class Detail02 extends Component {
 注意事项：
 
 - 需先监听，再触发事件；
-  - 比如：在A界面触发，然后跳转到B页面后才监听是不行的。
-- 通常有 `on` 就要有 `off`，可以避免多次重复监听
-- 适合页面返回传递参数、适合跨组件通讯，不适合界面跳转传递参数
+  - 比如：在 A 界面触发，然后跳转到 B 页面后才监听是不行的。
+- 通常有 `on` 就要有 `off`，可以避免多次重复监听；
+- 适合页面返回传递参数、适合跨组件通讯，不适合界面跳转传递参数；
 
-创建 detail03 页面。
+创建 `detail03.jsx` 页面。
 
 src\pages\home\index.jsx
 
@@ -819,7 +821,7 @@ export default class Detail03 extends Component {
 Taro 页面组件除了支持 React 组件生命周期外，还根据小程序的标准，额外支持以下页面生命周期：
 
 - `onLoad(options)` 在小程序环境中对应页面的 `onLoad`。
-	- 通过访问 `options` 参数或调用 `getCurrentInstance().router`，可以访问到页面路由参数
+	- 通过访问 `options` 参数，或调用 `getCurrentInstance().router`，可以访问到页面路由参数。
 - `componentDidShow()` 在小程序环境中对应页面的 `onShow`。
 - `onReady()` 在小程序环境中对应页面的 `onReady`。
 	- 可以使用 `createCanvasContext` 或 `createSelectorQuery` 等等 API，访问小程序渲染层 DOM 节点
@@ -836,8 +838,6 @@ src\pages\home\index.jsx
 ```jsx
 import { Component } from 'react'
 import { View, Navigator, Button } from '@tarojs/components'
-import Taro from '@tarojs/taro'
-import './index.less'
 
 export default class Home extends Component {
 
@@ -916,7 +916,7 @@ export default class Detail04 extends Component {
 
 ## 2.Hooks
 
-Taro 使用 Hooks 很简单。Taro 专有 Hooks，例如 `usePageScroll`, `useReachBottom`，需从 `@tarojs/taro` 中引入；
+Taro 使用 Hooks 很简单。Taro 专有 Hooks，例如 `usePageScroll`, `useReachBottom`，须从 `@tarojs/taro` 中引入；
 
 React 框架自己的 Hooks ，例如 `useEffect`, `useState`，从对应的框架引入。
 
@@ -927,8 +927,6 @@ src\pages\home\index.jsx
 ```jsx
 import { Component } from 'react'
 import { View, Navigator, Button } from '@tarojs/components'
-import Taro from '@tarojs/taro'
-import './index.less'
 
 export default class Home extends Component {
 
@@ -939,14 +937,13 @@ export default class Home extends Component {
         <Navigator url='/pages/detail05/index' openType='navigate'>
           <Button>goToDetail05 hook</Button>
         </Navigator>
-
 			</View>
 		)
 	}
 }
 ```
 
-在 detail05 中，通过实例拿页面参数，实例用 ref 引用。
+在 `detail05.jsx` 中，通过实例拿页面参数，实例用 ref 引用。
 
 src\pages\detail05\index.jsx
 
@@ -999,7 +996,6 @@ function Detail05() {
       Taro.stopPullDownRefresh();
     }, 1000);
   });
-
   useReachBottom(() => {
     console.log("detail05 useReachBottom");
   });
@@ -1048,13 +1044,14 @@ const BASE_URL = "http://123.207.32.32:7888/api/hy66";
 
 class ZtRequest {
 
-  request(url, method, data) {
+  request(url, method = 'GET', data) {
+    
     return new Promise((resolve, reject) => {
       Taro.request({
         url: BASE_URL + url,
-        method: method || "GET",
+        method: method,
         timeout: TIME_OUT,
-        data: data,
+        data,
         success(res) {
           resolve(res.data);
         },
@@ -1114,6 +1111,7 @@ import { getHomeMutidata } from "@/service/home";
 import "./index.less";
 
 export default class Detail01 extends Component {
+  
   getHomeData() {
     getHomeMutidata().then((res) => {
       console.log(res);

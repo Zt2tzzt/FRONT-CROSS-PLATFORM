@@ -32,13 +32,13 @@ Taro 支持使用【React / Vue / Preact】等框架来开发【微信/京东/�
 
 Taro 1.x / 2.x 版的文档，现已**不再积极维护**。
 
-2021 年 3 月，Taro 3.1 版本正式发布，主要改动是打造开放式架构，支持以插件的形式，编译到任意小程序平台。
+2021 年 3 月，Taro 3.1 版本正式发布，主要改动是：打造开放式架构，支持以插件的形式，编译到任意小程序平台。
 
 同年 4 月，Taro 3.2 版本正式发布，新增了对 ReactNative 的支持，主要是由 **58 同城团队**主导。
 
-同年同月，Taro 3.3 alpha 发布，主要改动是支持使用 HTML 标签进行开发。
+同年同月，Taro 3.3 alpha 发布，主要改动是：支持使用 HTML 标签进行开发。
 
-2022 年 1 月，Taro 3.4 版本正式发布，主要改动是支持使用 Preact（一个轻量的 react 框架） 和 Vue3.2 进行开发。
+2022 年 1 月，Taro 3.4 版本正式发布，主要改动是：支持使用 Preact（一个轻量的 react 框架） 和 Vue3.2 进行开发。
 
 
 目前 Taro 团队的迭代重心在于 Taro 3。
@@ -87,17 +87,17 @@ Taro 有自己 UI 的组件库：*Taro UI*；
 | uni-app   | 较及时，较完善服务。 | 气氛活跃                 |
 | chameleon | 较及时               | 气氛较活跃               |
 
-资料完善度
+资料完善度：
 
 - Taro： 官方文档较完整，但不是很丰富，资料一般。
 
 - uni-app：官方文档和各种专题内容很丰富，资料齐全。
 
 
-工具和周边生态
+工具和周边生态：
 
-- Taro：官方组件库 Taro UI，只支持小程序和 H5（不支持 RN），截至 2019 年 10 月 28 日， Taro 只有 64 个插件。
-- uni-app：官方的 uni-ui 支持多端、周边模板丰富、完善的插件市场，截至到 2019 年 10 月 28 日，有 850 个插件。
+- Taro：官方组件库 Taro UI，只支持小程序和 H5（不支持 RN）；截至 2019 年 10 月 28 日， Taro 只有 64 个插件。
+- uni-app：官方的 uni-ui 支持多端、周边模板丰富、完善的插件市场；截至到 2019 年 10 月 28 日，有 850 个插件。
 
 总结：
 
@@ -138,17 +138,17 @@ WebStorm 收费，但基本不需要配置。
 # 八、Taro 安装
 
 
-Taro 项目基于 node；确保 node 版本 >= 12.0.0
+Taro 项目基于 node（>= 12.0.0）；
 
-Taro CLI 工具安装
+Taro CLI 工具安装：
 
-全局安装 *@tarojs/cli* 脚手架。
+1. 全局安装 *@tarojs/cli* 脚手架。
 
 ```shell
 npm i @tarojs/cli -g
 ```
 
-查看 Taro CLI 工具版本。
+2. 查看 Taro CLI 工具版本。
 
 ```shell
 npm info @tarojs/cli
@@ -197,7 +197,7 @@ build 命令，可以把 Taro 代码编译成不同端的代码，然后在对�
 - RN 应用需参考《React Native 端开发流程》。
 - ...
 
-运行项目到 h5 端：
+运行项目到 h5 端；
 
 通过注释，解决 eslint 报错。或者在 `.eslintrc` 里配置 `global` 全局变量。
 
@@ -214,7 +214,7 @@ build 命令，可以把 Taro 代码编译成不同端的代码，然后在对�
 
 运行项目到小程序端：
 
-需要手动打开小程序，并指定目录（dist 文件夹下)
+需要手动打开小程序，并指定目录（dist 文件夹下)。
 
 # 十一、目录结构分析
 
@@ -227,17 +227,20 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 # 十二、Taro + React 开发规范
 为了实现多端兼容，综合考虑编译速度、运行性能等因素，Taro 可以约定了如下开发规范：
 
-- 页面文件遵循 React 组件 (JSX) 规范。
+组件规范：
 
-- 组件标签靠近小程序规范（但遵从大驼峰，且需要导包，属性遵循小驼峰），详见 Taro 组件规范；
+- 页面文件遵循 React 组件 (JSX) 规范。
+- 组件标签靠近小程序规范（但遵从**大驼峰**，且必须**导包**，属性遵循**小驼峰**），详见 Taro 组件规范；
+- 在 React 中使用 Taro 内置组件前，必须从 `@tarojs/components` 进行引入（导包）。
+
+接口规范：
 
 - 接口能力（JS API）靠近微信小程序规范，但需将前缀 `wx` 替换为 `Taro`（需导包），详见 Taro 接口规范；
+- 数据绑定及事件处理同 React 规范，同时补充了 App 及页面的生命周期。
 
-- 数据绑定及事件处理同 React 规范，同时补充了 App 及页面的生命周期
+样式规范：
 
 - 为兼容多端运行，建议使用 flex 布局进行开发，推荐使用 px 单位（750 设计稿）。
-
-- 在 React 中使用 Taro 内置组件前，必须从 `@tarojs/components` 进行引入（导包）。
 
 
 查看更多 [Taro 的官网文档](https://docs.taro.zone/docs)。
@@ -252,7 +255,7 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 - `dev.js` 是项目开发时的配置；
 - `prod.js` 是项目生产时的配置。
 
-常用的配置
+常用的配置：
 
 - `projectName`：项目名称；
 - `date`：项目创建时间；
@@ -262,13 +265,13 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 - `defineConstants`: 定义全局的变量（DefinePlugin）；
 - `alias`: 配置路径别名；
 - `mini`：用于微信小程序的配置。
-- `h5.webpackChain`： webpack 配置
-- `h5.devServer` ：开发者服务配置
+- `h5.webpackChain`： webpack 配置；
+- `h5.devServer`： 开发者服务配置。
 
 
 [更多的配置](https://docs.taro.zone/docs/config)
 
-在 config\index.js 定义项目中的全局常量：
+在 `config\index.js` 定义项目中的全局常量：
 
 ```json
 defineConstants: {
@@ -276,7 +279,7 @@ defineConstants: {
 },
 ```
 
-在 config\index.js 中为项目路径配置别名：
+在 `config\index.js` 中为项目路径配置别名：
 
 ```js
 import path from 'path'
@@ -308,11 +311,11 @@ const config = {
 # 十五、页面配置文件（xxx.config.js）
 
 
-每一个小程序页面，都可以使用 `xxx.config.js` 文件，来对页面的窗口表现进行配置。
+小程序页面，使用 `xxx.config.js` 文件，来对窗口表现进行配置。
 
-- 会覆盖全局配置 `app.config.json` 的 `window` 中相同的配置项。
+会覆盖全局配置 `app.config.json` 的 `window` 中相同的配置项。
 
-文件需要 `export` 一个默认对象；
+文件须要 `export` 一个默认对象；
 
 配置项遵循微信小程序规范，并且对所有平台进行统一。
 
@@ -330,14 +333,12 @@ export default definePageConfig({
 
 为了适配不同的小程序平台， Taro 支持为各小程序平台添加各自项目配置文件。
 
-默认的 `project.config.json` 配置只能用于微信小程序。
+默认的 `project.config.json` 配置只能用于微信小程序。常用配置：
 
-`project.config.json` 常用配置：
-
-- `libVersion` 小程序基础库版本
-- `projectname` 小程序项目名字
-- `appid` 小程序项目的appid
-- `setting` 小程序项目编译配置
+- `libVersion` 小程序基础库版本；
+- `projectname` 小程序项目名字；
+- `appid` 小程序项目的 appid；
+- `setting` 小程序项目编译配置。
 
 各类小程序平台均有自己的项目配置文件，例如：
 
@@ -358,9 +359,9 @@ export default definePageConfig({
 在入口 `app.js` 组件中可以：
 
 定义应用的生命周期：
-- `onLaunch` -> `useEffect`：在小程序环境中对应 app 的 `onLaunch`。
-- `componentDidShow` -> `useDidShow`：在小程序环境中对应 app 的 `onShow`。
-- `componentDidHide` -> `useDidHide`：在小程序环境中对应 app 的 `onHide`。
+- `onLaunch` -对应 hook-> `useEffect`：在小程序环境中对应 app 的 `onLaunch`。
+- `componentDidShow` -对应 hook-> `useDidShow`：在小程序环境中对应 app 的 `onShow`。
+- `componentDidHide` -对应 hook-> `useDidHide`：在小程序环境中对应 app 的 `onHide`。
 - [更多入口组件生命周期](https://docs.taro.zone/docs/react-entry#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%96%B9%E6%B3%95)
 
 定义全局数据：
@@ -505,17 +506,17 @@ src\pages\index\index.jsx
 
 `Image`：图片（H5 端默认为图片本身宽高，weapp 端为默认组件宽高）。
 
-- 支持 JPG、PNG、SVG、WEBP、GIF 等格式以及云文件 ID；
+- 支持 JPG、PNG、SVG、WEBP、GIF 等格式和云文件 ID；
 - 支持 `import` 导入 和网络图片 url；
 - 不支持路径引用本地图片
 
 `ScrollView`：可滚动视图区域，用于区域滚动。
 
-- 使用竖向滚动时，需要给 `<ScrollView>` 一个固定高度，通过 css 设置 `height`
-- 使用横向滚动时，需要给 `<ScrollView>` 添加 `white-space: nowrap;` 样式，子元素设置为**行内块级元素**。
+- 竖向滚动时，需要给 `<ScrollView>` 一个固定高度，通过 css 设置 `height`
+- 横向滚动时，需要给 `<ScrollView>` 添加 `white-space: nowrap;` 样式，子元素设置为**行内块级元素**。
 - 适配小程序时，不要在 `<ScrollView>` 中使用 `<map>`、`<video>` `<canvas>`、`<textarea>` 等原生组件。
 
-`Swiper`：滑块视图容器，一般用于轮播图，默认宽 100%，高 150px。
+`Swiper`：滑块视图容器，一般用于轮播图，默认：宽 `100%`，高 `150px`。
 
 ---
 
@@ -561,7 +562,7 @@ export default class CpnsTaro extends Component {
         </View>
         <Button type='primary'>我是一个 Button</Button>
 
-        {/* 图片 <Image> 组件不支持路径引用本地图片，只能通过 ESModule 模块导入的形式。 */}
+        {/* 图片 <Image> 组件不支持路径引用本地图片，只能通过 ESModule 模块导入的形式。*/}
         {/* h5 端用的是图片本身大小，小程序端有默认宽高。 */}
         <Image className='image' src={EmptyCartImg}></Image>
         <Image className='image' src={HomeImg}></Image>
@@ -671,7 +672,10 @@ npm install eslint-plugin-prettier eslint-config-prettier -D
 
 ```json
 {
-  "extends": ["taro/react", "prettier"],
+  "extends": [
+    //...
+    "prettier"
+  ],
 }
 ```
 

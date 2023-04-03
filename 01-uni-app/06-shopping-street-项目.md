@@ -4,7 +4,7 @@
 
 # 二、依赖安装
 
-在项目中安装 vue3-lazy 依赖（后续图片懒加载优化时会用到）。
+在项目中安装 *vue3-lazy* 依赖（后续图片懒加载优化时会用到）。
 
 # 三、全局样式
 
@@ -65,7 +65,6 @@ pages.json
 ```json
 {
 	"pages": [
-		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/home/home",
 			"style": {
@@ -351,7 +350,9 @@ const handleBannerItemClick = link => {
 </script>
 ```
 
-创建一个 `webview.vue` 页面，跳转后来到该页面。接收链接，展示对应的 webview 页面。
+创建一个 `webview.vue` 页面，跳转后来到该页面。
+
+在该页面，接收链接，展示对应的 webview 页面。
 
 pages\webview\webview.vue
 
@@ -471,7 +472,7 @@ const handleRecommendItemClick = item => {
 
 使用 `<image>` 组件展示图片后，小程序服务，可能需要重启才能正常展示。
 
-> [注意】：小程序在 css 中引用背景图片，才需要将图片放到 static 根目录，
+> [注意】：小程序在 css 中引用本地背景图片，才需要将图片放到 static 根目录，
 >
 > 这样才能自动编译成 base64 格式。
 

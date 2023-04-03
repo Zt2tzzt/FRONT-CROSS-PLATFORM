@@ -14,7 +14,7 @@ API 总结：
 
 新建 `Detail03.vue` 页面，在其中发射事件（`uni.$emit`）
 
-01-uni-app\demo-project\01-hello-uniapp\pages\Detail03\Detail03.vue
+01-hello-uniapp\pages\Detail03\Detail03.vue
 
 ```vue
 <template>
@@ -51,7 +51,7 @@ export default {
 
 有事件监听，一定有取消监听，在 `home.vue` 的 `onUnload` 中取消监听（`uni.$off`）。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\home\home.vue
+01-hello-uniapp\pages\home\home.vue
 
 ```vue
 <script>
@@ -109,7 +109,7 @@ uni-app 常用的页面生命周期函数：[更多](https://uniapp.dcloud.net.c
 
 在 `home.vue` 中进行页面跳转。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\home\home.vue
+01-hello-uniapp\pages\home\home.vue
 
 ```vue
 <template>
@@ -151,7 +151,7 @@ export default {
 				url: '/pages/detail04/detail04'
 			})
 		}
-    //...
+		//...
 	}
 }
 </script>
@@ -159,7 +159,7 @@ export default {
 
 在 `detail04.vue` 中进行测试页面的生命周期。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\detail04\detail04.vue
+01-hello-uniapp\pages\detail04\detail04.vue
 
 ```vue
 <template>
@@ -232,7 +232,7 @@ export default {
 
 在 `home.vue` 中进行页面跳转。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\home\home.vue
+01-hello-uniapp\pages\home\home.vue
 
 ```vue
 <template>
@@ -259,7 +259,7 @@ export default {
 
 在 `detail05.vue `中进行页面生命周期的测试。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\detail05\detail05.vue
+01-hello-uniapp\pages\detail05\detail05.vue
 
 ```vue
 <template>
@@ -332,7 +332,7 @@ onReachBottom(() => {
 > 【注意】：在 HBuilderX 中编写 uni-app 项目时：`vue` 和 `@dcloudio/uni-app` 库，不需要安装，可直接使用。
 >
 > ```javascript
->import { onLoad } from '@dcloudio/uni-app'
+> import { onLoad } from '@dcloudio/uni-app'
 > import { ref } from 'vue'
 > ```
 
@@ -356,7 +356,7 @@ uni-app 中，常用组件生命周期有：
 
 > 【注意】：页面生命周期，在组件的 Options API 中无效。
 
-01-uni-app\demo-project\01-hello-uniapp\components\zt-button\zt-button.vue
+01-hello-uniapp\components\zt-button\zt-button.vue
 
 ```vue
 <template>
@@ -370,16 +370,16 @@ uni-app 中，常用组件生命周期有：
 <script>
 export default {
 	name: 'zt-button',
-  
+
 	props: {
 		type: {
 			type: String,
 			default: 'default' // default primary
 		}
 	},
-  
+
 	emits: ['btnClick'],
-  
+
 	// 1.组件的生命周期函数
 	beforeCreate() {
 		console.log('zt-btn beforeCreate')
@@ -399,7 +399,7 @@ export default {
 	onShow() {
 		console.log('zt-btn onShow')
 	},
-  
+
 	methods: {
 		onBtnClick() {
 			this.$emit('btnClick')
@@ -415,7 +415,7 @@ export default {
 
 > 【注意】：页面生命周期，在组件的 Composition API 中分情况执行。
 
-01-uni-app\demo-project\01-hello-uniapp\components\zt-button-setup\zt-button-setup.vue
+01-hello-uniapp\components\zt-button-setup\zt-button-setup.vue
 
 ```vue
 <template>
@@ -490,7 +490,7 @@ onReady(() => {
 
 在 service 目录下，对网络请求进行封装。
 
-01-uni-app\demo-project\01-hello-uniapp\service\index.js
+01-hello-uniapp\service\index.js
 
 ```js
 const TIMEOUT = 60000
@@ -530,7 +530,7 @@ export default new ZtRequest()
 
 在 `category.vue` 页面中，测试发送网络请求。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\category\category.vue
+01-hello-uniapp\pages\category\category.vue
 
 ```vue
 <template>
@@ -543,7 +543,7 @@ export default new ZtRequest()
 
 <script>
 import { getHomeMutidata } from '@/service/home.js'
-  
+
 export default {
 	data() {
 		return {
@@ -578,7 +578,7 @@ export default {
 
 [uni.removeStorageSync(KEY)](https://uniapp.dcloud.net.cn/api/storage/storage.html#removestoragesync)，从本地缓存中同步移除指定 key。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\category\category.vue
+01-hello-uniapp\pages\category\category.vue
 
 ```vue
 <template>
@@ -602,7 +602,7 @@ export default {
 					token: '666888999'
 				}
 			})
-      uni.setStorageSync('token', 'hahaha666')
+			uni.setStorageSync('token', 'hahaha666')
 		},
 		getStorage() {
 			uni.getStorage({
@@ -633,7 +633,7 @@ easycom 组件规范：
 
 创建一个自定义组件 `zt-button.vue`
 
-01-uni-app\demo-project\01-hello-uniapp\components\zt-button\zt-button.vue
+01-hello-uniapp\components\zt-button\zt-button.vue
 
 ```vue
 <template>
@@ -647,16 +647,16 @@ easycom 组件规范：
 <script>
 export default {
 	name: 'zt-button',
-  
+
 	props: {
 		type: {
 			type: String,
 			default: 'default' // default primary
 		}
 	},
-  
+
 	emits: ['btnClick'],
-  
+
 	methods: {
 		onBtnClick() {
 			this.$emit('btnClick')
@@ -686,7 +686,7 @@ export default {
 
 在 `category.vue` 中，直接使用 `<zt-button>`
 
-01-uni-app\demo-project\01-hello-uniapp\pages\category\category.vue
+01-hello-uniapp\pages\category\category.vue
 
 ```vue
 <template>
@@ -697,13 +697,13 @@ export default {
 </template>
 
 <script>
-	export default {
-		methods: {
-			handleZtBtnClick() {
-				console.log('zt-btn click');
-			}
+export default {
+	methods: {
+		handleZtBtnClick() {
+			console.log('zt-btn click')
 		}
 	}
+}
 </script>
 ```
 
@@ -729,7 +729,7 @@ home.vue
 
 <script setup>
 import { onLoad, onUnload } from '@dcloudio/uni-app'
-  
+
 // 全局事件总线 接收 detail03 逆向传回的数据
 function goToDetail03() {
 	uni.navigateTo({

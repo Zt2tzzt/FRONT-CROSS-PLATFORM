@@ -42,7 +42,6 @@
 
 ## 2.缺点
 
-
 对开发者要求高，除了本身对 web 前端的了解，还必须熟悉一点原生开发。
 
 不适合做高性能、复杂的用户体验，以及定制高的应用程序。
@@ -55,17 +54,17 @@
 
 2009 年以前，当时主要使用最原始的 HTML + CSS + JS 进行移动端 App 开发。
 
-2009-2014 年间， 出现了 *PhoneGap* 、*Cordova* 跨平台框架，以及 *Ionic* 轻量级的手机端 UI 库。
+2009-2014 年间， 出现了 _PhoneGap_ 、_Cordova_ 跨平台框架，以及 _Ionic_ 轻量级的手机端 UI 库。
 
-2015 年，*ReactNative*（跨平台框架）掀起了国内跨平台开发热潮，一些互联网大厂纷纷投入 *ReactNative* 开发阵营。
+2015 年，_ReactNative_（跨平台框架）掀起了国内跨平台开发热潮，一些互联网大厂纷纷投入 _ReactNative_ 开发阵营。
 
-2016 年，阿里开源了 *Weex*，它是一个可以使用现代化 Web 技术开发高性能原生应用的框架。
+2016 年，阿里开源了 _Weex_，它是一个可以使用现代化 Web 技术开发高性能原生应用的框架。
 
-2017 年 Google I/O 大会上，Google 正式向外界公布了 *Flutter*，
+2017 年 Google I/O 大会上，Google 正式向外界公布了 _Flutter_，
 
 - 一款跨平台开发工具包，用于为 Android、iOS、Web、Windows、Mac 等平台开发应用。
 
-2017 年至今，微信小程序、*uni-app*（底层基于 Veex）、*Taro*（底层基于 ReactNative） 等一系列跨平台小程序框架陆续流行起来了。
+2017 年至今，微信小程序、_uni-app_（底层基于 Veex）、_Taro_（底层基于 ReactNative） 等一系列跨平台小程序框架陆续流行起来了。
 
 # 四、方案选择
 
@@ -142,7 +141,6 @@ uni-app 适合不太复杂的应用，可兼容多端，但增加了开发者心
 
 - 选择 uni-app 类型，输入工程名，选择默认模板，选择 Vue 版本，点击创建即可。
 
-
 方式二：Vue-Cli
 
 - 全局安装 Vue-CLI （目前仍推荐使用 vue-cli 4.x ）：
@@ -169,16 +167,16 @@ HBuilderX 支持各种表达式语法，如 less、scss、stylus、typescript �
 
 - 用 Vue3 的 Composition API，建议用 HBuilderX Alpha 版，旧版有兼容问题。
 
-2.创建一个项目，点击起始标签页“新建项目”。
+  2.创建一个项目，点击起始标签页“新建项目”。
 
 - 选择默认模板。
 - 选择 Vue3 版本。
 
-3.运行该项目到 Chrome 浏览器。
+  3.运行该项目到 Chrome 浏览器。
 
 - 在 HBuilderX 中，配置 Chrome 浏览器的安装路径。
 
-4.运行该项目到微信开发者工具。
+  4.运行该项目到微信开发者工具。
 
 - 在微信开发者工具中，开启服务端口：
   - 设置 - 安全设置 - 开启服务端口
@@ -191,19 +189,21 @@ HBuilderX 支持各种表达式语法，如 less、scss、stylus、typescript �
 1. 下载 mumu 模拟器。在其中新增一个 iphone6 尺寸的预设。
 2. 在 HBuilderX 中，点击“运行在手机模拟器”，会自动下载 adb 调试桥。
 3. 安卓端调试，要配置 **adb 调试桥命令行工具**。用于 HBuilderX 和 Android 模拟器建立连接，实时调试和热重载。
-  - 当点击“运行到手机模拟器”后，HBuilderX 会自动下载 adb 。
 
-  - adb 自动安装的，默认放在 HBuilderX 安装目录下的 `./plugins/launcher/tools/adbs`
+- 当点击“运行到手机模拟器”后，HBuilderX 会自动下载 adb 。
 
-  - 在该目录下运行如下命令，即可使用 adb 命令。
+- adb 自动安装的，默认放在 HBuilderX 安装目录下的 `./plugins/launcher/tools/adbs`
 
-    ```shell
-    ./adb
-    ```
-    
-    > 如果想要全局中使用 adb。需要为 adb 配置环境变量，
-    >
-    > 如果使用外部的 adb 插件，需要在 HBuilder 中配置 adb 的运行路径。
+- 在该目录下运行如下命令，即可使用 adb 命令。
+
+  ```shell
+  ./adb
+  ```
+
+  > 如果想要全局中使用 adb。需要为 adb 配置环境变量，
+  >
+  > 如果使用外部的 adb 插件，需要在 HBuilder 中配置 adb 的运行路径。
+
 6. 执行如下命令：
 
    ```shell
@@ -249,7 +249,7 @@ import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
-    ...App
+	...App
 })
 app.$mount()
 // #endif
@@ -257,10 +257,10 @@ app.$mount()
 // #ifdef 条件编译。编译 Vue3 版本时，执行如下代码。
 import { createSSRApp } from 'vue'
 export function createApp() {
-  const app = createSSRApp(App)
-  return {
-    app
-  }
+	const app = createSSRApp(App)
+	return {
+		app
+	}
 }
 // #endif
 ```
@@ -287,30 +287,28 @@ export function createApp() {
 
 ```vue
 <script>
-	export default {
-		onLaunch: function(options) {
-			console.log('小程序应用启动参数 option：', options);
-			console.log('App Launch')
-		},
-		onShow: function() {
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		}
+export default {
+	onLaunch: function (options) {
+		console.log('小程序应用启动参数 option：', options)
+		console.log('App Launch')
+	},
+	onShow: function () {
+		console.log('App Show')
+	},
+	onHide: function () {
+		console.log('App Hide')
 	}
+}
 </script>
 
 <style>
-	/*每个页面公共css */
+/*每个页面公共css */
 </style>
-
 ```
-
 
 全局样式的编写：
 
-01-uni-app\demo-project\01-hello-uniapp\static\css\common.css
+01-hello-uniapp\static\css\common.css
 
 ```css
 .name {
@@ -318,7 +316,7 @@ export function createApp() {
 }
 ```
 
-01-uni-app\demo-project\01-hello-uniapp\static\css\common.less
+01-hello-uniapp\static\css\common.less
 
 ```less
 @mainColor: orange;
@@ -326,38 +324,38 @@ export function createApp() {
 
 全局样式的导入：
 
-01-uni-app\demo-project\01-hello-uniapp\App.vue
+01-hello-uniapp\App.vue
 
 ```vue
 <script>
-	export default {
-		onLaunch: function() {
-			console.log('App Launch')
-		},
-		onShow: function() {
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		}
+export default {
+	onLaunch: function () {
+		console.log('App Launch')
+	},
+	onShow: function () {
+		console.log('App Show')
+	},
+	onHide: function () {
+		console.log('App Hide')
 	}
+}
 </script>
 
 <style lang="less">
-	/* 每个页面公共css */
-	/* 默认已配置好别名 */
-	@import url(@/static/css/common.css);
-	@import url(@/static/css/common.less);
-	.title {
-		color: red;
-		border: 5px @mainColor solid;
-	}
+/* 每个页面公共css */
+/* 默认已配置好别名 */
+@import url(@/static/css/common.css);
+@import url(@/static/css/common.less);
+.title {
+	color: red;
+	border: 5px @mainColor solid;
+}
 </style>
 ```
 
 全局样式在页面中应用：
 
-01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
+01-hello-uniapp\pages\index\index.vue
 
 ```vue
 <template>
@@ -367,4 +365,3 @@ export function createApp() {
 	</view>
 </template>
 ```
-

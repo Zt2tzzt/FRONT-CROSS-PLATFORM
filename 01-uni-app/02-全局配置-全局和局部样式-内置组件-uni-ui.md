@@ -4,26 +4,26 @@
 
 在 `App.vue` 中。定义全局变量 `globalData`
 
-01-uni-app\demo-project\01-hello-uniapp\App.vue
+01-hello-uniapp\App.vue
 
 ```vue
 <script>
-	export default {
-		onLaunch: function(options) {
-			console.log('小程序应用启动参数 option：', options);
-			console.log('App Launch')
-		},
-		onShow: function() {
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		},
-		globalData: {
-			name: 'zzt',
-			age: 18
-		}
+export default {
+	onLaunch: function (options) {
+		console.log('小程序应用启动参数 option：', options)
+		console.log('App Launch')
+	},
+	onShow: function () {
+		console.log('App Show')
+	},
+	onHide: function () {
+		console.log('App Hide')
+	},
+	globalData: {
+		name: 'zzt',
+		age: 18
 	}
+}
 </script>
 ```
 
@@ -33,19 +33,18 @@
 
 再通过它拿到 `globalData`。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
+01-hello-uniapp\pages\index\index.vue
 
 ```vue
 <script>
-	export default {
+export default {
+	onLoad() {
+		console.log('Vue 的实例 this:', this)
 
-		onLoad() {
-			console.log('Vue 的实例 this:', this);
-
-			const app = getApp()
-			console.log('globalData:', app.globalData);
-		},
+		const app = getApp()
+		console.log('globalData:', app.globalData)
 	}
+}
 </script>
 ```
 
@@ -53,45 +52,42 @@
 
 使用 `getCurrentPages` 拿到当前页面的路由。
 
-用于获取当前页面栈的实例，以数组形式，按栈的顺序排列；
+用于获取，当前页面栈的实例，以数组形式，按栈的顺序排列；
 
 - 第一个元素为首页，最后一个元素为当前页面。
 
 仅用于展示页面栈的情况，不要修改页面栈，以免造成页面状态错误。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
+01-hello-uniapp\pages\index\index.vue
 
 ```vue
 <script>
-	export default {
-
-		onLoad() {
-			const pages = getCurrentPages()
-			console.log('page route:', pages[pages.length - 1].route); // pages/index/index
-		},
+export default {
+	onLoad() {
+		const pages = getCurrentPages()
+		console.log('page route:', pages[pages.length - 1].route) // pages/index/index
 	}
+}
 </script>
 ```
 
 > 【注意】：`getApp` 和 `getCurrentPages` 都是跨端 api。兼容 h5、weapp、app.
 
-> 【注意】：在 `App.vue` 中要使用 *Option API*，在页面/组件中可使用 *Composition API*。
+> 【注意】：在 `App.vue` 中要使用 _Option API_，在页面/组件中可使用 _Composition API_。
 
 > 【注意】：`<style>` 标签不支持写 `scope`，默认已有作用域。
 
 在 `App.vue` 中，一般定义全局样式，使用 `page` 选择器：
 
-01-uni-app\demo-project\01-hello-uniapp\App.vue
+01-hello-uniapp\App.vue
 
 ```vue
 <style lang="less">
-
-  page {
-    height: 100%;
-    box-sizing: border-box;
-    border: 3px red solid;
-  }
-
+page {
+	height: 100%;
+	box-sizing: border-box;
+	border: 3px red solid;
+}
 </style>
 ```
 
@@ -108,7 +104,7 @@
 `uni.scss` 主要有如下作用：
 
 - 存放全局样式变量。
-- 重写 uni-app 内置的样式变量。
+- 重写 uni-app 内置组件的样式变量。
 - 重写 uni-ui 内置框架的样式变量。
 
 `uni.scss` 中定义的变量，无需 `@import` 就可以在任意组件中直接使用。
@@ -117,7 +113,7 @@
 
 > 【注意】：修改 `uni.scss` 后，重启才能生效。
 
-> 【注意】：这里的 *uni-app* 框架内置变量，和 *uni-ui* 组件库的内置变量是不一样的。
+> 【注意】：这里的 _uni-app_ 框架内置变量，和 _uni-ui_ 组件库的内置变量是不一样的。
 
 > 【注意】：`App.vue` 中放的是公共样式，对全局生效。
 >
@@ -130,7 +126,7 @@ $borderColor: blue;
 $radius: 30rpx;
 ```
 
-01-uni-app\demo-project\01-hello-uniapp\uni.scss
+01-hello-uniapp\uni.scss
 
 ```scss
 // 1.定义自定义的全局的样式变量
@@ -169,15 +165,16 @@ uni.scss 全局样式：
 
 类似于小程序中的 `app.json` 文件。
 
-[page.json](https://uniapp.dcloud.net.cn/collocation/pages.html) 是全局页面配置文件（兼容 h5、weapp、app ）；
+[page.json](https://uniapp.dcloud.net.cn/collocation/pages.html) 是全局页面配置文件（兼容 h5、weapp、app）；
 
 决定页面的路径、窗口样式、原生的导航栏、原生的 tabbar 等等。
 
-01-uni-app\demo-project\01-hello-uniapp\pages.json
+01-hello-uniapp\pages.json
 
 ```json
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -212,7 +209,7 @@ uni.scss 全局样式：
 
 配置小程序的 `appid`
 
-01-uni-app\demo-project\01-hello-uniapp\manifest.json
+01-hello-uniapp\manifest.json
 
 # 六、常用内置组件
 
@@ -226,7 +223,7 @@ uni.scss 全局样式：
 
 也可以使用 `<div>`，但不跨平台，所以不推荐。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
+01-hello-uniapp\pages\index\index.vue
 
 ```vue
 <template>
@@ -245,7 +242,7 @@ uni.scss 全局样式：
 
 用于包裹文本内容。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
+01-hello-uniapp\pages\index\index.vue
 
 ```vue
 <template>
@@ -262,7 +259,7 @@ uni.scss 全局样式：
 
 在小程序端的主题颜色，和在其它端的主题颜色不一样（可通过条件编译来统一风格）。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
+01-hello-uniapp\pages\index\index.vue
 
 ```vue
 <template>
@@ -278,13 +275,17 @@ uni.scss 全局样式：
 
 支持相对路径、绝对路径，base64 码；
 
-01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
+01-hello-uniapp\pages\index\index.vue
 
 ```vue
 <template>
 	<view class="content">
 		<!-- 图片，相对路径 -->
-		<image class="pic" src="../../static/images/cvy.png" mode="widthFix"></image>
+		<image
+			class="pic"
+			src="../../static/images/cvy.png"
+			mode="widthFix"
+		></image>
 		<!-- 图片：绝对路径 -->
 		<image class="pic" src="@/static/images/cvy.png" mode="widthFix"></image>
 		<!-- 图片：导入图片，不支持 -->、
@@ -293,7 +294,7 @@ uni.scss 全局样式：
 </template>
 
 <script>
-  import cvy from '@/static/images/cvy.png'
+import cvy from '@/static/images/cvy.png'
 </script>
 ```
 
@@ -306,20 +307,18 @@ uni.scss 全局样式：
 
 > 【注意】：
 >
-> APP、小程序中，不要在 `<scroll-view>` 中使用 `<map>`、`<video>` 等原生组件。
+> APP 端，不要在 `<scroll-view>` 中使用 `<map>`、`<video>` 等原生组件。
 >
-> 小程序中，不要在 `<scroll-view>` 中使用 `<canvas>`、`<textarea>` 等原生组件。
+> 小程序端，不要在 `<scroll-view>` 中使用 `<map>`、`<video>`、`<canvas>`、`<textarea>` 等原生组件。
 >
-> 若要使用下拉刷新，建议使用页面的滚动，而不是 `<scroll-view>`。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\index\index.vue
+01-hello-uniapp\pages\index\index.vue
 
 ```vue
 <template>
 	<view class="content">
-
 		<!-- 纵向滚动 -->
-		<scroll-view scroll-y="true" class="zt-y-scroll">
+		<scroll-view scroll-y="true" class="y-scroll">
 			<view class="y-item">item1</view>
 			<view class="y-item">item2</view>
 			<view class="y-item">item3</view>
@@ -330,7 +329,7 @@ uni.scss 全局样式：
 		</scroll-view>
 
 		<!-- 横向滚动 -->
-    <scroll-view scroll-x="true" class="zt-x-scroll" :show-scrollbar="false">
+		<scroll-view scroll-x="true" class="x-scroll" :show-scrollbar="false">
 			<view class="x-item">item1</view>
 			<view class="x-item">item2</view>
 			<view class="x-item">item3</view>
@@ -339,42 +338,41 @@ uni.scss 全局样式：
 			<view class="x-item">item6</view>
 			<view class="x-item">item7</view>
 		</scroll-view>
-
 	</view>
 </template>
 
 <style lang="less">
-	.zt-y-scroll {
-		height: 400rpx; // 须有固定高度
-		border: 2rpx red solid;
-		box-sizing: border-box;
+.y-scroll {
+	height: 400rpx; // 须有固定高度
+	border: 2rpx red solid;
+	box-sizing: border-box;
 
-		.y-item {
-			height: 200rpx;
-			border-bottom: 2rpx solid blue;
-		}
+	.y-item {
+		height: 200rpx;
+		border-bottom: 2rpx solid blue;
 	}
+}
 
-	.zt-x-scroll {
-		white-space: nowrap; // 须有该设置
+.x-scroll {
+	white-space: nowrap; // 须有该设置
 
-		/* 隐藏原生实现的滚动条。*/
-		/* &::-webkit-scrollbar {
+	/* 隐藏原生实现的滚动条。*/
+	/* &::-webkit-scrollbar {
 			display: none;
 		} */
 
-		:deep(.zt-x-scroll .uni-scroll-view::-webkit-scrollbar) {
-			display: none;
-		}
-		/* :global { } 在全局查找选择器 */
-
-		.x-item {
-			display: inline-block;
-			height: 200rpx;
-			width: 200rpx;
-			border-right: 2rpx solid #ffc0cb;
-		}
+	:deep(.x-scroll .uni-scroll-view::-webkit-scrollbar) {
+		display: none;
 	}
+	/* :global { } 在全局查找选择器 */
+
+	.x-item {
+		display: inline-block;
+		height: 200rpx;
+		width: 200rpx;
+		border-right: 2rpx solid #ffc0cb;
+	}
+}
 </style>
 ```
 
@@ -392,33 +390,39 @@ uni.scss 全局样式：
 <template>
 	<view class="content">
 		<swiper
-      class="zt-swiper"
-      :indicator-dots="true"
-      indicator-active-color="#ffc0cb"
-      indicator-color="#f8f8f8"
+			class="zt-swiper"
+			:indicator-dots="true"
+			indicator-active-color="#ffc0cb"
+			indicator-color="#f8f8f8"
 			:autoplay="true"
-      :interval="3000"
-      :duration="1000">
+			:interval="3000"
+			:duration="1000"
+		>
 			<swiper-item>
-				<image class="swiper-image" src="@/static/images/banners/banner01.jpeg"></image>
+				<image
+					class="swiper-image"
+					src="@/static/images/banners/banner01.jpeg"
+				></image>
 			</swiper-item>
 			<swiper-item>
-				<image class="swiper-image" src="@/static/images/banners/banner02.jpeg"></image>
+				<image
+					class="swiper-image"
+					src="@/static/images/banners/banner02.jpeg"
+				></image>
 			</swiper-item>
 		</swiper>
-
 	</view>
 </template>
 
 <style lang="less">
-	.zt-swiper {
-		height: 400rpx;
+.zt-swiper {
+	height: 400rpx;
 
-		.swiper-image {
-			width: 100%;
-			height: 100%;
-		}
+	.swiper-image {
+		width: 100%;
+		height: 100%;
 	}
+}
 </style>
 ```
 
@@ -438,7 +442,7 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 
 # 八、样式导入
 
-使用 `@import` 语句可以导入外联样式（css 或 scss），用 `;` 表示语句结束。
+使用 `@import` 语句可以导入外联样式（css、less、scss、...），用 `;` 表示语句结束。
 
 支持相对路径，如 `import ‘../../common/base.css’;`
 
@@ -450,11 +454,11 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 
 在该页面中测试背景图片。
 
-01-uni-app\demo-project\01-hello-uniapp\pages.json
+01-hello-uniapp\pages.json
 
 ```json
 {
-	"pages": [ //pages 数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
 		{
 			"path": "pages/style/style",
 			"style": {
@@ -471,11 +475,11 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 				"navigationBarBackgroundColor": "#ffc0cb"
 			}
 		}
-	],
+	]
 }
 ```
 
-01-uni-app\demo-project\01-hello-uniapp\pages\style\style.vue
+01-hello-uniapp\pages\style\style.vue
 
 ```vue
 <template>
@@ -484,16 +488,15 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 	</view>
 </template>
 
-
 <style lang="less">
-	.bg-view {
-		height: 200rpx;
-		border: 1px #f00 solid;
+.bg-view {
+	height: 200rpx;
+	border: 1px #f00 solid;
 
-		background-image: url('../../static/images/cvy.png');
-		background-repeat: no-repeat;
-		background-size: contain;
-	}
+	background-image: url('../../static/images/cvy.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
 </style>
 ```
 
@@ -517,17 +520,17 @@ uni-app 支持使用字体图标，使用方式与普通 web 项目相同，
 2. 将字体图标文件引入项目，比如：`iconfont.ttf`；
 3. 在全局的 css 中引入字体图标，比如：`App.vue`。
 
-01-uni-app\demo-project\01-hello-uniapp\App.vue
+01-hello-uniapp\App.vue
 
 ```vue
 <style lang="less">
-	@import url('@/static/custom-font/iconfont.css');
+@import url('@/static/custom-font/iconfont.css');
 </style>
 ```
 
 4.使用字体图标。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\style\style.vue
+01-hello-uniapp\pages\style\style.vue
 
 ```vue
 <template>
@@ -538,11 +541,10 @@ uni-app 支持使用字体图标，使用方式与普通 web 项目相同，
 </template>
 
 <style lang="less">
-
-	.text {
-		font-size: 50rpx;
-		color: #f00;
-	}
+.text {
+	font-size: 50rpx;
+	color: #f00;
+}
 </style>
 ```
 
@@ -585,7 +587,7 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 1. 官网找到[扩展组件](https://uniapp.dcloud.net.cn/component/uniui/quickstart.html#%E9%80%9A%E8%BF%87-uni-modules-%E5%8D%95%E7%8B%AC%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6)清单，将所需组件导入到项目 `uni_modules` 目录中，
 2. 导入后直接使用，无需 `import` 和注册。
-3. 如果要自定义组件风格，在 `uni.scss` 导入 *uni-ui* 提供的内置 scss 变量而文件，并覆盖，然后重启应用。
+3. 如果要自定义组件风格，在 `uni.scss` 导入 _uni-ui_ 提供的内置 scss 变量而文件，并覆盖，然后重启应用。
 
 > 需要登录 DCloud 账号才能安装。
 
@@ -594,12 +596,12 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 - 一次性把所有 uni-ui 组件导入到项目，可以借用 HbuilderX 插件直接导入。
 - 如果没有自动导入其他组件，可在 `uni_modules` 组件目录上右键选择安装三方插件依赖即可。
 
-方式三：在 HBuilderX 新建 uni-app 项目时，在模板中选择 uni-ui 模板来创建项目 
+方式三：在 HBuilderX 新建 uni-app 项目时，在模板中选择 uni-ui 模板来创建项目
 
 - 由于 uni-app 独特的 easycom（自动导包）技术，可以免引入、注册，
 - 创建项目时，选择提供的项目模板，就直接使用符合规则的 vue 组件。
 
-方式四：npm 安装 
+方式四：npm 安装
 
 - 在 vue-cli 项目中可用 npm 安装 uni-ui 库
 - 或直接在 HBuilderX 项目中用 npm 安装 。
@@ -610,8 +612,7 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 1.使用 [uni-badge](https://ext.dcloud.net.cn/plugin?name=uni-badge) 组件，用于展示徽标。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\uni-ui\UniUi.vue
-
+01-hello-uniapp\pages\uni-ui\UniUi.vue
 
 ```vue
 <template>
@@ -627,85 +628,91 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 2.使用 [uni-countdown](https://ext.dcloud.net.cn/plugin?name=uni-countdown) 组件，用于展示倒计时。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\uni-ui\UniUi.vue
+01-hello-uniapp\pages\uni-ui\UniUi.vue
 
 ```vue
 <template>
 	<view class="content">
 		<uni-countdown
-      color="white"
-      background-color="#cdcdcd"
-      :day="0"
-      :show-day="false"
-      :hour="6"
-      :minute="12"
-			:second="20">
-    </uni-countdown>
+			color="white"
+			background-color="#cdcdcd"
+			:day="0"
+			:show-day="false"
+			:hour="6"
+			:minute="12"
+			:second="20"
+		>
+		</uni-countdown>
 	</view>
 </template>
 ```
 
 3.使用 [uni-goods-nav](https://uniapp.dcloud.net.cn/component/uniui/uni-goods-nav.html) 组件，用于展示商品底部导航栏。
 
-01-uni-app\demo-project\01-hello-uniapp\pages\uni-ui\UniUi.vue
+01-hello-uniapp\pages\uni-ui\UniUi.vue
 
 ```vue
 <template>
 	<view class="content">
 		<uni-goods-nav
-      :fill="true"
-      :options="options"
-      :buttonGroup="buttonGroup"
-      @click="onClick"
-			@buttonClick="buttonClick" />
+			:fill="true"
+			:options="options"
+			:buttonGroup="buttonGroup"
+			@click="onClick"
+			@buttonClick="buttonClick"
+		/>
 	</view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				options: [{
+export default {
+	data() {
+		return {
+			options: [
+				{
 					icon: 'headphones',
 					text: '客服'
-				}, {
+				},
+				{
 					icon: 'shop',
 					text: '店铺',
 					info: 2,
 					infoBackgroundColor: '#007aff',
-					infoColor: "red"
-				}, {
+					infoColor: 'red'
+				},
+				{
 					icon: 'cart',
 					text: '购物车',
 					info: 2
-				}],
-				buttonGroup: [{
-						text: '加入购物车',
-						backgroundColor: '#ff0000',
-						color: '#fff'
-					},
-					{
-						text: '立即购买',
-						backgroundColor: '#ffa200',
-						color: '#fff'
-					}
-				]
-			}
+				}
+			],
+			buttonGroup: [
+				{
+					text: '加入购物车',
+					backgroundColor: '#ff0000',
+					color: '#fff'
+				},
+				{
+					text: '立即购买',
+					backgroundColor: '#ffa200',
+					color: '#fff'
+				}
+			]
+		}
+	},
+	methods: {
+		onClick(e) {
+			console.log('onClick e:', e)
+			uni.showToast({
+				title: `点击${e.content.text}`,
+				icon: 'none'
+			})
 		},
-		methods: {
-			onClick(e) {
-				console.log('onClick e:', e);
-				uni.showToast({
-					title: `点击${e.content.text}`,
-					icon: 'none'
-				})
-			},
-			buttonClick(e) {
-				console.log('buttonClick e:', e);
-				this.options[2].info++
-			}
+		buttonClick(e) {
+			console.log('buttonClick e:', e)
+			this.options[2].info++
 		}
 	}
+}
 </script>
 ```
-

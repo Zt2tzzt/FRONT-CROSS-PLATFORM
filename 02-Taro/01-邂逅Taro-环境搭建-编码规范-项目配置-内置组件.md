@@ -3,7 +3,7 @@
 
 Taro 是由京东凹凸实验室，打造的一个开放式跨端、跨框架解决方案，并于 2018 年 6 月 7 日正式开源；
 
-Taro 支持使用【React / Vue / Preact】等框架来开发【微信/京东/百度/支付宝/字节跳动/QQ 等小程序 / H5 / RN 等应用】。
+Taro 支持使用【React / Vue / Preact】等框架来开发【微信/京东/百度/支付宝/字节跳动/ QQ 等小程序/ H5 / RN 等应用】。
 
 - 在 Taro 中，使用 Vue 只能开发 H5、小程序；
 - 在 Taro 中，使用 React 可借助 ReactNative 开发 APP 端。
@@ -51,7 +51,7 @@ Taro 1.x / 2.x 版的文档，现已**不再积极维护**。
 - 目前官方支持的平台如下：
   - H5、RN；
   - 微信小程序，包括：
-    - 京东小程序、百度小程序、支付宝小程序、字节跳动小程序 QQ 小程序、钉钉小程序、企业微信小程序、支付宝小程序等
+    - 京东小程序、百度小程序、支付宝小程序、字节跳动小程序、QQ 小程序、钉钉小程序、企业微信小程序、支付宝小程序等
 
 多框架支持
 
@@ -89,14 +89,14 @@ Taro 有自己 UI 的组件库：*Taro UI*；
 
 资料完善度：
 
-- Taro： 官方文档较完整，但不是很丰富，资料一般。
+- Taro：官方文档较完整，但不是很丰富，资料一般。
 
 - uni-app：官方文档和各种专题内容很丰富，资料齐全。
 
 
 工具和周边生态：
 
-- Taro：官方组件库 Taro UI，只支持小程序和 H5（不支持 RN）；截至 2019 年 10 月 28 日， Taro 只有 64 个插件。
+- Taro：官方组件库 Taro UI，只支持小程序和 H5（不支持 RN）；截至 2019 年 10 月 28 日，Taro 只有 64 个插件。
 - uni-app：官方的 uni-ui 支持多端、周边模板丰富、完善的插件市场；截至到 2019 年 10 月 28 日，有 850 个插件。
 
 总结：
@@ -229,7 +229,7 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 
 组件规范：
 
-- 页面文件遵循 React 组件 (JSX) 规范。
+- 页面文件，遵循 React 组件（JSX）规范。
 - 组件标签靠近小程序规范（但遵从**大驼峰**，且必须**导包**，属性遵循**小驼峰**），详见 Taro 组件规范；
 - 在 React 中使用 Taro 内置组件前，必须从 `@tarojs/components` 进行引入（导包）。
 
@@ -406,7 +406,6 @@ class App extends Component {
 }
 
 export default App
-
 ```
 
 在 `app.js` 中，定义全局数据。
@@ -557,9 +556,11 @@ export default class CpnsTaro extends Component {
   render() {
     return (
       <View>
+        
         <View>
           <Text>我是一个 Text</Text>
         </View>
+        
         <Button type='primary'>我是一个 Button</Button>
 
         {/* 图片 <Image> 组件不支持路径引用本地图片，只能通过 ESModule 模块导入的形式。*/}

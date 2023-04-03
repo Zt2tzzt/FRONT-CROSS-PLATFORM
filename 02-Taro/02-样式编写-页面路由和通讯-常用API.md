@@ -20,9 +20,9 @@ Taro 默认会按照设计稿，对所有单位进行转换。
 
 通常按照 1:1 关系来编写尺寸大小；
 
-- 即设计稿量长度 100px，那么尺寸就写 100px;
-- 当转成微信小程序时尺寸为 100rpx；
-- 当转成 H5 时尺寸以 rem 为单位。
+- 即设计稿长度 100px，那么尺寸就写 100px;
+- 当转成微信小程序时，尺寸则为 100rpx；
+- 当转成 H5 时，尺寸则以 rem 为单位。
 
 src\pages\02-style\index.jsx
 
@@ -250,7 +250,7 @@ export default class extends Component {
 Taro 支持使用在 css 里设置背景图片，使用方式与普通 web 项目大体相同：
 
 - 支持 base64 格式图片，
-- 支持支持网络路径图片。
+- 支持网络路径图片。
 
 使用本地资源（图片、字体）需注意：
 
@@ -431,13 +431,13 @@ export default defineAppConfig({
 
 # 四、页面路由
 
-Taro 有两种页面路由跳转方式：
+Taro 页面路由跳转方式，有两种：
 
 - 组件：`<Navigator>`；
 
 - 常用 API：`navigate`、`redirectTo`、`switchTab`、`navigateBack`。
 
-创建 detail01 页面，进行测试。从 home 跳转到 detail01.
+创建 `detail01.jsx` 页面，进行测试。从 `home.jsx` 跳转到 `detail01.jsx`.
 
 ```jsx
 import { Component } from 'react'
@@ -500,11 +500,11 @@ export default class Home extends Component {
 
 方式三：全局事件总线：`Taro.eventCenter`；
 
-方式四：全局数据：`taroGloabalData`；
+方式四：全局数据：`taroGloabalData`；（非响应式）
 
-方式五：本地数据存储: `Taro.setStorageSync(key, data)`；
+方式五：本地数据存储: `Taro.setStorageSync(key, data)`；（非响应式）
 
-方式五：Redux 状态管理库
+方式五：Redux 状态管理库。
 
 ## 1.正向传递
 
@@ -731,10 +731,10 @@ export default class Detail02 extends Component {
 
 ### 2.全局事件总线
 
-为了支持跨组件、跨页面之间的通信，Taro 提供了全局事件总线：`Taro.eventCenter`
+为了支持跨组件、跨页面之间的通信，Taro 提供了全局事件总线：`Taro.eventCenter`：
 
 - `Taro.eventCenter.on( eventName, function )` 监听一个事件；
-- `Taro.eventCenter.trigger( eventName, data)` 触发一个事件；
+- `Taro.eventCenter.trigger( eventName, data )` 触发一个事件；
 - `Taro.eventCenter.off( eventName, function )` 取消监听事件；
 
 注意事项：
@@ -742,7 +742,7 @@ export default class Detail02 extends Component {
 - 需先监听，再触发事件；
   - 比如：在 A 界面触发，然后跳转到 B 页面后才监听是不行的。
 - 通常有 `on` 就要有 `off`，可以避免多次重复监听；
-- 适合页面返回传递参数、适合跨组件通讯，不适合界面跳转传递参数；
+- 适合页面返回传递参数（逆向传递）、适合跨组件通讯，不适合界面跳转传递参数；
 
 创建 `detail03.jsx` 页面。
 
@@ -818,7 +818,7 @@ export default class Detail03 extends Component {
 
 ## 1.class
 
-Taro 页面组件除了支持 React 组件生命周期外，还根据小程序的标准，额外支持以下页面生命周期：
+Taro 页面组件，除了支持 React 组件生命周期外，还根据小程序的标准，额外支持以下页面生命周期：
 
 - `onLoad(options)` 在小程序环境中对应页面的 `onLoad`。
 	- 通过访问 `options` 参数，或调用 `getCurrentInstance().router`，可以访问到页面路由参数。

@@ -185,7 +185,7 @@ const handleGridItemClick = item => {
 创建 `detail.vue` 页面，在其中拿到商品 id，有两种方式：
 
 - onLoad option。
-- props（项目中采用）
+- props（项目中采用）。
 
 01-uni-app\demo-project\02-shopping-street\pages\detail\detail.vue
 
@@ -291,7 +291,9 @@ const handleTabControlClick = index => {
 
 上拉加载更多，滚动到底部，加载下一页。
 
-在 `page.json` 中，配置 `home.vue` 页面，距离底部一定距离时，就触发 `onReachBottom` 生命周期。
+在 `page.json` 中，配置 `home.vue` 页面；
+
+距离底部一定距离时，就触发 `onReachBottom` 生命周期。
 
 01-uni-app\demo-project\02-shopping-street\pages.json
 
@@ -317,7 +319,10 @@ onReachBottom(() => {
 
 ## 2.优化（图片懒加载）
 
-在 `home.vue` 页面中，实现商品列表中的图片懒加载，对非 H5 端（小程序、App）、 H5 端两种情况进行优化：
+在 `home.vue` 页面中，实现商品列表中的图片懒加载，分两种情况优化：
+
+- 非 H5 端（小程序、App）、
+- H5 端：
 
 ### 1.非 H5 端：
 
@@ -378,7 +383,7 @@ onReachBottom(() => {
    // #endif
    ```
 
-4. 在 `<grid-view-item>` 组件中，使用条件编译
+4. 在 `<grid-view-item>` 组件中，使用条件编译。
 
 01-uni-app\demo-project\02-shopping-street\components\grid-item-view\grid-item-view.vue
 

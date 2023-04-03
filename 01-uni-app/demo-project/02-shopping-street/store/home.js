@@ -6,7 +6,7 @@ export const useHomeStore = defineStore('home', {
 	state: () => ({
 		banners: [],
 		recommends: [],
-		currentType: goodsType[0].name,
+		currentType: goodsType[0].name, // 商品类别
 		goodsList: goodsType.reduce((accumulate, currentItem) => {
 			accumulate[currentItem.name] = {
 				page: 0,

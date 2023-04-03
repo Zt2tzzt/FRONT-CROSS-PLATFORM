@@ -428,7 +428,7 @@ export default {
 
 <script setup>
 // 组件的生命周期
-import { onBeforeMount, onMounted, ref, watch, computed } from 'vue'
+import { onBeforeMount, onMounted } from 'vue'
 
 // 页面的生命周期
 import { onLoad, onShow, onReady } from '@dcloudio/uni-app'
@@ -800,6 +800,7 @@ console.log('在 props 中接受 home 传递过来 url 的数据:', props.name, 
 const $instance = ref(getCurrentInstance().proxy)
 onLoad(options => {
 	console.log('接受到 home 传递过来 url 的数据:', options)
+  
 	// const eventChannel = this.getOpenerEventChannel();
 	const eventChannel = $instance.value.getOpenerEventChannel()
 	eventChannel.on('acceptDataFormHomePage', value => {
@@ -831,6 +832,7 @@ function goBack() {
 	uni.navigateBack({
 		delta: 1
 	})
+  
 	const eventChannel = $instance.value.getOpenerEventChannel()
 	// 触发事件, 将detail02的数据传递给Home页面
 	eventChannel.emit('acceptDataFormDetail02', {

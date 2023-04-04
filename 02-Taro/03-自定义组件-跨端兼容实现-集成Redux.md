@@ -4,17 +4,17 @@
 
 类组件生命周期，对应函数式组件中的 Hooks，如下表：
 
-| class 组件                                                   | Hooks 组件                                                   |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [constructor()](https://docs.taro.zone/docs/apis/about/tarocomponent#constructor) | [useState]([componentWillUnmount()](https://docs.taro.zone/docs/apis/about/tarocomponent#componentwillunmount)) |
-| [static getDerivedStateFromProps()](https://docs.taro.zone/docs/apis/about/tarocomponent#static-getderivedstatefromprops) | [useState ]([componentWillUnmount()](https://docs.taro.zone/docs/apis/about/tarocomponent#componentwillunmount))的 update |
-| [shouldComponentUpdate()](https://docs.taro.zone/docs/apis/about/tarocomponent#shouldcomponentupdate) | [useMemo](https://docs.taro.zone/docs/hooks#usememo)         |
-| [render()](https://docs.taro.zone/docs/apis/about/tarocomponent#render) | 函数式组件本身                                               |
-| [componentDidMount()](https://docs.taro.zone/docs/apis/about/tarocomponent#componentdidmount) | [useEffect](https://docs.taro.zone/docs/hooks#useeffect)     |
-| [componentDidUpdate()](https://docs.taro.zone/docs/apis/about/tarocomponent#componentdidupdate) | [useEffect](https://docs.taro.zone/docs/hooks#useeffect)     |
-| [componentWillUnmount()](https://docs.taro.zone/docs/apis/about/tarocomponent#componentwillunmount) | [useEffect](https://docs.taro.zone/docs/hooks#useeffect) 返回的函数。 |
+| class 组件                                                                                                                | Hooks 组件                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| [constructor()](https://docs.taro.zone/docs/apis/about/tarocomponent#constructor)                                         | [useState](<[componentWillUnmount()](https://docs.taro.zone/docs/apis/about/tarocomponent#componentwillunmount)>)           |
+| [static getDerivedStateFromProps()](https://docs.taro.zone/docs/apis/about/tarocomponent#static-getderivedstatefromprops) | [useState ](<[componentWillUnmount()](https://docs.taro.zone/docs/apis/about/tarocomponent#componentwillunmount)>)的 update |
+| [shouldComponentUpdate()](https://docs.taro.zone/docs/apis/about/tarocomponent#shouldcomponentupdate)                     | [useMemo](https://docs.taro.zone/docs/hooks#usememo)                                                                        |
+| [render()](https://docs.taro.zone/docs/apis/about/tarocomponent#render)                                                   | 函数式组件本身                                                                                                              |
+| [componentDidMount()](https://docs.taro.zone/docs/apis/about/tarocomponent#componentdidmount)                             | [useEffect](https://docs.taro.zone/docs/hooks#useeffect)                                                                    |
+| [componentDidUpdate()](https://docs.taro.zone/docs/apis/about/tarocomponent#componentdidupdate)                           | [useEffect](https://docs.taro.zone/docs/hooks#useeffect)                                                                    |
+| [componentWillUnmount()](https://docs.taro.zone/docs/apis/about/tarocomponent#componentwillunmount)                       | [useEffect](https://docs.taro.zone/docs/hooks#useeffect) 返回的函数。                                                       |
 
-安装 *classnames*，*proptypes* 依赖
+安装 _classnames_，_proptypes_ 依赖。
 
 ```shell
 pnpm add classnames
@@ -45,44 +45,47 @@ import proptypes from 'proptypes'
 import { memo, useEffect } from 'react'
 import styles from './index.modules.less'
 
-const ZtButtom = memo((props) => {
-  const { type = 'default', ztButtonClick } = props
+const ZtButtom = memo(props => {
+	const { type = 'default', ztButtonClick } = props
 
-  const onBtnClick = () => {
-    ztButtonClick && ztButtonClick()
-  }
+	const onBtnClick = () => {
+		ztButtonClick && ztButtonClick()
+	}
 
-  // 组件生命周期
-  useEffect(() => {
-    console.log('zt-button 挂在完成~');
-    return () => {
-      console.log('zt-button 即将卸载');
-    }
-  }, [])
+	// 组件生命周期
+	useEffect(() => {
+		console.log('zt-button 挂在完成~')
+		return () => {
+			console.log('zt-button 即将卸载')
+		}
+	}, [])
 
-  // 页面的生命周期，
-  useLoad(() => {
-    console.log('zt-button useLoad');
-  })
+	// 页面的生命周期，
+	useLoad(() => {
+		console.log('zt-button useLoad')
+	})
 
-  useDidShow(() => {
-    console.log('zt-button useDidShow');
-  })
+	useDidShow(() => {
+		console.log('zt-button useDidShow')
+	})
 
-  useReady(() => {
-    console.log('zt-button useReady');
-  })
+	useReady(() => {
+		console.log('zt-button useReady')
+	})
 
-  return (
-    <View className={classNames(styles['zt-button'], styles[type])} onClick={onBtnClick}>
-      {props.children}
-    </View>
-  )
+	return (
+		<View
+			className={classNames(styles['zt-button'], styles[type])}
+			onClick={onBtnClick}
+		>
+			{props.children}
+		</View>
+	)
 })
 
 ZtButtom.propTypes = {
-  type: proptypes.string,
-  onBtnClick: proptypes.func
+	type: proptypes.string,
+	onBtnClick: proptypes.func
 }
 
 export default ZtButtom
@@ -94,23 +97,23 @@ src\components\zt-buttom\index.modules.less
 
 ```less
 .zt-button {
-  font-size: 36px;
-  padding: 20px;
-  text-align: center;
-  color: white;
-  border-radius: 10px;
+	font-size: 36px;
+	padding: 20px;
+	text-align: center;
+	color: white;
+	border-radius: 10px;
 }
 
 .default {
-  background-color: #cdcdcd;
+	background-color: #cdcdcd;
 }
 
 .skyblue {
-  background-color: skyblue;
+	background-color: skyblue;
 }
 
 .primary {
-  background-color: #ff464e;
+	background-color: #ff464e;
 }
 ```
 
@@ -130,9 +133,9 @@ export default memo(() => {
 	}
 
 	return (
-		<View className='category'>
+		<View className="category">
 			<Text>Hello Category!</Text>
-			<ZtButton type='primary' ztButtonClick={handleZtButtonClick}>
+			<ZtButton type="primary" ztButtonClick={handleZtButtonClick}>
 				ZtButton
 			</ZtButton>
 		</View>
@@ -142,9 +145,9 @@ export default memo(() => {
 
 # 二、跨端兼容方案
 
-Taro 的设计初衷，就是为了统一跨平台；
+Taro 的设计初衷，是为了统一跨平台；
 
-即使 Taro 尽力通过运行时、抹平组件、API的多端差异；不同的平台之间，还是存在一些无法消除的差异；
+即使 Taro 尽力通过运行时、抹平组件、API 的多端差异；不同的平台之间，还是存在一些无法消除的差异；
 
 为了更好的实现跨平台开发，Taro 提供了如下两种方案。
 
@@ -153,6 +156,7 @@ Taro 的设计初衷，就是为了统一跨平台；
 Taro 在编译时，提供了一些内置的环境变量，来区分不同环境，从而实现类似于条件编译的效果。
 
 内置环境变量 `process.env.TARO_ENV` 可直接在代码中使用：
+
 - 有效值为：`weapp` / `swan` / `alipay` / `tt` / `qq` / `jd` / `h5` / `rn`。
 
 在编译阶段，会移除其它平台的代码，只保留当前平台的代码，例如：
@@ -180,32 +184,28 @@ export default memo(() => {
 	}
 
 	return (
-		<View className='category'>
-
-			<ZtButton type='primary' ztButtonClick={handleZtButtonClick}>
+		<View className="category">
+			<ZtButton type="primary" ztButtonClick={handleZtButtonClick}>
 				ZtButton
 			</ZtButton>
 
 			{process.env.TARO_ENV === 'h5' ? (
 				<>
 					<View>h5 端专有组件</View>
-					<ZtButton type='skyblue'>ZtButton h5</ZtButton>
+					<ZtButton type="skyblue">ZtButton h5</ZtButton>
 				</>
 			) : process.env.TARO_ENV === 'weapp' ? (
 				<>
 					<View>weapp 端专有组件</View>
-					<ZtButton type='primary'>ZtButton weapp</ZtButton>
+					<ZtButton type="primary">ZtButton weapp</ZtButton>
 				</>
-			) : (
-				undefined
-			)}
-
+			) : undefined}
 		</View>
 	)
 })
 ```
 
-> 【注意】：环境变量 process.env 不能被解构使用。
+> 【注意】：环境变量 `process.env` 不能被解构使用。
 
 由上述案例可知，该方案，缺点是代码中会存在很多逻辑判断，造成代码的可读性和可维护性降低了；
 
@@ -221,22 +221,24 @@ export default memo(() => {
 
 Taro 在编译时，根据当前编译到的平台类型，会加载对应跨端的文件；
 
-
 该方案的写法，有如下三个使用要点：
+
 - 不同端的对应文件一定要统一接口和调用方式。
 - 引用文件的时候，只需写默认文件名，不用带文件后缀。
 - 最好有一个平台无关的默认文件，这样在使用 TS 的时候也不会出现报错。
 
 常见有以下使用场景：
+
 - 多端组件（属性，方法，事件等需统一）
-	- 针对不同的端写不同的组件代码
+  - 针对不同端，编写不同的组件代码。
 - 多端脚本逻辑（属性、方法等需统一）
-	- 针对不同的端写不同的脚本逻辑代码
+  - 针对不同端，编写不同的脚本逻辑代码。
 
 :egg:理解案例（多端组件）：
 
-创建 `zt-multi-button` 组件，在其中创建 `index.jsx`、`index.h5.jsx`、`index.weapp.jsx` 三个文件;
+创建 `zt-multi-button` 组件。
 
+在其中创建 `index.jsx`、`index.h5.jsx`、`index.weapp.jsx` 三个文件;
 
 src\components\zt-multi-button\index.jsx
 
@@ -247,24 +249,27 @@ import proptypes from 'proptypes'
 import { memo } from 'react'
 import styles from './index.modules.less'
 
-const ZtMultiButtom = memo((props) => {
-  const { type = 'default', ztButtonClick } = props
+const ZtMultiButtom = memo(props => {
+	const { type = 'default', ztButtonClick } = props
 
-  const onBtnClick = () => {
-    console.log('zt-multi-button 按钮店家了');
-    ztButtonClick && ztButtonClick()
-  }
+	const onBtnClick = () => {
+		console.log('zt-multi-button 按钮店家了')
+		ztButtonClick && ztButtonClick()
+	}
 
-  return (
-    <View className={classNames(styles['zt-button'], styles[type])} onClick={onBtnClick}>
-      {props.children}
-    </View>
-  )
+	return (
+		<View
+			className={classNames(styles['zt-button'], styles[type])}
+			onClick={onBtnClick}
+		>
+			{props.children}
+		</View>
+	)
 })
 
 ZtMultiButtom.propTypes = {
-  type: proptypes.string,
-  onBtnClick: proptypes.func
+	type: proptypes.string,
+	onBtnClick: proptypes.func
 }
 
 export default ZtMultiButtom
@@ -275,8 +280,8 @@ src\components\zt-multi-button\index.h5.jsx
 ```jsx
 //...
 const onBtnClick = () => {
-  console.log('h5 端的 zt-multi-button 点击了'); // h5 端，打印了
-  ztButtonClick && ztButtonClick()
+	console.log('h5 端的 zt-multi-button 点击了') // h5 端，打印了
+	ztButtonClick && ztButtonClick()
 }
 //...
 ```
@@ -286,8 +291,8 @@ src\components\zt-multi-button\index.weapp.jsx
 ```jsx
 //...
 const onBtnClick = () => {
-  console.log('weapp 端的 zt-multi-button 点击了'); // weapp 端打印了
-  ztButtonClick && ztButtonClick()
+	console.log('weapp 端的 zt-multi-button 点击了') // weapp 端打印了
+	ztButtonClick && ztButtonClick()
 }
 //...
 ```
@@ -303,14 +308,10 @@ import ZtMultiButton from '@/components/zt-multi-button'
 import './index.less'
 
 export default memo(() => {
-
 	return (
-		<View className='category'>
-
-      <View>统一接口的多端文件</View>
-      <ZtMultiButton type="skyblue">
-        ZtMultiButton
-      </ZtMultiButton>
+		<View className="category">
+			<View>统一接口的多端文件</View>
+			<ZtMultiButton type="skyblue">ZtMultiButton</ZtMultiButton>
 		</View>
 	)
 })
@@ -325,12 +326,12 @@ export default memo(() => {
 src\utils\set-title\index.js
 
 ```js
-import Taro from '@tarojs/taro';
+import Taro from '@tarojs/taro'
 
 export default function () {
-  Taro.setNavigationBarTitle({
-    title: '与平台无关的标题'
-  })
+	Taro.setNavigationBarTitle({
+		title: '与平台无关的标题'
+	})
 }
 ```
 
@@ -338,7 +339,7 @@ src\utils\set-title\index.h5.js
 
 ```js
 export default function () {
-  document.title = 'h5 平台的标题'
+	document.title = 'h5 平台的标题'
 }
 ```
 
@@ -346,9 +347,9 @@ src\utils\set-title\index.weapp.js
 
 ```js
 export default function () {
-  wx.setNavigationBarTitle({
-    title: 'weapp 平台的标题'
-  })
+	wx.setNavigationBarTitle({
+		title: 'weapp 平台的标题'
+	})
 }
 ```
 
@@ -364,17 +365,16 @@ import setTitle from '@/utils/set-title'
 import './index.less'
 
 export default memo(() => {
-
-  const hadnleZtMultiButtonClick = () => {
-    setTitle();
-  }
+	const hadnleZtMultiButtonClick = () => {
+		setTitle()
+	}
 
 	return (
-		<View className='category'>
-      <View>统一接口的多端文件</View>
-      <ZtMultiButton type="skyblue" ztButtonClick={hadnleZtMultiButtonClick}>
-        ZtMultiButton
-      </ZtMultiButton>
+		<View className="category">
+			<View>统一接口的多端文件</View>
+			<ZtMultiButton type="skyblue" ztButtonClick={hadnleZtMultiButtonClick}>
+				ZtMultiButton
+			</ZtMultiButton>
 		</View>
 	)
 })
@@ -386,27 +386,27 @@ export default memo(() => {
 
 早期使用 redux 时，通常会将 redux 代码拆分在多个文件中；
 
-- 比如：`constants.ts`、`action.ts`、`reducer.ts` 等
+- 比如：`constants.ts`、`action.ts`、`reducer.ts` 等。
 
-这种代码组织方式，过于繁琐和麻烦，不利于管理。并且 `createStore` 方法已标为过时，
+这种代码组织方式，过于繁琐麻烦，不利于管理。并且 `createStore` 方法已标为过时，
 
 Redux Toolkit 是目前官方推荐的编写 Redux 逻辑的方案。 为了解决上述问题而诞生。
 
-安装 *Redux* 和 *Redux Toolkit*：
+安装 _Redux_ 和 _Redux Toolkit_：
 
 ```shell
 npm install @reduxjs/toolkit react-redux
 ```
 
-*Redux Toolkit* 的核心 API 主要是如下几个：
+_Redux Toolkit_ 的核心 API 主要是如下几个：
 
-`configureStore`：包装 `createStore` 以提供简化的配置选项和良好的默认值，有以下属性：
+`configureStore`：包装 `createStore`，以提供简化的配置选项和良好的默认值，有以下属性：
 
 - `reducer`：可自动组合 slice reducer
 - `middleware`：可添加其它 Redux 中间件（默认包含 redux-thunk）。
 - `devTools`：默认启用 Redux DevTools Extension
 
-`createSlice`：自动生成切片 reducer，且带有相应的 actions，接收一下属性：
+`createSlice`：自动生成切片 reducer，且带有相应的 actions，接收以下属性：
 
 - `name`：切片名称；
 - `initialState`：初始状态值；
@@ -414,7 +414,7 @@ npm install @reduxjs/toolkit react-redux
 
 `createAsyncThunk`: 接受一个动作类型字符串，和一个返回 Promise 的函数：
 
-- 生成一个基于该 Promise 状态 `pending` / `fulfilled` / `rejected`,分派 actioos 类型的 thunk。
+- 生成一个基于该 Promise 状态（`pending` / `fulfilled` / `rejected`）分派 actioos 类型的 thunk。
 - 专门用来处理异步 Action。
 
 :egg:案例理解：
@@ -424,60 +424,60 @@ npm install @reduxjs/toolkit react-redux
 src\store\modules\home.js
 
 ```js
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getHomeMutidata } from "@/service/home";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { getHomeMutidata } from '@/service/home'
 
 const homeSlice = createSlice({
-  name: "home",
-  initialState: {
-    counter: 800,
-    homeData: null,
-  },
-  reducers: {
-    incrementAction(state, action) {
-      const { payload } = action;
-      state.counter += payload;
-    },
-    decrementAction(state, action) {
-      const { payload } = action;
-      state.counter -= payload;
-    },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(fetchHomeMutiDataAction.fulfilled, (state, action) => {
-      const { payload } = action;
-      state.homeData = payload.data;
-    });
-  },
-});
-
-export const { incrementAction, decrementAction } = homeSlice.actions;
-export default homeSlice.reducer;
+	name: 'home',
+	initialState: {
+		counter: 800,
+		homeData: null
+	},
+	reducers: {
+		incrementAction(state, action) {
+			const { payload } = action
+			state.counter += payload
+		},
+		decrementAction(state, action) {
+			const { payload } = action
+			state.counter -= payload
+		}
+	},
+	extraReducers: builder => {
+		builder.addCase(fetchHomeMutiDataAction.fulfilled, (state, action) => {
+			const { payload } = action
+			state.homeData = payload.data
+		})
+	}
+})
 
 // 异步 action
 export const fetchHomeMutiDataAction = createAsyncThunk(
-  "home/multidata", // action type 的前缀
-  async (param, {dispatch, getState}) => {
-    const res = await getHomeMutidata();
-    console.log("res=>", res);
-    return res;
-  }
-);
+	'home/multidata', // action type 的前缀
+	async (param, { dispatch, getState }) => {
+		const res = await getHomeMutidata()
+		console.log('res=>', res)
+		return res
+	}
+)
+
+export const { incrementAction, decrementAction } = homeSlice.actions
+export default homeSlice.reducer
 ```
 
 src\store\index.js
 
 ```js
-import { configureStore } from "@reduxjs/toolkit";
-import homeReducer from "./modules/home";
+import { configureStore } from '@reduxjs/toolkit'
+import homeReducer from './modules/home'
 
 const store = configureStore({
-  reducer: {
-    home: homeReducer,
-  },
-});
+	reducer: {
+		home: homeReducer
+	}
+})
 
-export default store;
+export default store
 ```
 
 在 `App.jsx` 中，使用 `<Provider>` 组件，提供 store。
@@ -485,12 +485,10 @@ export default store;
 src\app.js
 
 ```jsx
-<Provider store={store}>
-  {this.props.children}
-</Provider>
+<Provider store={store}>{this.props.children}</Provider>
 ```
 
-在 `cart` 页面中，测试派发同步 action、异步 action，
+在 `cart` 页面中，测试派发同步 action 和异步 action，
 
 src\pages\cart\index.jsx
 
@@ -498,32 +496,32 @@ src\pages\cart\index.jsx
 import { memo } from 'react'
 import { View, Text, Button } from '@tarojs/components'
 import { useSelector, useDispatch } from 'react-redux'
-import { decrementAction, fetchHomeMutiDataAction, incrementAction } from '@/store/modules/home'
+import {
+	decrementAction,
+	fetchHomeMutiDataAction,
+	incrementAction
+} from '@/store/modules/home'
 import './index.less'
 
 export default memo(() => {
+	const counter = useSelector(state => state.home.counter)
 
-  const counter = useSelector(state => state.home.counter)
+	const dispatch = useDispatch()
 
-  const dispatch = useDispatch()
+	// 派发同步 action
+	const onAddBtnClick = () => dispatch(incrementAction(1))
+	const onSubBtnClick = () => dispatch(decrementAction(1))
 
-  // 派发同步 action
-  const onAddBtnClick = () => dispatch(incrementAction(1))
-  const onSubBtnClick = () => dispatch(decrementAction(1))
+	// 派发异步 action
+	const onFetchDataBtnClick = () => dispatch(fetchHomeMutiDataAction())
 
-  // 派发异步 action
-  const onFetchDataBtnClick = () => dispatch(fetchHomeMutiDataAction())
-
-  return (
-    <View className='cart'>
-      <Text>{counter}</Text>
-      <Button onClick={onAddBtnClick}>+1</Button>
-      <Button onClick={onSubBtnClick}>-1</Button>
-      <Button onClick={onFetchDataBtnClick}>getHomeMutiData</Button>
-    </View>
-  )
+	return (
+		<View className="cart">
+			<Text>{counter}</Text>
+			<Button onClick={onAddBtnClick}>+1</Button>
+			<Button onClick={onSubBtnClick}>-1</Button>
+			<Button onClick={onFetchDataBtnClick}>getHomeMutiData</Button>
+		</View>
+	)
 })
 ```
-
-
-

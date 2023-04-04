@@ -1,24 +1,26 @@
-import { Component } from 'react'
-import { View, Text } from '@tarojs/components'
+import { memo } from 'react'
+import { View, Text, Button } from '@tarojs/components'
+import { useSelector, useDispatch } from 'react-redux'
+import { decrementAction, fetchHomeMutiDataAction, incrementAction } from '@/store/modules/home'
 import './index.less'
 
-export default class Cart extends Component {
+export default memo(() => {
 
-  componentWillMount () { }
+  const counter = useSelector(state => state.home.counter)
 
-  componentDidMount () { }
+  const dispatch = useDispatch()
 
-  componentWillUnmount () { }
+  const onAddBtnClick = () => dispatch(incrementAction(1))
+  const onSubBtnClick = () => dispatch(decrementAction(1))
 
-  componentDidShow () { }
+  const onFetchDataBtnClick = () => dispatch(fetchHomeMutiDataAction())
 
-  componentDidHide () { }
-
-  render () {
-    return (
-      <View className='cart'>
-        <Text>Hello world!</Text>
-      </View>
-    )
-  }
-}
+  return (
+    <View className='cart'>
+      <Text>{counter}</Text>
+      <Button onClick={onAddBtnClick}>+1</Button>
+      <Button onClick={onSubBtnClick}>-1</Button>
+      <Button onClick={onFetchDataBtnClick}>getHomeMutiData</Button>
+    </View>
+  )
+})

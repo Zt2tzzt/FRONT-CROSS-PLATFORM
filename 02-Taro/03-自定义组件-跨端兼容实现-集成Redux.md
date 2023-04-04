@@ -1,8 +1,8 @@
 # 一、组件生命周期
 
-在 Taro 中，除了应用和页面有生命周期之外， 组件也有生命周期。
+在 Taro 中，除了应用、页面有生命周期之外， 组件也有生命周期。
 
-在 Taro 中，可以使用的 class 组件生命周期有，和对应函数式组件中的 Hooks，如下表：
+类组件生命周期，对应函数式组件中的 Hooks，如下表：
 
 | class 组件                                                   | Hooks 组件                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -17,7 +17,9 @@
 安装 *classnames*，*proptypes* 依赖
 
 ```shell
-pnpm add classnames proptypes
+pnpm add classnames
+
+pnpm add proptypes
 ```
 
 创建一个组件 `zt-button` 组件，测试在组件中，编写页面的生命周期。
@@ -84,7 +86,6 @@ ZtButtom.propTypes = {
 }
 
 export default ZtButtom
-
 ```
 
 编写组件 `zt-button` 的局部样式。
@@ -147,16 +148,14 @@ Taro 的设计初衷，就是为了统一跨平台；
 
 为了更好的实现跨平台开发，Taro 提供了如下两种方案。
 
-## 1.内置环境变量 
+## 1.内置环境变量
 
 Taro 在编译时，提供了一些内置的环境变量，来区分不同环境，从而实现类似于条件编译的效果。
 
-内置环境变量（`process.env.TARO_ENV`）可直接在代码中使用：
-- 用于判断当前的编译平台类型，有效值为：`weapp` / `swan` / `alipay` / `tt` / `qq` / `jd` / `h5` / `rn`。 
+内置环境变量 `process.env.TARO_ENV` 可直接在代码中使用：
+- 有效值为：`weapp` / `swan` / `alipay` / `tt` / `qq` / `jd` / `h5` / `rn`。
 
-通过这个变量来区分不同环境，从而使用不同的逻辑。 
-
-在编译阶段，会移除不属于当前平台的代码，只保留当前平台的代码，例如：
+在编译阶段，会移除其它平台的代码，只保留当前平台的代码，例如：
 
 :egg: 理解案例：
 
@@ -168,7 +167,6 @@ src\pages\category\index.jsx
 import { memo } from 'react'
 import { View, Text } from '@tarojs/components'
 import ZtButton from '@/components/zt-buttom'
-// import ZtMultiButton from '@/components/zt-multi-buttom'
 import './index.less'
 
 export default memo(() => {
@@ -183,10 +181,11 @@ export default memo(() => {
 
 	return (
 		<View className='category'>
-			<Text>Hello Category!</Text>
+
 			<ZtButton type='primary' ztButtonClick={handleZtButtonClick}>
 				ZtButton
 			</ZtButton>
+
 			{process.env.TARO_ENV === 'h5' ? (
 				<>
 					<View>h5 端专有组件</View>
@@ -200,33 +199,36 @@ export default memo(() => {
 			) : (
 				undefined
 			)}
+
 		</View>
 	)
 })
 ```
 
-> 【注意】：环境变量 process.env 不能被解构。
+> 【注意】：环境变量 process.env 不能被解构使用。
 
-由上述案例可知，内置环境变量方案，缺点是代码中会存在很多逻辑判断，造成代码的可读性和可维护性降低了；
+由上述案例可知，该方案，缺点是代码中会存在很多逻辑判断，造成代码的可读性和可维护性降低了；
 
 为了解决这种问题，Taro 提供了另外一种方案作为补充。
 
 ## 2.统一接口的多端文件
 
-多端文件，采用”[原文件名] + [端类型]（`process.env.TARO_ENV` 的取值）“的命名形式；
+多端文件，采用”[原文件名]+[端类型]“的命名形式；
 
-各端的文件代码，对外保持统一接口，引用时，仍然 `import` 原文件名即可。
+- [端类型] 为 `process.env.TARO_ENV` 的取值。
 
-Taro 在编译时，根据当前编译到的平台类型，加载对应跨端的文件；
+各端的文件代码，对外保持统一接口；外界引用时，`import` 原文件名即可。
+
+Taro 在编译时，根据当前编译到的平台类型，会加载对应跨端的文件；
 
 
-统一接口的多端文件这一跨平台兼容写法有如下三个使用要点： 
-- 不同端的对应文件一定要统一接口和调用方式。 
-- 引用文件的时候，只需写默认文件名，不用带文件后缀。 
+该方案的写法，有如下三个使用要点：
+- 不同端的对应文件一定要统一接口和调用方式。
+- 引用文件的时候，只需写默认文件名，不用带文件后缀。
 - 最好有一个平台无关的默认文件，这样在使用 TS 的时候也不会出现报错。
 
-常见有以下使用场景： 
-- 多端组件（属性，方法，事件等需统一） 
+常见有以下使用场景：
+- 多端组件（属性，方法，事件等需统一）
 	- 针对不同的端写不同的组件代码
 - 多端脚本逻辑（属性、方法等需统一）
 	- 针对不同的端写不同的脚本逻辑代码
@@ -290,7 +292,7 @@ const onBtnClick = () => {
 //...
 ```
 
-在 `cross-platform` 页面中引用：
+在 `category` 页面中引用：
 
 src\pages\category\index.jsx
 
@@ -316,7 +318,7 @@ export default memo(() => {
 
 :egg:理解案例（多端脚本逻辑）：
 
-在工具函数中，也可以使用统一端口的多段文件方案：
+在工具函数中，也可以使用该方案：
 
 新建工具 `set-title`
 
@@ -384,31 +386,35 @@ export default memo(() => {
 
 早期使用 redux 时，通常会将 redux 代码拆分在多个文件中；
 
-- 比如：`constants.ts`、`action.ts`、`reducer.ts` 等 
+- 比如：`constants.ts`、`action.ts`、`reducer.ts` 等
 
-这种代码组织方式过于繁琐和麻烦，导致代码量过多，也不利于后期管理。并且 `createStore` 方法已标为过时，
+这种代码组织方式，过于繁琐和麻烦，不利于管理。并且 `createStore` 方法已标为过时，
 
-Redux Toolkit 是目前官方推荐的编写 Redux 逻辑的方案。 为了解决上述问题而诞生。 
+Redux Toolkit 是目前官方推荐的编写 Redux 逻辑的方案。 为了解决上述问题而诞生。
 
-安装 Redux 和 Redux Toolkit：
+安装 *Redux* 和 *Redux Toolkit*：
 
 ```shell
 npm install @reduxjs/toolkit react-redux
 ```
 
-Redux Toolkit 的核心 API 主要是如下几个： 
+*Redux Toolkit* 的核心 API 主要是如下几个：
 
 `configureStore`：包装 `createStore` 以提供简化的配置选项和良好的默认值，有以下属性：
 
-- `reducer`：可自动组合 slice reducer 
+- `reducer`：可自动组合 slice reducer
 - `middleware`：可添加其它 Redux 中间件（默认包含 redux-thunk）。
 - `devTools`：默认启用 Redux DevTools Extension
 
-`createSlice`：接受”切片名称“、”初始状态值“和”reducer 函数对象“，自动生成切片 reducer，且带有相应的 actions。 
+`createSlice`：自动生成切片 reducer，且带有相应的 actions，接收一下属性：
 
-`createAsyncThunk`: 接受一个动作类型字符串和一个返回承诺的函数：
+- `name`：切片名称；
+- `initialState`：初始状态值；
+- `reducers`：函数对象，
 
-- 生成一个 `pending` / `fulfilled` / `rejected` 基于该承诺分派 actioos 类型的 thunk。
+`createAsyncThunk`: 接受一个动作类型字符串，和一个返回 Promise 的函数：
+
+- 生成一个基于该 Promise 状态 `pending` / `fulfilled` / `rejected`,分派 actioos 类型的 thunk。
 - 专门用来处理异步 Action。
 
 :egg:案例理解：
@@ -451,7 +457,7 @@ export default homeSlice.reducer;
 // 异步 action
 export const fetchHomeMutiDataAction = createAsyncThunk(
   "home/multidata", // action type 的前缀
-  async () => {
+  async (param, {dispatch, getState}) => {
     const res = await getHomeMutidata();
     console.log("res=>", res);
     return res;
@@ -474,7 +480,7 @@ const store = configureStore({
 export default store;
 ```
 
-使用 `<Provider>` 组件，提供 store。
+在 `App.jsx` 中，使用 `<Provider>` 组件，提供 store。
 
 src\app.js
 
@@ -484,7 +490,7 @@ src\app.js
 </Provider>
 ```
 
-在 `cart` 页面中，测试派发同步 action 和异步 action，
+在 `cart` 页面中，测试派发同步 action、异步 action，
 
 src\pages\cart\index.jsx
 
@@ -501,9 +507,11 @@ export default memo(() => {
 
   const dispatch = useDispatch()
 
+  // 派发同步 action
   const onAddBtnClick = () => dispatch(incrementAction(1))
   const onSubBtnClick = () => dispatch(decrementAction(1))
 
+  // 派发异步 action
   const onFetchDataBtnClick = () => dispatch(fetchHomeMutiDataAction())
 
   return (

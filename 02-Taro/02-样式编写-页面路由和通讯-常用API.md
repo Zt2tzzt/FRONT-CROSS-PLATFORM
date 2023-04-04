@@ -16,6 +16,8 @@ const config = {
 
 Taro 中单位建议使用 px 或百分比 %；
 
+### 1.尺寸单位自动转换
+
 Taro 默认会按照设计稿，对所有单位进行转换。
 
 通常按照 1:1 关系来编写尺寸大小；
@@ -51,11 +53,11 @@ src\pages\02-style\index.less
 }
 ```
 
-### 1.CSS 编译时忽略
+### 2.CSS 编译时忽略
 
 忽略单个属性：
 
-如希望部分 px 单位不被进行转换（转换成 rpx 或 rem），最简单做法，“px” 单位使用大写字母，如 “Px”。
+如希望部分 px 单位不被进行转换（转成 rpx 或 rem），最简单做法，“px” 单位使用大写字母，如 “Px”。
 
 src\pages\02-style\index.less
 
@@ -92,7 +94,7 @@ export default class extends Component {
 src\pages\02-style\no-transform-unit.less
 
 ```less
-/*postcss-pxtransform disable*/
+/* postcss-pxtransform disable */
 
 // 有上方注释时，小写的单位（如 px），也不会进行转换
 
@@ -100,10 +102,9 @@ src\pages\02-style\no-transform-unit.less
   border: 6px solid red;
   padding: 10px;
 }
-
 ```
 
-### 2.JS 行内样式转换
+### 3.JS 行内样式转换
 
 如果是 JS 中编写了行内样式，那么无法自动替换；
 
@@ -134,7 +135,7 @@ export default class extends Component {
 
 全局样式：
 
-- Taro 页面和普通组件导入的样式文件，默认在全局生效。
+- 无论是 Taro 页面、还是普通组件，其中导入的样式文件，默认都在全局生效。
 
 局部样式：
 
@@ -143,7 +144,7 @@ export default class extends Component {
 在 Taro 项目中，一般使用要 CSS Modules 方案，编写局部样式。
 
 1. 在 `config/index.js` 配置文件中，启用 H5 和小程序的 CSS Modules 的功能。
-2. 编写的样式文件需要加上 `.module` 关键字
+2. 编写的样式文件需要加上 `.module` 关键字。
    - 比如：`index.module.scss` 文件。
 
 3. 在组件中导入该样式文件，即可按照模块的方式使用了。
@@ -233,8 +234,8 @@ src\pages\02-style\index.jsx
 import styles from './index.module.less'
 
 export default class extends Component {
+  
 	render() {
-
 		return (
 			<View className='02-style'>
 				{/* 全局和局部样式 */}
@@ -306,8 +307,8 @@ src\pages\02-style\index.jsx
 import styles from './index.module.less'
 
 export default class extends Component {
+  
 	render() {
-
 		return (
 			<View className='02-style'>
         {/* 背景图片 */}
@@ -348,8 +349,8 @@ src\pages\02-style\index.jsx
 import './index.less'
 
 export default class extends Component {
+  
 	render() {
-
 		return (
 			<View className='02-style'>
         {/* 字体图标 */}
@@ -361,9 +362,11 @@ export default class extends Component {
 }
 ```
 
-# 二、Page 新建
+# 二、Page 新建/删除
 
-快速创建新页面
+## 1.新建
+
+快速创建新页面有两种方式：
 
 1. 命令行创建：
 
@@ -377,18 +380,21 @@ Taro create --name [页面名称]
 
 在目录根目录下的 pages 目录下新建即可。
 
-两种方式：新建的页面，都需在 `app.config.json` 中的 `pages` 列表上配置注册。
+> 【注意】：两种方式：新建的页面，都需在 `app.config.json` 中的 `pages` 列表上配置注册。
+
+## 2.删除
 
 删除页面，也要做两件工作：
 
-- 删除页面对应的文件；
-- 删除 `app.config.json` 中对应的配置。
+1. 删除页面对应的文件；
+
+2. 删除 `app.config.json` 中对应的配置。
 
 # 三、tabbar 配置
 
 创建 `home.jsx`, `category.jsx`, `cart.jsx`, `profile.jsx` 四个页面。
 
-配置 tabbar
+在 `app.config.js` 中，配置 `tabbar`
 
 src\app.config.js
 
@@ -512,9 +518,11 @@ export default class Home extends Component {
 
 传递参数：`?name=zzt&age=100`
 
-获取参数：
+获取参数，两种方式：
 - `onLoad`、`useLoad` 生命周期获取路由参数；
 - `Taro.getCurrentInstance().router.params` 获取路由参数。
+
+:egg:案例理解：
 
 `home.jsx` 页面传递给 `detail01.jsx` 页面。
 
@@ -812,7 +820,7 @@ export default class Detail03 extends Component {
 ```
 
 
-> Taro 和 uni-app 的编程范式是类似的，只有语法和兼容性不同
+> Taro 和 uni-app 的编程范式是类似的，只有语法和兼容性不同。
 
 # 六、页面生命周期
 
@@ -820,16 +828,25 @@ export default class Detail03 extends Component {
 
 Taro 页面组件，除了支持 React 组件生命周期外，还根据小程序的标准，额外支持以下页面生命周期：
 
-- `onLoad(options)` 在小程序环境中对应页面的 `onLoad`。
-	- 通过访问 `options` 参数，或调用 `getCurrentInstance().router`，可以访问到页面路由参数。
-- `componentDidShow()` 在小程序环境中对应页面的 `onShow`。
-- `onReady()` 在小程序环境中对应页面的 `onReady`。
-	- 可以使用 `createCanvasContext` 或 `createSelectorQuery` 等等 API，访问小程序渲染层 DOM 节点
-- `componentDidHide()` 在小程序环境中对应页面的 `onHide`。
-- `onUnload()` 在小程序环境中对应页面的 `onUnload`。
-	- 一般情况下建议使用 React 的 `componentWillUnmount` 生命周期，处理页面卸载时的逻辑。
-- `onPullDownRefresh()` 监听用户下拉动作。
-- `onReachBottom()` 监听用户上拉触底事件。
+`onLoad(options)` 在小程序环境中对应页面的 `onLoad`。
+
+- 通过访问 `options` 参数，或调用 `getCurrentInstance().router`，可以访问到页面路由参数。
+
+`componentDidShow()` 在小程序环境中对应页面的 `onShow`。
+
+`onReady()` 在小程序环境中对应页面的 `onReady`。
+
+- 可以使用 `createCanvasContext` 或 `createSelectorQuery` 等等 API，访问小程序渲染层 DOM 节点
+
+`componentDidHide()` 在小程序环境中对应页面的 `onHide`。
+
+`onUnload()` 在小程序环境中对应页面的 `onUnload`。
+
+- 一般情况下建议使用 React 的 `componentWillUnmount` 生命周期，处理页面卸载时的逻辑。
+
+`onPullDownRefresh()` 监听用户下拉动作。
+
+`onReachBottom()` 监听用户上拉触底事件。
 
 [更多生命周期函数](https://docs.taro.zone/docs/react-page/#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%96%B9%E6%B3%95)
 
@@ -918,7 +935,7 @@ export default class Detail04 extends Component {
 
 Taro 使用 Hooks 很简单。Taro 专有 Hooks，例如 `usePageScroll`, `useReachBottom`，须从 `@tarojs/taro` 中引入；
 
-React 框架自己的 Hooks ，例如 `useEffect`, `useState`，从对应的框架引入。
+React 框架自己的 Hooks ，例如 `useEffect`, `useState`，从 `react` 引入。
 
 [更多的 Hooks 可查看官网](https://docs.taro.zone/docs/hooks)
 

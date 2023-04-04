@@ -94,7 +94,7 @@ onLoad(() => {
 
 创建 `grid-item-view.vue` 组件，用来展示商品 itme。调整样式。
 
-点击商品 item，跳转到详情页 `detail.vue`
+点击商品 item，跳转到详情页 `detail.vue`。
 
 02-shopping-street\components\grid-item-view\grid-item-view.vue
 
@@ -195,11 +195,19 @@ const handleGridItemClick = item => {
 </template>
 
 <script setup>
+import { onLoad } from '@dcloudio/uni-app'
+
+// 方式一
 defineProps({
 	iid: {
 		type: String,
 		default: ''
 	}
+})
+  
+// 方式二
+onLoad((options) => {
+  console.log('detail options:', options);
 })
 </script>
 
@@ -319,7 +327,7 @@ onReachBottom(() => {
 
 ## 2.优化（图片懒加载）
 
-在 `home.vue` 页面中，实现商品列表中的图片懒加载，分两种情况优化：
+在 `home.vue` 页面中，实现商品列表中，图片的懒加载，分两种情况优化：
 
 - 非 H5 端（小程序、App）、
 - H5 端：

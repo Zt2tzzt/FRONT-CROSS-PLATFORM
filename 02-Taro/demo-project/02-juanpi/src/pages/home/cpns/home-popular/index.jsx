@@ -8,16 +8,14 @@ const HomePopular = memo(function (props) {
 
 	return (
 		<View className={styles['home-popular']}>
-			{populars.map(item => {
-				return (
-					<Image
-						key={item.id}
-						className={styles['popular-img']}
-						src={item.pic}
-						mode='widthFix'
-					></Image>
-				)
-			})}
+			{populars.map(item => (
+				<Image
+					key={item.id}
+					className={styles['popular-img']}
+					src={item.pic}
+					mode='widthFix'
+				></Image>
+			))}
 		</View>
 	)
 })

@@ -15,13 +15,11 @@ const GridView = memo(function (props) {
 	}
 	return (
 		<View className={styles['grid-view']}>
-			{goods.map(goodInfo => {
-				return (
-					<View className={styles['item']} key={goodInfo.goods_id}>
-						<GridViewItem goodInfo={goodInfo} onItemClick={handleItemClick}></GridViewItem>
-					</View>
-				)
-			})}
+			{goods.map(goodInfo => (
+				<View className={styles['item']} key={goodInfo.goods_id}>
+					<GridViewItem goodInfo={goodInfo} onItemClick={handleItemClick}></GridViewItem>
+				</View>
+			))}
 		</View>
 	)
 })

@@ -13,20 +13,15 @@ const TabControl = memo(function (props) {
 	}
 	return (
 		<View className={styles['tab-control']}>
-			{titles.map((title, index) => {
-				return (
-					<View
-						className={classNames(
-							styles['tab-item'],
-							currentIndex === index ? styles['active'] : ''
-						)}
-						key={title}
-						onClick={() => handleTabItemClick(index)}
-					>
-						{title}
-					</View>
-				)
-			})}
+			{titles.map((title, index) => (
+				<View
+					className={classNames(styles['tab-item'], currentIndex === index ? styles['active'] : '')}
+					key={title}
+					onClick={() => handleTabItemClick(index)}
+				>
+					{title}
+				</View>
+			))}
 		</View>
 	)
 })

@@ -115,7 +115,7 @@ Taro 当前的架构主要分为：**编译时**和**运行时**。
 
 运行时：主要是进行一些：生命周期、事件、data 等部分的处理和对接，以保证和宿主平台数据的一致性。
 
-<img src="NodeAssets/Taro架构.jpg" alt="Taro架构" style="zoom:150%;" />
+<img src="NodeAssets/Taro架构.jpg" alt="Taro架构" style="zoom:80%;" />
 
 # 七、开发工具选择
 
@@ -133,7 +133,7 @@ WebStorm 收费，但基本不需要配置。
 
 # 八、Taro 安装
 
-Taro 项目基于 node（>= 12.0.0）；
+Taro 项目基于 node（>=12.0.0）；
 
 Taro CLI 工具安装：
 
@@ -213,7 +213,7 @@ build 命令，可以把 Taro 代码编译成不同端的代码，然后在对�
 
 # 十一、目录结构分析
 
-<img src="NodeAssets/Taro目录结构.jpg" alt="Taro目录结构" style="zoom:150%;" />
+<img src="NodeAssets/Taro目录结构.jpg" alt="Taro目录结构" style="zoom:80%;" />
 
 Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`，小程序项目中的 `app.json`；
 
@@ -231,8 +231,8 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 
 接口规范：
 
-- 接口能力（JS API）靠近微信小程序规范，但需将前缀 `wx` 替换为 `Taro`（需导包），详见 Taro 接口规范；
-- 数据绑定、事件处理，同 React 规范，同时补充了 App 及页面的生命周期。
+- 接口能力（JS API）靠近微信小程序规范，但需将前缀 `wx` 替换为 `Taro`（须导包），详见 Taro 接口规范；
+- 数据绑定、事件处理，同 React 规范，同时补充了应用程序和页面的生命周期。
 
 样式规范：
 
@@ -347,7 +347,7 @@ export default definePageConfig({
 
 入口文件默认是 src 目录下的 `app.js`。
 
-在入口 `app.js` 组件中可以：
+在入口 `app.js` 组件中可以做如下操作：
 
 定义应用的生命周期：
 

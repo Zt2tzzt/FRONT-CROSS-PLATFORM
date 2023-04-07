@@ -1,12 +1,7 @@
 <template>
-	<view>
-		category
-	</view>
+  <view> category </view>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
-<style lang="less">
-
-</style>
+<style lang="less"></style>

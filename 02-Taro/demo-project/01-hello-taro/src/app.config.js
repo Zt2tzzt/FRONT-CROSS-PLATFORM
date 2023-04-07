@@ -1,28 +1,28 @@
 export default defineAppConfig({
-	pages: [
+  pages: [
     'pages/home/index',
-		'pages/category/index',
-		'pages/cart/index',
-		'pages/profile/index',
+    'pages/category/index',
+    'pages/cart/index',
+    'pages/profile/index',
 
-		'pages/02-style/index',
-		'pages/01-cpn/index',
-		'pages/03-service/index',
-		'pages/index/index',
-		'pages/detail01/index',
-		'pages/detail02/index',
-		'pages/detail03/index',
-		'pages/detail04/index',
-		'pages/detail05/index'
-	],
-	window: {
-		backgroundTextStyle: 'light',
-		navigationBarBackgroundColor: '#ff434e',
-		navigationBarTitleText: 'Taro App',
-		navigationBarTextStyle: 'white',
-		enablePullDownRefresh: false,
+    'pages/02-style/index',
+    'pages/01-cpn/index',
+    'pages/03-service/index',
+    'pages/index/index',
+    'pages/detail01/index',
+    'pages/detail02/index',
+    'pages/detail03/index',
+    'pages/detail04/index',
+    'pages/detail05/index'
+  ],
+  window: {
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#ff434e',
+    navigationBarTitleText: 'Taro App',
+    navigationBarTextStyle: 'white',
+    enablePullDownRefresh: false,
     enablePullDownRefresh: true
-	},
+  },
   tabBar: {
     color: '#999',
     selectedColor: '#ff464e',
@@ -50,7 +50,7 @@ export default defineAppConfig({
         pagePath: 'pages/profile/index',
         iconPath: 'assets/images/tabbar/profile.png',
         selectedIconPath: 'assets/images/tabbar/profile_active.png'
-      },
+      }
     ]
   }
 })

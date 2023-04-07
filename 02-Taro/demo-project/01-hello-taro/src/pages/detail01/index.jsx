@@ -4,35 +4,34 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Detail01 extends Component {
+  componentWillMount() {}
 
-  componentWillMount () { }
-
-  componentDidMount () {
+  componentDidMount() {
     // 方式一
-    console.log('detail01 parms:', this.$instance.router.params);
+    console.log('detail01 parms:', this.$instance.router.params)
   }
 
-  componentWillUnmount () { }
+  componentWillUnmount() {}
 
-  componentDidShow () { }
+  componentDidShow() {}
 
-  componentDidHide () { }
+  componentDidHide() {}
 
   $instance = Taro.getCurrentInstance() // 获取 page 实例，其中有 router 对象。
 
   onLoad(options) {
     // 方式二
-    console.log('detail01 options:', options);
+    console.log('detail01 options:', options)
 
     if (process.env.TARO_ENV === 'weapp') {
-      const eventChannel = this.$instance.page.getOpenerEventChannel();
+      const eventChannel = this.$instance.page.getOpenerEventChannel()
       eventChannel.on('homeToDetail01', data => {
-        console.log('detial01 accept home data:', data);
+        console.log('detial01 accept home data:', data)
       })
     }
   }
 
-  render () {
+  render() {
     return (
       <View className='detail01'>
         <Text>Hello world!</Text>

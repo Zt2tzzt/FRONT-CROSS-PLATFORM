@@ -1,22 +1,14 @@
 <template>
-	<view>
-		detail08
-	</view>
+  <view> detail08 </view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			
-		}
-	}
+export default {
+  data() {
+    return {}
+  },
+  methods: {}
+}
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -1,13 +1,7 @@
 <template>
-	<view>
-		detail06
-	</view>
+  <view> detail06 </view>
 </template>
 
-<script setup>
-	
-</script>
+<script setup></script>
 
-<style lang="less">
-
-</style>
+<style lang="less"></style>

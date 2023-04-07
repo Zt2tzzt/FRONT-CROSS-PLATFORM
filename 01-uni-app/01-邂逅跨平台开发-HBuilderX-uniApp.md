@@ -249,7 +249,7 @@ import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
-	...App
+  ...App
 })
 app.$mount()
 // #endif
@@ -257,10 +257,10 @@ app.$mount()
 // #ifdef 条件编译。编译 Vue3 版本时，执行如下代码。
 import { createSSRApp } from 'vue'
 export function createApp() {
-	const app = createSSRApp(App)
-	return {
-		app
-	}
+  const app = createSSRApp(App)
+  return {
+    app
+  }
 }
 // #endif
 ```
@@ -288,16 +288,16 @@ export function createApp() {
 ```vue
 <script>
 export default {
-	onLaunch: function (options) {
-		console.log('小程序应用启动参数 option：', options)
-		console.log('App Launch')
-	},
-	onShow: function () {
-		console.log('App Show')
-	},
-	onHide: function () {
-		console.log('App Hide')
-	}
+  onLaunch: function (options) {
+    console.log('小程序应用启动参数 option：', options)
+    console.log('App Launch')
+  },
+  onShow: function () {
+    console.log('App Show')
+  },
+  onHide: function () {
+    console.log('App Hide')
+  }
 }
 </script>
 
@@ -312,7 +312,7 @@ export default {
 
 ```css
 .name {
-	color: blue;
+  color: blue;
 }
 ```
 
@@ -329,15 +329,15 @@ export default {
 ```vue
 <script>
 export default {
-	onLaunch: function () {
-		console.log('App Launch')
-	},
-	onShow: function () {
-		console.log('App Show')
-	},
-	onHide: function () {
-		console.log('App Hide')
-	}
+  onLaunch: function () {
+    console.log('App Launch')
+  },
+  onShow: function () {
+    console.log('App Show')
+  },
+  onHide: function () {
+    console.log('App Hide')
+  }
 }
 </script>
 
@@ -347,8 +347,8 @@ export default {
 @import url(@/static/css/common.css);
 @import url(@/static/css/common.less);
 .title {
-	color: red;
-	border: 5px @mainColor solid;
+  color: red;
+  border: 5px @mainColor solid;
 }
 </style>
 ```
@@ -359,9 +359,9 @@ export default {
 
 ```vue
 <template>
-	<view class="content">
-		<view class="title">1.全局样式测试</view>
-		<view class="name">2.全局样式测试</view>
-	</view>
+  <view class="content">
+    <view class="title">1.全局样式测试</view>
+    <view class="name">2.全局样式测试</view>
+  </view>
 </template>
 ```

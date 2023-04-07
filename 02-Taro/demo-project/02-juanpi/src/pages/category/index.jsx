@@ -3,21 +3,21 @@ import { View, Text } from '@tarojs/components'
 import './index.less'
 
 export default class Category extends Component {
-	componentWillMount() {}
+  componentWillMount() {}
 
-	componentDidMount() {}
+  componentDidMount() {}
 
-	componentWillUnmount() {}
+  componentWillUnmount() {}
 
-	componentDidShow() {}
+  componentDidShow() {}
 
-	componentDidHide() {}
+  componentDidHide() {}
 
-	render() {
-		return (
-			<View className='category'>
-				<Text>Hello world!</Text>
-			</View>
-		)
-	}
+  render() {
+    return (
+      <View className='category'>
+        <Text>Hello world!</Text>
+      </View>
+    )
+  }
 }

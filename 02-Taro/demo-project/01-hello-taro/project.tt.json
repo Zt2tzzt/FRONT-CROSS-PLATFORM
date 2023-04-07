@@ -1,9 +1,9 @@
 {
-	"miniprogramRoot": "./",
-	"projectname": "01-hello-taro",
-	"appid": "testAppId",
-	"setting": {
-		"es6": false,
-		"minified": false
-	}
+  "miniprogramRoot": "./",
+  "projectname": "01-hello-taro",
+  "appid": "testAppId",
+  "setting": {
+    "es6": false,
+    "minified": false
+  }
 }

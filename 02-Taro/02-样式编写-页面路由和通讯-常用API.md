@@ -10,7 +10,7 @@ Taro 默认以 750px 作为换算尺寸标准；
 
 ```js
 const config = {
-  designWidth: 640,
+  designWidth: 640
 }
 ```
 
@@ -34,8 +34,7 @@ import { View, Text } from '@tarojs/components'
 import './index.less'
 
 export default class extends Component {
-
-  render () {
+  render() {
     return (
       <View className='02-style'>
         <Text className='style-taro'>Hello world!</Text>
@@ -63,10 +62,9 @@ src\pages\02-style\index.less
 
 ```less
 .style-taro {
-  font-size: 40Px; // 不转换单位
+  font-size: 40px; // 不转换单位
 }
 ```
-
 
 忽略样式文件：
 
@@ -80,11 +78,10 @@ src\pages\02-style\index.jsx
 import './no-transform-unit.less'
 
 export default class extends Component {
-
-  render () {
+  render() {
     return (
       <View className='02-style'>
-        <View className="no-transform-unit">不转换单位</View>
+        <View className='no-transform-unit'>不转换单位</View>
       </View>
     )
   }
@@ -116,8 +113,7 @@ src\pages\02-style\index.jsx
 //...
 
 export default class extends Component {
-
-  render () {
+  render() {
     const lineStyle = {
       fontSize: Taro.pxTransform(30)
     }
@@ -139,12 +135,13 @@ export default class extends Component {
 
 局部样式：
 
-首先明确，React 项目流行的 *styled-components* 方案，在小程序中无效，
+首先明确，React 项目流行的 _styled-components_ 方案，在小程序中无效，
 
 在 Taro 项目中，一般使用要 CSS Modules 方案，编写局部样式。
 
 1. 在 `config/index.js` 配置文件中，启用 H5 和小程序的 CSS Modules 的功能。
 2. 编写的样式文件需要加上 `.module` 关键字。
+
    - 比如：`index.module.scss` 文件。
 
 3. 在组件中导入该样式文件，即可按照模块的方式使用了。
@@ -153,25 +150,24 @@ config\index.js
 
 ```js
 const config = {
-
   // 用于微信小程序的配置。
-	mini: {
-		postcss: {
+  mini: {
+    postcss: {
       //...
-			cssModules: {
-				enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
-			}
-		}
-	},
-	h5: {
+      cssModules: {
+        enable: true // 默认为 false，如需使用 css modules 功能，则设为 true
+      }
+    }
+  },
+  h5: {
     //。。。
-		postcss: {
+    postcss: {
       //...
-			cssModules: {
-				enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
-			}
-		}
-	},
+      cssModules: {
+        enable: true // 默认为 false，如需使用 css modules 功能，则设为 true
+      }
+    }
+  }
 }
 ```
 
@@ -201,21 +197,19 @@ src\pages\02-style\index.jsx
 import styles from './index.module.less'
 
 export default class extends Component {
-	render() {
-
-		return (
-			<View className='02-style'>
-				{/* 局部样式，如果使用了 less，也要按照嵌套来写。 */}
-				<View className={styles['local-style']}>
+  render() {
+    return (
+      <View className='02-style'>
+        {/* 局部样式，如果使用了 less，也要按照嵌套来写。 */}
+        <View className={styles['local-style']}>
           编写局部样式
           <View className={styles['name']}>name</View>
         </View>
-			</View>
-		)
-	}
+      </View>
+    )
+  }
 }
 ```
-
 
 CSS Modules 中，也支持编写全局样式,使用 `:global`
 
@@ -234,15 +228,14 @@ src\pages\02-style\index.jsx
 import styles from './index.module.less'
 
 export default class extends Component {
-  
-	render() {
-		return (
-			<View className='02-style'>
-				{/* 全局和局部样式 */}
-        <View className="title">局部样式中编写的全局样式</View>
-			</View>
-		)
-	}
+  render() {
+    return (
+      <View className='02-style'>
+        {/* 全局和局部样式 */}
+        <View className='title'>局部样式中编写的全局样式</View>
+      </View>
+    )
+  }
 }
 ```
 
@@ -257,7 +250,7 @@ Taro 支持使用在 css 里设置背景图片，使用方式与普通 web 项�
 
 - 小程序不支持在 css 中使用本地文件（背景图、字体）。须以 base64 格式替换。
 - 为了方便开发，Taro 提供了在样式文件中，直接引用本地资源的方式；
-  - 其原理是通过 *PostCSS* 的 *postcss-url* 插件，将样式中本地资源引用，转换成 Base64 格式，从而能正常加载。
+  - 其原理是通过 _PostCSS_ 的 _postcss-url_ 插件，将样式中本地资源引用，转换成 Base64 格式，从而能正常加载。
 - 不建议使用太大的背景图，大图需挪到服务器上，从网络地址引用。
 
 在 `config/index.js` 中配置最大转 base64 格式的文件大小。
@@ -266,20 +259,19 @@ config\index.js
 
 ```js
 const config = {
-
   // 用于微信小程序的配置。
-	mini: {
-		postcss: {
+  mini: {
+    postcss: {
       //...
-			url: {
-				enable: true,
-				config: {
-					// limit: 1024 // 设定转换尺寸上限（无效的，官方文旦未更新）
+      url: {
+        enable: true,
+        config: {
+          // limit: 1024 // 设定转换尺寸上限（无效的，官方文旦未更新）
           maxSize: 100
-				}
-			},
-		}
-	},
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -307,15 +299,14 @@ src\pages\02-style\index.jsx
 import styles from './index.module.less'
 
 export default class extends Component {
-  
-	render() {
-		return (
-			<View className='02-style'>
+  render() {
+    return (
+      <View className='02-style'>
         {/* 背景图片 */}
         <View className={styles['bg-img']}></View>
-			</View>
-		)
-	}
+      </View>
+    )
+  }
 }
 ```
 
@@ -330,7 +321,7 @@ Taro 支持使用字体图标，使用方式与普通 web 项目相同，步骤�
 src\app.less
 
 ```less
-@import "./assets/custom-font/iconfont.css";
+@import './assets/custom-font/iconfont.css';
 ```
 
 src\pages\02-style\index.less
@@ -349,16 +340,15 @@ src\pages\02-style\index.jsx
 import './index.less'
 
 export default class extends Component {
-  
-	render() {
-		return (
-			<View className='02-style'>
+  render() {
+    return (
+      <View className='02-style'>
         {/* 字体图标 */}
-        <Text className="text iconfont icon-shouye"></Text>
-        <Text className="text iconfont icon-touxiang-kong"></Text>
-			</View>
-		)
-	}
+        <Text className='text iconfont icon-shouye'></Text>
+        <Text className='text iconfont icon-touxiang-kong'></Text>
+      </View>
+    )
+  }
 }
 ```
 
@@ -400,7 +390,7 @@ src\app.config.js
 
 ```js
 export default defineAppConfig({
-	//...
+  //...
   tabBar: {
     color: '#999',
     selectedColor: '#ff464e',
@@ -428,11 +418,10 @@ export default defineAppConfig({
         pagePath: 'pages/profile/index',
         iconPath: 'assets/images/tabbar/profile.png',
         selectedIconPath: 'assets/images/tabbar/profile_active.png'
-      },
+      }
     ]
   }
 })
-
 ```
 
 # 四、页面路由
@@ -452,7 +441,6 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Home extends Component {
-
   goToDetail01ByNavigate() {
     Taro.navigateTo({
       url: '/pages/detail01/index'
@@ -461,7 +449,7 @@ export default class Home extends Component {
 
   goToDetail01ByRedirect() {
     Taro.redirectTo({
-      url: "/pages/detail01/index"
+      url: '/pages/detail01/index'
     })
   }
 
@@ -471,28 +459,27 @@ export default class Home extends Component {
     })
   }
 
-	render() {
-		return (
-			<View className='home'>
-				<View>1.页面跳转（组件）</View>
-				<Navigator url='/pages/detail01/index' openType='navigate'>
-					<Button>goToDetail01 navigate</Button>
-				</Navigator>
-				<Navigator url='/pages/detail01/index' openType='redirect'>
-					<Button>goToDetail01 redirect</Button>
-				</Navigator>
-				<Navigator url='/pages/category/index' openType='switchTab'>
-					<Button>goToCategory switchTab</Button>
-				</Navigator>
+  render() {
+    return (
+      <View className='home'>
+        <View>1.页面跳转（组件）</View>
+        <Navigator url='/pages/detail01/index' openType='navigate'>
+          <Button>goToDetail01 navigate</Button>
+        </Navigator>
+        <Navigator url='/pages/detail01/index' openType='redirect'>
+          <Button>goToDetail01 redirect</Button>
+        </Navigator>
+        <Navigator url='/pages/category/index' openType='switchTab'>
+          <Button>goToCategory switchTab</Button>
+        </Navigator>
 
         <View>2.页面跳转（API）</View>
         <Button onClick={() => this.goToDetail01ByNavigate()}>goToDetail01 navigate</Button>
         <Button onClick={() => this.goToDetail01ByRedirect()}>goToDetail01 redirect</Button>
         <Button onClick={() => this.goToCategoryByNavigate()}>goToCategory switchTab</Button>
-
-			</View>
-		)
-	}
+      </View>
+    )
+  }
 }
 ```
 
@@ -519,6 +506,7 @@ export default class Home extends Component {
 传递参数：`?name=zzt&age=100`
 
 获取参数，两种方式：
+
 - `onLoad`、`useLoad` 生命周期获取路由参数；
 - `Taro.getCurrentInstance().router.params` 获取路由参数。
 
@@ -535,21 +523,22 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Home extends Component {
-
   getDetail01WithEventChannel() {
     Taro.navigateTo({
-      url: '/pages/detail01/index?name=zzt&age=18',
+      url: '/pages/detail01/index?name=zzt&age=18'
     })
   }
 
-	render() {
-		return (
-			<View className='home'>
+  render() {
+    return (
+      <View className='home'>
         <View>3.页面传递参数（正向）</View>
-        <Button onClick={() => this.getDetail01WithEventChannel()}>goToDetail01 eventChannel</Button>
-			</View>
-		)
-	}
+        <Button onClick={() => this.getDetail01WithEventChannel()}>
+          goToDetail01 eventChannel
+        </Button>
+      </View>
+    )
+  }
 }
 ```
 
@@ -562,20 +551,19 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Detail01 extends Component {
-
-  componentDidMount () {
+  componentDidMount() {
     // 方式一
-    console.log('detail01 parms:', this.$instance.router.params);
+    console.log('detail01 parms:', this.$instance.router.params)
   }
 
   $instance = Taro.getCurrentInstance() // 其中有 page 实例对象，也有 router 对象。
 
   onLoad(options) {
     // 方式二
-    console.log('detail01 options:', options);
+    console.log('detail01 options:', options)
   }
 
-  render () {
+  render() {
     return (
       <View className='detail01'>
         <Text>Hello world!</Text>
@@ -598,7 +586,6 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Home extends Component {
-
   getDetail01WithEventChannel() {
     Taro.navigateTo({
       url: '/pages/detail01/index?name=zzt&age=18',
@@ -613,14 +600,16 @@ export default class Home extends Component {
     })
   }
 
-	render() {
-		return (
-			<View className='home'>
+  render() {
+    return (
+      <View className='home'>
         <View>3.页面传递参数（正向）</View>
-        <Button onClick={() => this.getDetail01WithEventChannel()}>goToDetail01 eventChannel</Button>
-			</View>
-		)
-	}
+        <Button onClick={() => this.getDetail01WithEventChannel()}>
+          goToDetail01 eventChannel
+        </Button>
+      </View>
+    )
+  }
 }
 ```
 
@@ -633,20 +622,18 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Detail01 extends Component {
-
   $instance = Taro.getCurrentInstance() // 获取 page 实例，其中有 router 对象。
 
   onLoad(options) {
-
     if (process.env.TARO_ENV === 'weapp') {
-      const eventChannel = this.$instance.page.getOpenerEventChannel();
+      const eventChannel = this.$instance.page.getOpenerEventChannel()
       eventChannel.on('homeToDetail01', data => {
-        console.log('detial01 accept home data:', data);
+        console.log('detial01 accept home data:', data)
       })
     }
   }
 
-  render () {
+  render() {
     return (
       <View className='detail01'>
         <Text>Hello world!</Text>
@@ -677,27 +664,28 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Home extends Component {
-
   goToDetail02WithEventChannel() {
     Taro.navigateTo({
       url: '/pages/detail02/index',
       // 仅支持小程序
       events: {
         detail02ToHome(data) {
-          console.log('home accept detail02 data:', data);
+          console.log('home accept detail02 data:', data)
         }
       }
     })
   }
 
-	render() {
-		return (
-			<View className='home'>
+  render() {
+    return (
+      <View className='home'>
         <View>4.页面传递数据（逆向）</View>
-        <Button onClick={() => this.goToDetail02WithEventChannel()}>goToDetail02 eventChannel</Button>
-			</View>
-		)
-	}
+        <Button onClick={() => this.goToDetail02WithEventChannel()}>
+          goToDetail02 eventChannel
+        </Button>
+      </View>
+    )
+  }
 }
 ```
 
@@ -710,7 +698,7 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Detail02 extends Component {
-  $instance = Taro.getCurrentInstance(); // 是可以拿到当前的 app 实例，其中有 page 实例，其中有 router 对象
+  $instance = Taro.getCurrentInstance() // 是可以拿到当前的 app 实例，其中有 page 实例，其中有 router 对象
 
   goBack() {
     Taro.navigateBack({
@@ -727,7 +715,7 @@ export default class Detail02 extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <View className='detail02'>
         <Button onClick={() => this.goBack()}>返回!</Button>
@@ -763,7 +751,6 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Home extends Component {
-
   onLoad() {
     Taro.eventCenter.on('detail03ToHome', this.detail03ToHome)
   }
@@ -773,21 +760,20 @@ export default class Home extends Component {
   }
 
   detail03ToHome(data) {
-    console.log('home accept detail03 data:', data);
+    console.log('home accept detail03 data:', data)
   }
 
-	render() {
-		return (
-			<View className='home'>
+  render() {
+    return (
+      <View className='home'>
         <View>4.页面传递数据（逆向）</View>
         <Navigator url='/pages/detail02/index' openType='navigate'>
           <Button>goToDetail02 Taro.eventCenter</Button>
         </Navigator>
-			</View>
-		)
-	}
+      </View>
+    )
+  }
 }
-
 ```
 
 src\pages\detail03\index.jsx
@@ -799,7 +785,6 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Detail03 extends Component {
-
   goBack() {
     Taro.navigateBack({
       deita: 1
@@ -808,7 +793,7 @@ export default class Detail03 extends Component {
     Taro.eventCenter.trigger('detail03ToHome', 'detail03 to home')
   }
 
-  render () {
+  render() {
     return (
       <View className='detail02'>
         <Button onClick={() => this.goBack()}>返回!</Button>
@@ -816,9 +801,7 @@ export default class Detail03 extends Component {
     )
   }
 }
-
 ```
-
 
 > Taro 和 uni-app 的编程范式是类似的，只有语法和兼容性不同。
 
@@ -857,18 +840,16 @@ import { Component } from 'react'
 import { View, Navigator, Button } from '@tarojs/components'
 
 export default class Home extends Component {
-
-	render() {
-		return (
-			<View className='home'>
+  render() {
+    return (
+      <View className='home'>
         <View>5.页面生命周期</View>
         <Navigator url='/pages/detail04/index' openType='navigate'>
           <Button>goToDetail04 class</Button>
         </Navigator>
-
-			</View>
-		)
-	}
+      </View>
+    )
+  }
 }
 ```
 
@@ -881,33 +862,32 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Detail04 extends Component {
-
   onLoad() {
-    console.log("detail04 onLoad");
+    console.log('detail04 onLoad')
   }
   componentDidShow() {
-    console.log("detail04 componentDidShow");
+    console.log('detail04 componentDidShow')
   }
   onReady() {
-    console.log("detail04 onReady");
+    console.log('detail04 onReady')
   }
   componentDidHide() {
-    console.log("detail04 componentDidHide");
+    console.log('detail04 componentDidHide')
   }
   onUnload() {
-    console.log("detail04 onUnload");
+    console.log('detail04 onUnload')
   }
   onPullDownRefresh() {
-    console.log("detail04 onPullDownRefresh");
+    console.log('detail04 onPullDownRefresh')
     setTimeout(() => {
-      Taro.stopPullDownRefresh();
-    }, 1000);
+      Taro.stopPullDownRefresh()
+    }, 1000)
   }
   onReachBottom() {
-    console.log("detail04 onReachBottom");
+    console.log('detail04 onReachBottom')
   }
 
-  render () {
+  render() {
     return (
       <View className='detail04'>
         <View className='item'>item1</View>
@@ -946,17 +926,16 @@ import { Component } from 'react'
 import { View, Navigator, Button } from '@tarojs/components'
 
 export default class Home extends Component {
-
-	render() {
-		return (
-			<View className='home'>
+  render() {
+    return (
+      <View className='home'>
         <View>5.页面生命周期</View>
         <Navigator url='/pages/detail05/index' openType='navigate'>
           <Button>goToDetail05 hook</Button>
         </Navigator>
-			</View>
-		)
-	}
+      </View>
+    )
+  }
 }
 ```
 
@@ -965,8 +944,8 @@ export default class Home extends Component {
 src\pages\detail05\index.jsx
 
 ```jsx
-import { useEffect, useRef } from "react";
-import { View } from "@tarojs/components";
+import { useEffect, useRef } from 'react'
+import { View } from '@tarojs/components'
 import Taro, {
   useLoad,
   useDidShow,
@@ -974,71 +953,71 @@ import Taro, {
   useDidHide,
   useUnload,
   usePullDownRefresh,
-  useReachBottom,
-} from "@tarojs/taro";
-import "./index.less";
+  useReachBottom
+} from '@tarojs/taro'
+import './index.less'
 
 function Detail05() {
   // useRef 存的对象，在整个组件的生命周期中，都是保持同一个对象。
-  const $instance = useRef(Taro.getCurrentInstance());
-  console.log("router.params=>", $instance.current.router.params);
+  const $instance = useRef(Taro.getCurrentInstance())
+  console.log('router.params=>', $instance.current.router.params)
 
   // 1.支持组件的生命周期
   useEffect(() => {
-    console.log("detail05 useEffect");
+    console.log('detail05 useEffect')
     return () => {
-      console.log("detail05 useEffect unMount");
-    };
-  }, []);
+      console.log('detail05 useEffect unMount')
+    }
+  }, [])
 
   // 2.页面的声明周期
-  useLoad((options) => {
-    console.log("detail05 useLoad", options);
-  });
+  useLoad(options => {
+    console.log('detail05 useLoad', options)
+  })
   useDidShow(() => {
-    console.log("detail05 useDidShow");
-  });
+    console.log('detail05 useDidShow')
+  })
   useReady(() => {
-    console.log("detail05 useReady");
-  });
+    console.log('detail05 useReady')
+  })
   useDidHide(() => {
-    console.log("detail05 useDidHide");
-  });
+    console.log('detail05 useDidHide')
+  })
   useUnload(() => {
-    console.log("detail05 useUnload");
-  });
+    console.log('detail05 useUnload')
+  })
   usePullDownRefresh(() => {
-    console.log("detail05 usePullDownRefresh");
+    console.log('detail05 usePullDownRefresh')
     setTimeout(() => {
-      Taro.stopPullDownRefresh();
-    }, 1000);
-  });
+      Taro.stopPullDownRefresh()
+    }, 1000)
+  })
   useReachBottom(() => {
-    console.log("detail05 useReachBottom");
-  });
+    console.log('detail05 useReachBottom')
+  })
 
   return (
-    <View className="detail04">
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
-      <View className="detail01-item">item1</View>
+    <View className='detail04'>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
+      <View className='detail01-item'>item1</View>
     </View>
-  );
-};
+  )
+}
 
-export default Detail05;
+export default Detail05
 ```
 
 # 七、网络请求封装
@@ -1054,15 +1033,13 @@ export default Detail05;
 src\service\index.js
 
 ```js
-import Taro from "@tarojs/taro";
+import Taro from '@tarojs/taro'
 
-const TIME_OUT = 60000;
-const BASE_URL = "http://123.207.32.32:7888/api/hy66";
+const TIME_OUT = 60000
+const BASE_URL = 'http://123.207.32.32:7888/api/hy66'
 
 class ZtRequest {
-
   request(url, method = 'GET', data) {
-    
     return new Promise((resolve, reject) => {
       Taro.request({
         url: BASE_URL + url,
@@ -1070,24 +1047,24 @@ class ZtRequest {
         timeout: TIME_OUT,
         data,
         success(res) {
-          resolve(res.data);
+          resolve(res.data)
         },
         fail(err) {
-          reject(err);
-        },
-      });
-    });
+          reject(err)
+        }
+      })
+    })
   }
 
   get(url, params) {
-    return this.request(url, "GET", params);
+    return this.request(url, 'GET', params)
   }
 
   post(url, data) {
-    return this.request(url, "POST", data);
+    return this.request(url, 'POST', data)
   }
 }
-export default new ZtRequest();
+export default new ZtRequest()
 ```
 
 # 八、数据存储
@@ -1121,51 +1098,49 @@ export default new ZtRequest();
 src\pages\03-service\index.jsx
 
 ```jsx
-import { Component } from "react";
-import { View, Button } from "@tarojs/components";
-import Taro from "@tarojs/taro";
-import { getHomeMutidata } from "@/service/home";
-import "./index.less";
+import { Component } from 'react'
+import { View, Button } from '@tarojs/components'
+import Taro from '@tarojs/taro'
+import { getHomeMutidata } from '@/service/home'
+import './index.less'
 
 export default class Detail01 extends Component {
-  
   getHomeData() {
-    getHomeMutidata().then((res) => {
-      console.log(res);
-    });
+    getHomeMutidata().then(res => {
+      console.log(res)
+    })
   }
   setStorage() {
     Taro.setStorage({
-      key: "info",
+      key: 'info',
       data: {
-        name: "zzt",
-        id: 111,
-      },
-    });
+        name: 'zzt',
+        id: 111
+      }
+    })
 
-    Taro.setStorageSync("token", "sdfdffthsdf");
+    Taro.setStorageSync('token', 'sdfdffthsdf')
   }
   getStorage() {
     Taro.getStorage({
-      key: "info",
+      key: 'info',
       success(res) {
-        console.log(res.data);
-      },
-    });
-    const token = Taro.getStorageSync("token");
-    console.log(token);
+        console.log(res.data)
+      }
+    })
+    const token = Taro.getStorageSync('token')
+    console.log(token)
   }
   render() {
     return (
-      <View className="detail01">
+      <View className='detail01'>
         <View>1.发起网络请求</View>
         <Button onClick={() => this.getHomeData()}>getHomeData</Button>
         <View>2.本地数据的存储</View>
         <Button onClick={() => this.setStorage()}>setStorage</Button>
         <Button onClick={() => this.getStorage()}>getStorage</Button>
       </View>
-    );
+    )
   }
 }
 ```
-

@@ -18,31 +18,31 @@ API 总结：
 
 ```vue
 <template>
-	<view>
-		<navigator :delta="1" open-type="navigateBack">
-			<button>返回（组件）</button>
-		</navigator>
-		<button @click="goBackHome">返回（API）</button>
-	</view>
+  <view>
+    <navigator :delta="1" open-type="navigateBack">
+      <button>返回（组件）</button>
+    </navigator>
+    <button @click="goBackHome">返回（API）</button>
+  </view>
 </template>
 
 <script>
 export default {
-	onLoad(options) {
-		console.log('detail03 options:', options)
-	},
-	methods: {
-		goBackHome() {
-			uni.navigateBack({
-				delta: 1
-			})
+  onLoad(options) {
+    console.log('detail03 options:', options)
+  },
+  methods: {
+    goBackHome() {
+      uni.navigateBack({
+        delta: 1
+      })
 
-			// 触发一个全局事件（触发前，一定要有监听，否则无效）
-			uni.$emit('detail03ToHome', {
-				data: 'detail03 传个 home 的数据，by eventBus'
-			})
-		}
-	}
+      // 触发一个全局事件（触发前，一定要有监听，否则无效）
+      uni.$emit('detail03ToHome', {
+        data: 'detail03 传个 home 的数据，by eventBus'
+      })
+    }
+  }
 }
 </script>
 ```
@@ -56,17 +56,17 @@ export default {
 ```vue
 <script>
 export default {
-	onLoad() {
-		uni.$on('detail03ToHome', this.detail03ToHome)
-	},
-	onUnload() {
-		uni.$off('detail03ToHome', this.detail03ToHome)
-	},
-	methods: {
-		detail03ToHome(value) {
-			console.log('home on detail03ToHome value:', value)
-		}
-	}
+  onLoad() {
+    uni.$on('detail03ToHome', this.detail03ToHome)
+  },
+  onUnload() {
+    uni.$off('detail03ToHome', this.detail03ToHome)
+  },
+  methods: {
+    detail03ToHome(value) {
+      console.log('home on detail03ToHome value:', value)
+    }
+  }
 }
 </script>
 ```
@@ -113,46 +113,46 @@ uni-app 常用的页面生命周期函数：[更多](https://uniapp.dcloud.net.c
 
 ```vue
 <template>
-	<view>
-		<view>4.页面的生命周期</view>
-		<button @click="goToDetail04">01-detail04 Option API</button>
-	</view>
+  <view>
+    <view>4.页面的生命周期</view>
+    <button @click="goToDetail04">01-detail04 Option API</button>
+  </view>
 </template>
 
 <script>
 export default {
-	onLoad() {
-		console.log('home onLoad')
-		uni.$on('detail03ToHome', this.detail03ToHome)
-	},
-	onShow() {
-		console.log('home onShow')
-	},
-	onReady() {
-		console.log('home onReady')
-	},
-	onHide() {
-		console.log('home onHide')
-	},
-	onUnload() {
-		console.log('home onUnload')
-		uni.$off('detail03ToHome', this.detail03ToHome)
-		uni.$off('acceptDataFromDetail03', this.acceptDataFromDetail03)
-	},
-	onPullDownRefresh() {
-		console.log('home onPullDownRefresh')
-	},
-	onReachBottom() {
-		console.log('home onReachBottom')
-	},
-	methods: {
-		goToDetail04() {
-			uni.navigateTo({
-				url: '/pages/detail04/detail04'
-			})
-		}
-		//...
-	}
+  onLoad() {
+    console.log('home onLoad')
+    uni.$on('detail03ToHome', this.detail03ToHome)
+  },
+  onShow() {
+    console.log('home onShow')
+  },
+  onReady() {
+    console.log('home onReady')
+  },
+  onHide() {
+    console.log('home onHide')
+  },
+  onUnload() {
+    console.log('home onUnload')
+    uni.$off('detail03ToHome', this.detail03ToHome)
+    uni.$off('acceptDataFromDetail03', this.acceptDataFromDetail03)
+  },
+  onPullDownRefresh() {
+    console.log('home onPullDownRefresh')
+  },
+  onReachBottom() {
+    console.log('home onReachBottom')
+  },
+  methods: {
+    goToDetail04() {
+      uni.navigateTo({
+        url: '/pages/detail04/detail04'
+      })
+    }
+    //...
+  }
 }
 </script>
 ```
@@ -163,61 +163,61 @@ export default {
 
 ```vue
 <template>
-	<view>
-		<view class="item">item1</view>
-		<view class="item">item2</view>
-		<view class="item">item3</view>
-		<view class="item">item4</view>
-		<view class="item">item5</view>
-		<view class="item">item6</view>
-		<view class="item">item7</view>
-		<view class="item">item8</view>
-		<view class="item">item9</view>
-		<view class="item">item10</view>
-		<view class="item">item11</view>
-		<view class="item">item12</view>
-		<view class="item">item13</view>
-		<view class="item">item14</view>
-		<view class="item">item15</view>
-		<view class="item">item16</view>
-		<view class="item">item17</view>
-		<view class="item">item18</view>
-		<view class="item">item19</view>
-		<view class="item">item20</view>
-	</view>
+  <view>
+    <view class="item">item1</view>
+    <view class="item">item2</view>
+    <view class="item">item3</view>
+    <view class="item">item4</view>
+    <view class="item">item5</view>
+    <view class="item">item6</view>
+    <view class="item">item7</view>
+    <view class="item">item8</view>
+    <view class="item">item9</view>
+    <view class="item">item10</view>
+    <view class="item">item11</view>
+    <view class="item">item12</view>
+    <view class="item">item13</view>
+    <view class="item">item14</view>
+    <view class="item">item15</view>
+    <view class="item">item16</view>
+    <view class="item">item17</view>
+    <view class="item">item18</view>
+    <view class="item">item19</view>
+    <view class="item">item20</view>
+  </view>
 </template>
 
 <script>
 export default {
-	// 页面的生命周期。
-	onLoad() {
-		console.log('detail03 onLoad')
-	},
-	onShow() {
-		console.log('detail04 onShow')
-	},
-	onReady() {
-		console.log('detail04 onReady')
-	},
-	onHide() {
-		console.log('detail04 onHide')
-	},
-	onUnload() {
-		console.log('detail04 onUnload')
-	},
-	onPullDownRefresh() {
-		console.log('detail04 onPullDownRefresh')
-	},
-	onReachBottom() {
-		console.log('detail04 onReachBottom')
-	}
+  // 页面的生命周期。
+  onLoad() {
+    console.log('detail03 onLoad')
+  },
+  onShow() {
+    console.log('detail04 onShow')
+  },
+  onReady() {
+    console.log('detail04 onReady')
+  },
+  onHide() {
+    console.log('detail04 onHide')
+  },
+  onUnload() {
+    console.log('detail04 onUnload')
+  },
+  onPullDownRefresh() {
+    console.log('detail04 onPullDownRefresh')
+  },
+  onReachBottom() {
+    console.log('detail04 onReachBottom')
+  }
 }
 </script>
 
 <style lang="less">
 .item {
-	height: 200rpx;
-	border-bottom: 2rpx solid red;
+  height: 200rpx;
+  border-bottom: 2rpx solid red;
 }
 </style>
 ```
@@ -236,23 +236,23 @@ export default {
 
 ```vue
 <template>
-	<view>
-		<view>4.页面的生命周期</view>
-		<button @click="goToDetail05">01-detail05 Composition API</button>
-	</view>
+  <view>
+    <view>4.页面的生命周期</view>
+    <button @click="goToDetail05">01-detail05 Composition API</button>
+  </view>
 </template>
 
 <script>
 export default {
-	//...
-	methods: {
-		//...
-		goToDetail05() {
-			uni.navigateTo({
-				url: '/pages/detail05/detail05'
-			})
-		}
-	}
+  //...
+  methods: {
+    //...
+    goToDetail05() {
+      uni.navigateTo({
+        url: '/pages/detail05/detail05'
+      })
+    }
+  }
 }
 </script>
 ```
@@ -263,68 +263,68 @@ export default {
 
 ```vue
 <template>
-	<view>
-		<view class="item">item1</view>
-		<view class="item">item2</view>
-		<view class="item">item3</view>
-		<view class="item">item4</view>
-		<view class="item">item5</view>
-		<view class="item">item6</view>
-		<view class="item">item7</view>
-		<view class="item">item8</view>
-		<view class="item">item9</view>
-		<view class="item">item10</view>
-		<view class="item">item11</view>
-		<view class="item">item12</view>
-		<view class="item">item13</view>
-		<view class="item">item14</view>
-		<view class="item">item15</view>
-		<view class="item">item16</view>
-		<view class="item">item17</view>
-		<view class="item">item18</view>
-		<view class="item">item19</view>
-		<view class="item">item20</view>
-	</view>
+  <view>
+    <view class="item">item1</view>
+    <view class="item">item2</view>
+    <view class="item">item3</view>
+    <view class="item">item4</view>
+    <view class="item">item5</view>
+    <view class="item">item6</view>
+    <view class="item">item7</view>
+    <view class="item">item8</view>
+    <view class="item">item9</view>
+    <view class="item">item10</view>
+    <view class="item">item11</view>
+    <view class="item">item12</view>
+    <view class="item">item13</view>
+    <view class="item">item14</view>
+    <view class="item">item15</view>
+    <view class="item">item16</view>
+    <view class="item">item17</view>
+    <view class="item">item18</view>
+    <view class="item">item19</view>
+    <view class="item">item20</view>
+  </view>
 </template>
 
 <script setup>
 import {
-	onLoad,
-	onShow,
-	onReady,
-	onHide,
-	onUnload,
-	onPullDownRefresh,
-	onReachBottom
+  onLoad,
+  onShow,
+  onReady,
+  onHide,
+  onUnload,
+  onPullDownRefresh,
+  onReachBottom
 } from '@dcloudio/uni-app'
 
 onLoad(() => {
-	console.log('detail05 onLoad')
+  console.log('detail05 onLoad')
 })
 onShow(() => {
-	console.log('detail05 onShow')
+  console.log('detail05 onShow')
 })
 onReady(() => {
-	console.log('detail05 onReady')
+  console.log('detail05 onReady')
 })
 onHide(() => {
-	console.log('detail05 onHide')
+  console.log('detail05 onHide')
 })
 onUnload(() => {
-	console.log('detail05 onUnload')
+  console.log('detail05 onUnload')
 })
 onPullDownRefresh(() => {
-	console.log('detail05 onPullDownRefresh')
+  console.log('detail05 onPullDownRefresh')
 })
 onReachBottom(() => {
-	console.log('detail05 onReachBottom')
+  console.log('detail05 onReachBottom')
 })
 </script>
 
 <style lang="less">
 .item {
-	height: 200rpx;
-	border-bottom: 2rpx solid red;
+  height: 200rpx;
+  border-bottom: 2rpx solid red;
 }
 </style>
 ```
@@ -360,51 +360,51 @@ uni-app 中，常用组件生命周期有：
 
 ```vue
 <template>
-	<view>
-		<view :class="['zt-btn', type]" @click="onBtnClick">
-			<slot></slot>
-		</view>
-	</view>
+  <view>
+    <view :class="['zt-btn', type]" @click="onBtnClick">
+      <slot></slot>
+    </view>
+  </view>
 </template>
 
 <script>
 export default {
-	name: 'zt-button',
+  name: 'zt-button',
 
-	props: {
-		type: {
-			type: String,
-			default: 'default' // default primary
-		}
-	},
+  props: {
+    type: {
+      type: String,
+      default: 'default' // default primary
+    }
+  },
 
-	emits: ['btnClick'],
+  emits: ['btnClick'],
 
-	// 1.组件的生命周期函数
-	beforeCreate() {
-		console.log('zt-btn beforeCreate')
-	},
-	created() {
-		console.log('zt-btn created')
-		console.log(this)
-	},
-	mounted() {
-		console.log('zt-btn mounted')
-	},
+  // 1.组件的生命周期函数
+  beforeCreate() {
+    console.log('zt-btn beforeCreate')
+  },
+  created() {
+    console.log('zt-btn created')
+    console.log(this)
+  },
+  mounted() {
+    console.log('zt-btn mounted')
+  },
 
-	// 2.页面的生命周期(在 options api 中是不会执行)
-	onLoad() {
-		console.log('zt-btn onLoad')
-	},
-	onShow() {
-		console.log('zt-btn onShow')
-	},
+  // 2.页面的生命周期(在 options api 中是不会执行)
+  onLoad() {
+    console.log('zt-btn onLoad')
+  },
+  onShow() {
+    console.log('zt-btn onShow')
+  },
 
-	methods: {
-		onBtnClick() {
-			this.$emit('btnClick')
-		}
-	}
+  methods: {
+    onBtnClick() {
+      this.$emit('btnClick')
+    }
+  }
 }
 </script>
 ```
@@ -419,11 +419,11 @@ export default {
 
 ```vue
 <template>
-	<view>
-		<view :class="['zt-btn', type]" @click="onBtnClick">
-			<slot></slot>
-		</view>
-	</view>
+  <view>
+    <view :class="['zt-btn', type]" @click="onBtnClick">
+      <slot></slot>
+    </view>
+  </view>
 </template>
 
 <script setup>
@@ -434,38 +434,38 @@ import { onBeforeMount, onMounted } from 'vue'
 import { onLoad, onShow, onReady } from '@dcloudio/uni-app'
 
 const props = defineProps({
-	type: {
-		type: String,
-		default: 'default'
-	}
+  type: {
+    type: String,
+    default: 'default'
+  }
 })
 
 const emit = defineEmits(['btnClick'])
 
 function onBtnClick() {
-	emit('btnClick')
+  emit('btnClick')
 }
 
 // 1.组件的生命周期
 onBeforeMount(() => {
-	console.log('zt-buton-setup onBeforeMount')
+  console.log('zt-buton-setup onBeforeMount')
 })
 onMounted(() => {
-	console.log('zt-buton-setup onMounted')
+  console.log('zt-buton-setup onMounted')
 })
 
 // 2.页面的生命周期
 // 执行
 onLoad(() => {
-	console.log('zt-buton-setup onLoad')
+  console.log('zt-buton-setup onLoad')
 })
 // 执行
 onShow(() => {
-	console.log('zt-buton-setup onShow')
+  console.log('zt-buton-setup onShow')
 })
 // 这个在 App H5 没有执行, weapp 有执行
 onReady(() => {
-	console.log('zt-buton-setup onReady')
+  console.log('zt-buton-setup onReady')
 })
 </script>
 ```
@@ -534,30 +534,30 @@ export default new ZtRequest()
 
 ```vue
 <template>
-	<view>
-		<view>1.封装网络请求</view>
-		<button @click="fetchData">发起一个 get 请求</button>
-		<view>homeData: {{ homeData }}</view>
-	</view>
+  <view>
+    <view>1.封装网络请求</view>
+    <button @click="fetchData">发起一个 get 请求</button>
+    <view>homeData: {{ homeData }}</view>
+  </view>
 </template>
 
 <script>
 import { getHomeMutidata } from '@/service/home.js'
 
 export default {
-	data() {
-		return {
-			homeData: ''
-		}
-	},
-	methods: {
-		fetchData() {
-			getHomeMutidata().then(res => {
-				console.log('category res:', res)
-				this.homeData = res.data
-			})
-		}
-	}
+  data() {
+    return {
+      homeData: ''
+    }
+  },
+  methods: {
+    fetchData() {
+      getHomeMutidata().then(res => {
+        console.log('category res:', res)
+        this.homeData = res.data
+      })
+    }
+  }
 }
 </script>
 ```
@@ -582,39 +582,39 @@ export default {
 
 ```vue
 <template>
-	<view>
-		<view>2.数据的存储</view>
-		<button @click="setStorage">set storage</button>
-		<button @click="getStorage">get storage</button>
-	</view>
+  <view>
+    <view>2.数据的存储</view>
+    <button @click="setStorage">set storage</button>
+    <button @click="getStorage">get storage</button>
+  </view>
 </template>
 
 <script>
 import { getHomeMutidata } from '@/service/home.js'
 export default {
-	methods: {
-		setStorage() {
-			uni.setStorage({
-				key: 'userInfo',
-				data: {
-					name: 'zzt',
-					id: '0017',
-					token: '666888999'
-				}
-			})
-			uni.setStorageSync('token', 'hahaha666')
-		},
-		getStorage() {
-			uni.getStorage({
-				key: 'userInfo',
-				success(res) {
-					console.log('storage userInfo res:', res)
-				}
-			})
-			const token = uni.getStorageSync('token')
-			console.log('storage token:', token)
-		}
-	}
+  methods: {
+    setStorage() {
+      uni.setStorage({
+        key: 'userInfo',
+        data: {
+          name: 'zzt',
+          id: '0017',
+          token: '666888999'
+        }
+      })
+      uni.setStorageSync('token', 'hahaha666')
+    },
+    getStorage() {
+      uni.getStorage({
+        key: 'userInfo',
+        success(res) {
+          console.log('storage userInfo res:', res)
+        }
+      })
+      const token = uni.getStorageSync('token')
+      console.log('storage token:', token)
+    }
+  }
 }
 </script>
 ```
@@ -637,49 +637,49 @@ easycom 组件规范：
 
 ```vue
 <template>
-	<view>
-		<view :class="['zt-btn', type]" @click="onBtnClick">
-			<slot></slot>
-		</view>
-	</view>
+  <view>
+    <view :class="['zt-btn', type]" @click="onBtnClick">
+      <slot></slot>
+    </view>
+  </view>
 </template>
 
 <script>
 export default {
-	name: 'zt-button',
+  name: 'zt-button',
 
-	props: {
-		type: {
-			type: String,
-			default: 'default' // default primary
-		}
-	},
+  props: {
+    type: {
+      type: String,
+      default: 'default' // default primary
+    }
+  },
 
-	emits: ['btnClick'],
+  emits: ['btnClick'],
 
-	methods: {
-		onBtnClick() {
-			this.$emit('btnClick')
-		}
-	}
+  methods: {
+    onBtnClick() {
+      this.$emit('btnClick')
+    }
+  }
 }
 </script>
 
 <style>
 .zt-btn {
-	padding: 20px 0;
-	font-size: 40rpx;
-	color: #fff;
-	text-align: center;
-	border-radius: 18rpx;
+  padding: 20px 0;
+  font-size: 40rpx;
+  color: #fff;
+  text-align: center;
+  border-radius: 18rpx;
 }
 
 .default {
-	background-color: #cdcdcd;
+  background-color: #cdcdcd;
 }
 
 .primary {
-	background-color: green;
+  background-color: green;
 }
 </style>
 ```
@@ -690,19 +690,19 @@ export default {
 
 ```vue
 <template>
-	<view>
-		<view>3.easycom 组件规范</view>
-		<zt-button type="primary" @btnClick="handleZtBtnClick">ZTBtn</zt-button>
-	</view>
+  <view>
+    <view>3.easycom 组件规范</view>
+    <zt-button type="primary" @btnClick="handleZtBtnClick">ZTBtn</zt-button>
+  </view>
 </template>
 
 <script>
 export default {
-	methods: {
-		handleZtBtnClick() {
-			console.log('zt-btn click')
-		}
-	}
+  methods: {
+    handleZtBtnClick() {
+      console.log('zt-btn click')
+    }
+  }
 }
 </script>
 ```
@@ -715,16 +715,16 @@ home.vue
 
 ```vue
 <template>
-	<view>
-		<view class="">1.页面传递数据(正向)</view>
-		<button type="default" @click="goToDetail01">01-detail01 navigate</button>
+  <view>
+    <view class="">1.页面传递数据(正向)</view>
+    <button type="default" @click="goToDetail01">01-detail01 navigate</button>
 
-		<view class="">2.页面传递数据(逆向)</view>
-		<button type="default" @click="goToDetail02">01-detail02 navigate</button>
+    <view class="">2.页面传递数据(逆向)</view>
+    <button type="default" @click="goToDetail02">01-detail02 navigate</button>
 
-		<view class="">3.页面逆向传递数据(全局事件总线)</view>
-		<button type="default" @click="goToDetail03">01-detail03 navigate</button>
-	</view>
+    <view class="">3.页面逆向传递数据(全局事件总线)</view>
+    <button type="default" @click="goToDetail03">01-detail03 navigate</button>
+  </view>
 </template>
 
 <script setup>
@@ -732,43 +732,43 @@ import { onLoad, onUnload } from '@dcloudio/uni-app'
 
 // 全局事件总线 接收 detail03 逆向传回的数据
 function goToDetail03() {
-	uni.navigateTo({
-		url: '/pages/detail03/detail03?name=liujun&id=300'
-	})
+  uni.navigateTo({
+    url: '/pages/detail03/detail03?name=liujun&id=300'
+  })
 }
 onLoad(() => {
-	uni.$on('acceptDataFormDetail03', acceptDataFormDetail03)
+  uni.$on('acceptDataFormDetail03', acceptDataFormDetail03)
 })
 onUnload(() => {
-	uni.$off('acceptDataFormDetail03', acceptDataFormDetail03)
+  uni.$off('acceptDataFormDetail03', acceptDataFormDetail03)
 })
 function acceptDataFormDetail03(value) {
-	console.log('接收到 detail03 传递给 home 页面的数据:', value)
+  console.log('接收到 detail03 传递给 home 页面的数据:', value)
 }
 
 // 正向传递数据，向 detail01 传数据。
 function goToDetail01() {
-	console.log('goToDetail01')
-	uni.navigateTo({
-		url: '/pages/detail01/detail01?name=zzt&id=111',
-		success(res) {
-			res.eventChannel.emit('acceptDataFormHomePage', {
-				data: '我是 home 页面传递给 detail01 的数据'
-			})
-		}
-	})
+  console.log('goToDetail01')
+  uni.navigateTo({
+    url: '/pages/detail01/detail01?name=zzt&id=111',
+    success(res) {
+      res.eventChannel.emit('acceptDataFormHomePage', {
+        data: '我是 home 页面传递给 detail01 的数据'
+      })
+    }
+  })
 }
 
 // 逆向传递数据 detail02 传回数据
 function goToDetail02() {
-	uni.navigateTo({
-		url: '/pages/detail02/detail02?name=zzt&id=222',
-		events: {
-			acceptDataFormDetail02(value) {
-				console.log('接收到 detail02 传递过来的数据', value)
-			}
-		}
-	})
+  uni.navigateTo({
+    url: '/pages/detail02/detail02?name=zzt&id=222',
+    events: {
+      acceptDataFormDetail02(value) {
+        console.log('接收到 detail02 传递过来的数据', value)
+      }
+    }
+  })
 }
 </script>
 ```
@@ -781,7 +781,7 @@ detail01.vue
 
 ```vue
 <template>
-	<view> detail01 </view>
+  <view> detail01 </view>
 </template>
 
 <script setup>
@@ -790,8 +790,8 @@ import { onLoad } from '@dcloudio/uni-app'
 
 // 2.方式二: ?name=zzt&id=111
 const props = defineProps({
-	name: String,
-	id: String
+  name: String,
+  id: String
 })
 console.log('在 props 中接受 home 传递过来 url 的数据:', props.name, props.id)
 
@@ -799,13 +799,13 @@ console.log('在 props 中接受 home 传递过来 url 的数据:', props.name, 
 // $instance => this
 const $instance = ref(getCurrentInstance().proxy)
 onLoad(options => {
-	console.log('接受到 home 传递过来 url 的数据:', options)
-  
-	// const eventChannel = this.getOpenerEventChannel();
-	const eventChannel = $instance.value.getOpenerEventChannel()
-	eventChannel.on('acceptDataFormHomePage', value => {
-		console.log('接收到 home 页面 eventchannel 传递过来的数据:', value)
-	})
+  console.log('接受到 home 传递过来 url 的数据:', options)
+
+  // const eventChannel = this.getOpenerEventChannel();
+  const eventChannel = $instance.value.getOpenerEventChannel()
+  eventChannel.on('acceptDataFormHomePage', value => {
+    console.log('接收到 home 页面 eventchannel 传递过来的数据:', value)
+  })
 })
 </script>
 ```
@@ -818,9 +818,9 @@ detail02.vue
 
 ```vue
 <template>
-	<view>
-		<button type="default" @click="goBack">返回</button>
-	</view>
+  <view>
+    <button type="default" @click="goBack">返回</button>
+  </view>
 </template>
 
 <script setup>
@@ -829,15 +829,15 @@ import { getCurrentInstance, ref } from 'vue'
 const $instance = ref(getCurrentInstance().proxy) // this
 
 function goBack() {
-	uni.navigateBack({
-		delta: 1
-	})
-  
-	const eventChannel = $instance.value.getOpenerEventChannel()
-	// 触发事件, 将detail02的数据传递给Home页面
-	eventChannel.emit('acceptDataFormDetail02', {
-		data: '这里是 detail02 传递给 Home 页面的数据'
-	})
+  uni.navigateBack({
+    delta: 1
+  })
+
+  const eventChannel = $instance.value.getOpenerEventChannel()
+  // 触发事件, 将detail02的数据传递给Home页面
+  eventChannel.emit('acceptDataFormDetail02', {
+    data: '这里是 detail02 传递给 Home 页面的数据'
+  })
 }
 </script>
 ```
@@ -848,21 +848,21 @@ detail03.vue
 
 ```vue
 <template>
-	<view>
-		<button type="default" @click="goBack">返回</button>
-	</view>
+  <view>
+    <button type="default" @click="goBack">返回</button>
+  </view>
 </template>
 
 <script setup>
 function goBack() {
-	uni.navigateBack({
-		delta: 1
-	})
+  uni.navigateBack({
+    delta: 1
+  })
 
-	// 触发事件( 通过事件总线 )
-	uni.$emit('acceptDataFormDetail03', {
-		data: '这里的数据是从 detail03 传递到 home 页面'
-	})
+  // 触发事件( 通过事件总线 )
+  uni.$emit('acceptDataFormDetail03', {
+    data: '这里的数据是从 detail03 传递到 home 页面'
+  })
 }
 </script>
 ```

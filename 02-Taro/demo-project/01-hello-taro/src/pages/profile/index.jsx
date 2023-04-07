@@ -3,18 +3,17 @@ import { View, Text } from '@tarojs/components'
 import './index.less'
 
 export default class Profile extends Component {
+  componentWillMount() {}
 
-  componentWillMount () { }
+  componentDidMount() {}
 
-  componentDidMount () { }
+  componentWillUnmount() {}
 
-  componentWillUnmount () { }
+  componentDidShow() {}
 
-  componentDidShow () { }
+  componentDidHide() {}
 
-  componentDidHide () { }
-
-  render () {
+  render() {
     return (
       <View className='profile'>
         <Text>Hello world!</Text>

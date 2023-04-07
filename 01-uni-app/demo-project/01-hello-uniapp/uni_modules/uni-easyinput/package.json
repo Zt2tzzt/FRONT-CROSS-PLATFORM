@@ -9,7 +9,7 @@
     "input",
     "uni-easyinput",
     "输入框"
-],
+  ],
   "repository": "https://github.com/dcloudio/uni-ui",
   "engines": {
     "HBuilderX": ""
@@ -17,7 +17,7 @@
   "directories": {
     "example": "../../temps/example_temps"
   },
-"dcloudext": {
+  "dcloudext": {
     "sale": {
       "regular": {
         "price": "0.00"
@@ -39,7 +39,7 @@
   },
   "uni_modules": {
     "dependencies": [
-			"uni-scss",
+      "uni-scss",
       "uni-icons"
     ],
     "encrypt": [],
@@ -78,8 +78,8 @@
           "联盟": "u"
         },
         "Vue": {
-            "vue2": "y",
-            "vue3": "y"
+          "vue2": "y",
+          "vue3": "y"
         }
       }
     }

@@ -9,20 +9,20 @@
 ```vue
 <script>
 export default {
-	onLaunch: function (options) {
-		console.log('小程序应用启动参数 option：', options)
-		console.log('App Launch')
-	},
-	onShow: function () {
-		console.log('App Show')
-	},
-	onHide: function () {
-		console.log('App Hide')
-	},
-	globalData: {
-		name: 'zzt',
-		age: 18
-	}
+  onLaunch: function (options) {
+    console.log('小程序应用启动参数 option：', options)
+    console.log('App Launch')
+  },
+  onShow: function () {
+    console.log('App Show')
+  },
+  onHide: function () {
+    console.log('App Hide')
+  },
+  globalData: {
+    name: 'zzt',
+    age: 18
+  }
 }
 </script>
 ```
@@ -38,12 +38,12 @@ export default {
 ```vue
 <script>
 export default {
-	onLoad() {
-		console.log('Vue 的实例 this:', this)
+  onLoad() {
+    console.log('Vue 的实例 this:', this)
 
-		const app = getApp()
-		console.log('globalData:', app.globalData)
-	}
+    const app = getApp()
+    console.log('globalData:', app.globalData)
+  }
 }
 </script>
 ```
@@ -63,10 +63,10 @@ export default {
 ```vue
 <script>
 export default {
-	onLoad() {
-		const pages = getCurrentPages()
-		console.log('page route:', pages[pages.length - 1].route) // pages/index/index
-	}
+  onLoad() {
+    const pages = getCurrentPages()
+    console.log('page route:', pages[pages.length - 1].route) // pages/index/index
+  }
 }
 </script>
 ```
@@ -84,9 +84,9 @@ export default {
 ```vue
 <style lang="less">
 page {
-	height: 100%;
-	box-sizing: border-box;
-	border: 3px red solid;
+  height: 100%;
+  box-sizing: border-box;
+  border: 3px red solid;
 }
 </style>
 ```
@@ -173,25 +173,25 @@ uni.scss 全局样式：
 
 ```json
 {
-	"pages": [
-		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				// 优先级比 globalStyle 高。
-				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": "uni-app",
-				"navigationBarBackgroundColor": "#ffc0cb"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	},
-	"uniIdRouter": {}
+  "pages": [
+    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/index",
+      "style": {
+        // 优先级比 globalStyle 高。
+        "navigationBarTextStyle": "white",
+        "navigationBarTitleText": "uni-app",
+        "navigationBarBackgroundColor": "#ffc0cb"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "uniIdRouter": {}
 }
 ```
 
@@ -227,12 +227,12 @@ uni.scss 全局样式：
 
 ```vue
 <template>
-	<view class="content">
-		<!-- div 也不是不能用，但是不推荐，它不跨平台，且编译效率低 -->
-		<div>我是一个 div</div>
-		<view class="title">1.全局样式测试</view>
-		<view class="name">2.全局样式测试</view>
-	</view>
+  <view class="content">
+    <!-- div 也不是不能用，但是不推荐，它不跨平台，且编译效率低 -->
+    <div>我是一个 div</div>
+    <view class="title">1.全局样式测试</view>
+    <view class="name">2.全局样式测试</view>
+  </view>
 </template>
 ```
 
@@ -246,10 +246,10 @@ uni.scss 全局样式：
 
 ```vue
 <template>
-	<view class="content">
-		<text>我是一个 text 组件</text>
-		<text>哈哈</text>
-	</view>
+  <view class="content">
+    <text>我是一个 text 组件</text>
+    <text>哈哈</text>
+  </view>
 </template>
 ```
 
@@ -263,9 +263,9 @@ uni.scss 全局样式：
 
 ```vue
 <template>
-	<view class="content">
-		<button type="primary">我是一个 button</button>
-	</view>
+  <view class="content">
+    <button type="primary">我是一个 button</button>
+  </view>
 </template>
 ```
 
@@ -279,18 +279,14 @@ uni.scss 全局样式：
 
 ```vue
 <template>
-	<view class="content">
-		<!-- 图片，相对路径 -->
-		<image
-			class="pic"
-			src="../../static/images/cvy.png"
-			mode="widthFix"
-		></image>
-		<!-- 图片：绝对路径 -->
-		<image class="pic" src="@/static/images/cvy.png" mode="widthFix"></image>
-		<!-- 图片：导入图片，不支持 -->、
-		<image class="pic" :src="cvy" mode="widthFix"></image>
-	</view>
+  <view class="content">
+    <!-- 图片，相对路径 -->
+    <image class="pic" src="../../static/images/cvy.png" mode="widthFix"></image>
+    <!-- 图片：绝对路径 -->
+    <image class="pic" src="@/static/images/cvy.png" mode="widthFix"></image>
+    <!-- 图片：导入图片，不支持 -->、
+    <image class="pic" :src="cvy" mode="widthFix"></image>
+  </view>
 </template>
 
 <script>
@@ -310,68 +306,67 @@ import cvy from '@/static/images/cvy.png'
 > APP 端，不要在 `<scroll-view>` 中使用 `<map>`、`<video>` 等原生组件。
 >
 > 小程序端，不要在 `<scroll-view>` 中使用 `<map>`、`<video>`、`<canvas>`、`<textarea>` 等原生组件。
->
 
 01-hello-uniapp\pages\index\index.vue
 
 ```vue
 <template>
-	<view class="content">
-		<!-- 纵向滚动 -->
-		<scroll-view scroll-y="true" class="y-scroll">
-			<view class="y-item">item1</view>
-			<view class="y-item">item2</view>
-			<view class="y-item">item3</view>
-			<view class="y-item">item4</view>
-			<view class="y-item">item5</view>
-			<view class="y-item">item6</view>
-			<view class="y-item">item7</view>
-		</scroll-view>
+  <view class="content">
+    <!-- 纵向滚动 -->
+    <scroll-view scroll-y="true" class="y-scroll">
+      <view class="y-item">item1</view>
+      <view class="y-item">item2</view>
+      <view class="y-item">item3</view>
+      <view class="y-item">item4</view>
+      <view class="y-item">item5</view>
+      <view class="y-item">item6</view>
+      <view class="y-item">item7</view>
+    </scroll-view>
 
-		<!-- 横向滚动 -->
-		<scroll-view scroll-x="true" class="x-scroll" :show-scrollbar="false">
-			<view class="x-item">item1</view>
-			<view class="x-item">item2</view>
-			<view class="x-item">item3</view>
-			<view class="x-item">item4</view>
-			<view class="x-item">item5</view>
-			<view class="x-item">item6</view>
-			<view class="x-item">item7</view>
-		</scroll-view>
-	</view>
+    <!-- 横向滚动 -->
+    <scroll-view scroll-x="true" class="x-scroll" :show-scrollbar="false">
+      <view class="x-item">item1</view>
+      <view class="x-item">item2</view>
+      <view class="x-item">item3</view>
+      <view class="x-item">item4</view>
+      <view class="x-item">item5</view>
+      <view class="x-item">item6</view>
+      <view class="x-item">item7</view>
+    </scroll-view>
+  </view>
 </template>
 
 <style lang="less">
 .y-scroll {
-	height: 400rpx; // 须有固定高度
-	border: 2rpx red solid;
-	box-sizing: border-box;
+  height: 400rpx; // 须有固定高度
+  border: 2rpx red solid;
+  box-sizing: border-box;
 
-	.y-item {
-		height: 200rpx;
-		border-bottom: 2rpx solid blue;
-	}
+  .y-item {
+    height: 200rpx;
+    border-bottom: 2rpx solid blue;
+  }
 }
 
 .x-scroll {
-	white-space: nowrap; // 须有该设置
+  white-space: nowrap; // 须有该设置
 
-	/* 隐藏原生实现的滚动条。*/
-	/* &::-webkit-scrollbar {
+  /* 隐藏原生实现的滚动条。*/
+  /* &::-webkit-scrollbar {
 			display: none;
 		} */
 
-	:deep(.x-scroll .uni-scroll-view::-webkit-scrollbar) {
-		display: none;
-	}
-	/* :global { } 在全局查找选择器 */
+  :deep(.x-scroll .uni-scroll-view::-webkit-scrollbar) {
+    display: none;
+  }
+  /* :global { } 在全局查找选择器 */
 
-	.x-item {
-		display: inline-block;
-		height: 200rpx;
-		width: 200rpx;
-		border-right: 2rpx solid #ffc0cb;
-	}
+  .x-item {
+    display: inline-block;
+    height: 200rpx;
+    width: 200rpx;
+    border-right: 2rpx solid #ffc0cb;
+  }
 }
 </style>
 ```
@@ -388,40 +383,34 @@ import cvy from '@/static/images/cvy.png'
 
 ```vue
 <template>
-	<view class="content">
-		<swiper
-			class="zt-swiper"
-			:indicator-dots="true"
-			indicator-active-color="#ffc0cb"
-			indicator-color="#f8f8f8"
-			:autoplay="true"
-			:interval="3000"
-			:duration="1000"
-		>
-			<swiper-item>
-				<image
-					class="swiper-image"
-					src="@/static/images/banners/banner01.jpeg"
-				></image>
-			</swiper-item>
-			<swiper-item>
-				<image
-					class="swiper-image"
-					src="@/static/images/banners/banner02.jpeg"
-				></image>
-			</swiper-item>
-		</swiper>
-	</view>
+  <view class="content">
+    <swiper
+      class="zt-swiper"
+      :indicator-dots="true"
+      indicator-active-color="#ffc0cb"
+      indicator-color="#f8f8f8"
+      :autoplay="true"
+      :interval="3000"
+      :duration="1000"
+    >
+      <swiper-item>
+        <image class="swiper-image" src="@/static/images/banners/banner01.jpeg"></image>
+      </swiper-item>
+      <swiper-item>
+        <image class="swiper-image" src="@/static/images/banners/banner02.jpeg"></image>
+      </swiper-item>
+    </swiper>
+  </view>
 </template>
 
 <style lang="less">
 .zt-swiper {
-	height: 400rpx;
+  height: 400rpx;
 
-	.swiper-image {
-		width: 100%;
-		height: 100%;
-	}
+  .swiper-image {
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>
 ```
@@ -458,24 +447,24 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 
 ```json
 {
-	"pages": [
-		{
-			"path": "pages/style/style",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				// 优先级比 globalStyle 高。
-				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": "uni-app",
-				"navigationBarBackgroundColor": "#ffc0cb"
-			}
-		}
-	]
+  "pages": [
+    {
+      "path": "pages/style/style",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        // 优先级比 globalStyle 高。
+        "navigationBarTextStyle": "white",
+        "navigationBarTitleText": "uni-app",
+        "navigationBarBackgroundColor": "#ffc0cb"
+      }
+    }
+  ]
 }
 ```
 
@@ -483,19 +472,19 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 
 ```vue
 <template>
-	<view class="style-page">
-		<view class="bg-view"></view>
-	</view>
+  <view class="style-page">
+    <view class="bg-view"></view>
+  </view>
 </template>
 
 <style lang="less">
 .bg-view {
-	height: 200rpx;
-	border: 1px #f00 solid;
+  height: 200rpx;
+  border: 1px #f00 solid;
 
-	background-image: url('../../static/images/cvy.png');
-	background-repeat: no-repeat;
-	background-size: contain;
+  background-image: url('../../static/images/cvy.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 </style>
 ```
@@ -534,16 +523,16 @@ uni-app 支持使用字体图标，使用方式与普通 web 项目相同，
 
 ```vue
 <template>
-	<view class="style-page">
-		<text class="text iconfont icon-shouye"></text>
-		<text class="text iconfont icon-video"></text>
-	</view>
+  <view class="style-page">
+    <text class="text iconfont icon-shouye"></text>
+    <text class="text iconfont icon-video"></text>
+  </view>
 </template>
 
 <style lang="less">
 .text {
-	font-size: 50rpx;
-	color: #f00;
+  font-size: 50rpx;
+  color: #f00;
 }
 </style>
 ```
@@ -616,13 +605,13 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 ```vue
 <template>
-	<view class="content">
-		<uni-badge text="100" type="primary"></uni-badge>
-		<uni-badge text="80" type="success"></uni-badge>
-		<uni-badge text="90" type="info" absolute="rightTop">
-			<button>button</button>
-		</uni-badge>
-	</view>
+  <view class="content">
+    <uni-badge text="100" type="primary"></uni-badge>
+    <uni-badge text="80" type="success"></uni-badge>
+    <uni-badge text="90" type="info" absolute="rightTop">
+      <button>button</button>
+    </uni-badge>
+  </view>
 </template>
 ```
 
@@ -632,18 +621,18 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 ```vue
 <template>
-	<view class="content">
-		<uni-countdown
-			color="white"
-			background-color="#cdcdcd"
-			:day="0"
-			:show-day="false"
-			:hour="6"
-			:minute="12"
-			:second="20"
-		>
-		</uni-countdown>
-	</view>
+  <view class="content">
+    <uni-countdown
+      color="white"
+      background-color="#cdcdcd"
+      :day="0"
+      :show-day="false"
+      :hour="6"
+      :minute="12"
+      :second="20"
+    >
+    </uni-countdown>
+  </view>
 </template>
 ```
 
@@ -653,66 +642,66 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 ```vue
 <template>
-	<view class="content">
-		<uni-goods-nav
-			:fill="true"
-			:options="options"
-			:buttonGroup="buttonGroup"
-			@click="onClick"
-			@buttonClick="buttonClick"
-		/>
-	</view>
+  <view class="content">
+    <uni-goods-nav
+      :fill="true"
+      :options="options"
+      :buttonGroup="buttonGroup"
+      @click="onClick"
+      @buttonClick="buttonClick"
+    />
+  </view>
 </template>
 
 <script>
 export default {
-	data() {
-		return {
-			options: [
-				{
-					icon: 'headphones',
-					text: '客服'
-				},
-				{
-					icon: 'shop',
-					text: '店铺',
-					info: 2,
-					infoBackgroundColor: '#007aff',
-					infoColor: 'red'
-				},
-				{
-					icon: 'cart',
-					text: '购物车',
-					info: 2
-				}
-			],
-			buttonGroup: [
-				{
-					text: '加入购物车',
-					backgroundColor: '#ff0000',
-					color: '#fff'
-				},
-				{
-					text: '立即购买',
-					backgroundColor: '#ffa200',
-					color: '#fff'
-				}
-			]
-		}
-	},
-	methods: {
-		onClick(e) {
-			console.log('onClick e:', e)
-			uni.showToast({
-				title: `点击${e.content.text}`,
-				icon: 'none'
-			})
-		},
-		buttonClick(e) {
-			console.log('buttonClick e:', e)
-			this.options[2].info++
-		}
-	}
+  data() {
+    return {
+      options: [
+        {
+          icon: 'headphones',
+          text: '客服'
+        },
+        {
+          icon: 'shop',
+          text: '店铺',
+          info: 2,
+          infoBackgroundColor: '#007aff',
+          infoColor: 'red'
+        },
+        {
+          icon: 'cart',
+          text: '购物车',
+          info: 2
+        }
+      ],
+      buttonGroup: [
+        {
+          text: '加入购物车',
+          backgroundColor: '#ff0000',
+          color: '#fff'
+        },
+        {
+          text: '立即购买',
+          backgroundColor: '#ffa200',
+          color: '#fff'
+        }
+      ]
+    }
+  },
+  methods: {
+    onClick(e) {
+      console.log('onClick e:', e)
+      uni.showToast({
+        title: `点击${e.content.text}`,
+        icon: 'none'
+      })
+    },
+    buttonClick(e) {
+      console.log('buttonClick e:', e)
+      this.options[2].info++
+    }
+  }
 }
 </script>
 ```

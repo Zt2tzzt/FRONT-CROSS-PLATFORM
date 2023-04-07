@@ -3,21 +3,21 @@ import { View, Text } from '@tarojs/components'
 import './index.less'
 
 export default class Cart extends Component {
-	componentWillMount() {}
+  componentWillMount() {}
 
-	componentDidMount() {}
+  componentDidMount() {}
 
-	componentWillUnmount() {}
+  componentWillUnmount() {}
 
-	componentDidShow() {}
+  componentDidShow() {}
 
-	componentDidHide() {}
+  componentDidHide() {}
 
-	render() {
-		return (
-			<View className='cart'>
-				<Text>Hello world!</Text>
-			</View>
-		)
-	}
+  render() {
+    return (
+      <View className='cart'>
+        <Text>Hello world!</Text>
+      </View>
+    )
+  }
 }

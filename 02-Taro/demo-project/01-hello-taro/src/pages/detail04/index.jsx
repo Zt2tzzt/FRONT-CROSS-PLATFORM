@@ -4,43 +4,42 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Detail04 extends Component {
+  componentWillMount() {}
 
-  componentWillMount () { }
+  componentDidMount() {}
 
-  componentDidMount () { }
+  componentWillUnmount() {}
 
-  componentWillUnmount () { }
+  componentDidShow() {}
 
-  componentDidShow () { }
-
-  componentDidHide () { }
+  componentDidHide() {}
 
   onLoad() {
-    console.log("detail04 onLoad");
+    console.log('detail04 onLoad')
   }
   componentDidShow() {
-    console.log("detail04 componentDidShow");
+    console.log('detail04 componentDidShow')
   }
   onReady() {
-    console.log("detail04 onReady");
+    console.log('detail04 onReady')
   }
   componentDidHide() {
-    console.log("detail04 componentDidHide");
+    console.log('detail04 componentDidHide')
   }
   onUnload() {
-    console.log("detail04 onUnload");
+    console.log('detail04 onUnload')
   }
   onPullDownRefresh() {
-    console.log("detail04 onPullDownRefresh");
+    console.log('detail04 onPullDownRefresh')
     setTimeout(() => {
-      Taro.stopPullDownRefresh();
-    }, 1000);
+      Taro.stopPullDownRefresh()
+    }, 1000)
   }
   onReachBottom() {
-    console.log("detail04 onReachBottom");
+    console.log('detail04 onReachBottom')
   }
 
-  render () {
+  render() {
     return (
       <View className='detail04'>
         <View className='item'>item1</View>

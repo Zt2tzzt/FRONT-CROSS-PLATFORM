@@ -18,10 +18,10 @@ import ztRequest from './index.js'
 //...
 
 export const getHomeGoodsData = (type, page) =>
-	ztRequest.get('/home/data', {
-		type,
-		page
-	})
+  ztRequest.get('/home/data', {
+    type,
+    page
+  })
 ```
 
 ### 2.封装 action
@@ -34,35 +34,33 @@ export const getHomeGoodsData = (type, page) =>
 
 ```js
 export const useHomeStore = defineStore('home', {
-	state: () => ({
-		//...
-		goodsList: {
-			pop: {
-				page: 0,
-				list: []
-			},
-			new: {
-				page: 0,
-				list: []
-			},
-			sell: {
-				page: 0,
-				list: []
-			}
-		}
-	}),
-	actions: {
-		//...
-		fetchHomeGoodsDataAction(type, page) {
-			getHomeGoodsData(type, page).then(res => {
-				console.log('fetchHomeGoodsDataAction res:', res)
-				this.goodsList[type].list = this.goodsList[type].list.concat(
-					res.data.list
-				)
-				this.goodsList[type].page = page
-			})
-		}
-	}
+  state: () => ({
+    //...
+    goodsList: {
+      pop: {
+        page: 0,
+        list: []
+      },
+      new: {
+        page: 0,
+        list: []
+      },
+      sell: {
+        page: 0,
+        list: []
+      }
+    }
+  }),
+  actions: {
+    //...
+    fetchHomeGoodsDataAction(type, page) {
+      getHomeGoodsData(type, page).then(res => {
+        console.log('fetchHomeGoodsDataAction res:', res)
+        this.goodsList[type].list = this.goodsList[type].list.concat(res.data.list)
+        this.goodsList[type].page = page
+      })
+    }
+  }
 })
 ```
 
@@ -75,12 +73,12 @@ export const useHomeStore = defineStore('home', {
 //...
 
 onLoad(() => {
-	//...
+  //...
 
-	// 商品数据
-	homeStore.fetchHomeGoodsDataAction('pop', 1)
-	homeStore.fetchHomeGoodsDataAction('new', 1)
-	homeStore.fetchHomeGoodsDataAction('sell', 1)
+  // 商品数据
+  homeStore.fetchHomeGoodsDataAction('pop', 1)
+  homeStore.fetchHomeGoodsDataAction('new', 1)
+  homeStore.fetchHomeGoodsDataAction('sell', 1)
 })
 //...
 </script>
@@ -100,38 +98,38 @@ onLoad(() => {
 
 ```vue
 <template>
-	<view class="goods-item" @click="onItemClick">
-		<image class="image" :src="itemInfo.show.img" mode="widthFix"></image>
+  <view class="goods-item" @click="onItemClick">
+    <image class="image" :src="itemInfo.show.img" mode="widthFix"></image>
 
-		<view class="desc-info">
-			<view class="title">{{ itemInfo.title }}</view>
-			<view class="info">
-				<text class="price">￥{{ itemInfo.price }}</text>
-				<image class="icon" src="@/static/images/common/favor.png"></image>
-				<text class="cfav">{{ itemInfo.cfav }}</text>
-			</view>
-		</view>
-	</view>
+    <view class="desc-info">
+      <view class="title">{{ itemInfo.title }}</view>
+      <view class="info">
+        <text class="price">￥{{ itemInfo.price }}</text>
+        <image class="icon" src="@/static/images/common/favor.png"></image>
+        <text class="cfav">{{ itemInfo.cfav }}</text>
+      </view>
+    </view>
+  </view>
 </template>
 
 <script setup>
 const props = defineProps({
-	itemInfo: {
-		type: Object,
-		default: () => {}
-	}
+  itemInfo: {
+    type: Object,
+    default: () => {}
+  }
 })
 
 const emit = defineEmits(['itemClick'])
 
 const onItemClick = () => {
-	emit('itemClick', props.itemInfo)
+  emit('itemClick', props.itemInfo)
 }
 </script>
 
 <style lang="less">
 .goods-item {
-	//...
+  //...
 }
 </style>
 ```
@@ -140,29 +138,18 @@ const onItemClick = () => {
 
 ```vue
 <template>
-	<view>
-		<!-- ... -->
+  <view>
+    <!-- ... -->
 
-		<!-- 宫格 -->
-		<uni-grid
-			:column="2"
-			:highlight="false"
-			:showBorder="false"
-			:square="false"
-		>
-			<template
-				v-for="(item, index) of goodsList[currentType].list"
-				:key="item.iid"
-			>
-				<uni-grid-item :index="index">
-					<grid-item-view
-						:itemInfo="item"
-						@itemClick="handleGridItemClick"
-					></grid-item-view>
-				</uni-grid-item>
-			</template>
-		</uni-grid>
-	</view>
+    <!-- 宫格 -->
+    <uni-grid :column="2" :highlight="false" :showBorder="false" :square="false">
+      <template v-for="(item, index) of goodsList[currentType].list" :key="item.iid">
+        <uni-grid-item :index="index">
+          <grid-item-view :itemInfo="item" @itemClick="handleGridItemClick"></grid-item-view>
+        </uni-grid-item>
+      </template>
+    </uni-grid>
+  </view>
 </template>
 
 <script setup>
@@ -175,9 +162,9 @@ const { goodsList, currentType } = storeToRefs(homeStore)
 
 // 商品 item 点击
 const handleGridItemClick = item => {
-	uni.navigateTo({
-		url: '/pages/detail/detail?iid=' + item.iid
-	})
+  uni.navigateTo({
+    url: '/pages/detail/detail?iid=' + item.iid
+  })
 }
 </script>
 ```
@@ -191,7 +178,7 @@ const handleGridItemClick = item => {
 
 ```vue
 <template>
-	<view> iid: {{ iid }} </view>
+  <view> iid: {{ iid }} </view>
 </template>
 
 <script setup>
@@ -199,15 +186,15 @@ import { onLoad } from '@dcloudio/uni-app'
 
 // 方式一
 defineProps({
-	iid: {
-		type: String,
-		default: ''
-	}
+  iid: {
+    type: String,
+    default: ''
+  }
 })
-  
+
 // 方式二
-onLoad((options) => {
-  console.log('detail options:', options);
+onLoad(options => {
+  console.log('detail options:', options)
 })
 </script>
 
@@ -245,32 +232,24 @@ export const useHomeStore = defineStore('home', {
 
 ```vue
 <template>
-	<view>
-		<!--...-->
+  <view>
+    <!--...-->
 
-		<!-- 选项卡，easycom 组件，直接使用 -->
-		<tab-control
-			:titles="goodsType.map(item => item.label)"
-			@tabItemClick="handleTabControlClick"
-		></tab-control>
+    <!-- 选项卡，easycom 组件，直接使用 -->
+    <tab-control
+      :titles="goodsType.map(item => item.label)"
+      @tabItemClick="handleTabControlClick"
+    ></tab-control>
 
-		<!-- 宫格 -->
-		<uni-grid
-			:column="2"
-			:highlight="false"
-			:showBorder="false"
-			:square="false"
-		>
-			<template
-				v-for="(item, index) of goodsList[currentType].list"
-				:key="item.iid"
-			>
-				<uni-grid-item :index="index">
-					<grid-item-view :itemInfo="item" @itemClick="..."></grid-item-view>
-				</uni-grid-item>
-			</template>
-		</uni-grid>
-	</view>
+    <!-- 宫格 -->
+    <uni-grid :column="2" :highlight="false" :showBorder="false" :square="false">
+      <template v-for="(item, index) of goodsList[currentType].list" :key="item.iid">
+        <uni-grid-item :index="index">
+          <grid-item-view :itemInfo="item" @itemClick="..."></grid-item-view>
+        </uni-grid-item>
+      </template>
+    </uni-grid>
+  </view>
 </template>
 
 <script setup>
@@ -280,17 +259,17 @@ const homeStore = useHomeStore()
 const { goodsList, currentType } = storeToRefs(homeStore)
 
 onLoad(() => {
-	// 商品数据
-	homeStore.fetchHomeGoodsDataAction('pop', 1)
-	homeStore.fetchHomeGoodsDataAction('new', 1)
-	homeStore.fetchHomeGoodsDataAction('sell', 1)
+  // 商品数据
+  homeStore.fetchHomeGoodsDataAction('pop', 1)
+  homeStore.fetchHomeGoodsDataAction('new', 1)
+  homeStore.fetchHomeGoodsDataAction('sell', 1)
 })
 
 //...
 
 // 选项卡点击
 const handleTabControlClick = index => {
-	homeStore.changeGoodsType(goodsType[index].name)
+  homeStore.changeGoodsType(goodsType[index].name)
 }
 </script>
 ```
@@ -307,11 +286,11 @@ const handleTabControlClick = index => {
 
 ```json
 {
-	"path": "pages/home/home",
-	"style": {
-		"enablePullDownRefresh": false,
-		"onReachBottomDistance": 300
-	}
+  "path": "pages/home/home",
+  "style": {
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 300
+  }
 }
 ```
 
@@ -319,9 +298,9 @@ const handleTabControlClick = index => {
 
 ```js
 onReachBottom(() => {
-	const type = currentType.value
-	const list = goodsList.value
-	homeStore.fetchHomeGoodsDataAction(type, list[type].page + 1)
+  const type = currentType.value
+  const list = goodsList.value
+  homeStore.fetchHomeGoodsDataAction(type, list[type].page + 1)
 })
 ```
 
@@ -342,12 +321,7 @@ onReachBottom(() => {
 
 ```vue
 <!-- #ifdef H5 -->
-<image
-	class="image"
-	:lazy-load="true"
-	:src="itemInfo.show.img"
-	mode="widthFix"
-></image>
+<image class="image" :lazy-load="true" :src="itemInfo.show.img" mode="widthFix"></image>
 <!-- #endif -->
 ```
 
@@ -377,16 +351,16 @@ onReachBottom(() => {
    // #ifdef VUE3
    import { createSSRApp } from 'vue'
    export function createApp() {
-   	const app = createSSRApp(App)
+     const app = createSSRApp(App)
 
-   	app.use(Pinia.createPinia())
-   	app.use(lazyPlugin, {
-   		loading: '../static/images/common/placeholder.png' // 图片未加载时，默认显示的图片
-   	})
-   	return {
-   		app,
-   		Pinia
-   	}
+     app.use(Pinia.createPinia())
+     app.use(lazyPlugin, {
+       loading: '../static/images/common/placeholder.png' // 图片未加载时，默认显示的图片
+     })
+     return {
+       app,
+       Pinia
+     }
    }
    // #endif
    ```

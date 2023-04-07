@@ -4,15 +4,15 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Home extends Component {
-	componentWillMount() {}
+  componentWillMount() {}
 
-	componentDidMount() {}
+  componentDidMount() {}
 
-	componentWillUnmount() {}
+  componentWillUnmount() {}
 
-	componentDidShow() {}
+  componentDidShow() {}
 
-	componentDidHide() {}
+  componentDidHide() {}
 
   onLoad() {
     Taro.eventCenter.on('detail03ToHome', this.detail03ToHome)
@@ -23,7 +23,7 @@ export default class Home extends Component {
   }
 
   detail03ToHome(data) {
-    console.log('home accept detail03 data:', data);
+    console.log('home accept detail03 data:', data)
   }
 
   goToDetail01ByNavigate() {
@@ -34,7 +34,7 @@ export default class Home extends Component {
 
   goToDetail01ByRedirect() {
     Taro.redirectTo({
-      url: "/pages/detail01/index"
+      url: '/pages/detail01/index'
     })
   }
 
@@ -64,7 +64,7 @@ export default class Home extends Component {
       // 仅支持小程序
       events: {
         detail02ToHome(data) {
-          console.log('home accept detail02 data:', data);
+          console.log('home accept detail02 data:', data)
         }
       }
     })
@@ -72,23 +72,23 @@ export default class Home extends Component {
 
   goToDetail04() {
     Taro.navigateTo({
-      url: "/pages/detail04/index",
-    });
+      url: '/pages/detail04/index'
+    })
   }
 
-	render() {
-		return (
-			<View className='home'>
-				<View>1.页面跳转（组件）</View>
-				<Navigator url='/pages/detail01/index' openType='navigate'>
-					<Button>goToDetail01 navigate</Button>
-				</Navigator>
-				<Navigator url='/pages/detail01/index' openType='redirect'>
-					<Button>goToDetail01 redirect</Button>
-				</Navigator>
-				<Navigator url='/pages/category/index' openType='switchTab'>
-					<Button>goToCategory switchTab</Button>
-				</Navigator>
+  render() {
+    return (
+      <View className='home'>
+        <View>1.页面跳转（组件）</View>
+        <Navigator url='/pages/detail01/index' openType='navigate'>
+          <Button>goToDetail01 navigate</Button>
+        </Navigator>
+        <Navigator url='/pages/detail01/index' openType='redirect'>
+          <Button>goToDetail01 redirect</Button>
+        </Navigator>
+        <Navigator url='/pages/category/index' openType='switchTab'>
+          <Button>goToCategory switchTab</Button>
+        </Navigator>
 
         <View>2.页面跳转（API）</View>
         <Button onClick={() => this.goToDetail01ByNavigate()}>goToDetail01 navigate</Button>
@@ -96,10 +96,14 @@ export default class Home extends Component {
         <Button onClick={() => this.goToCategoryByNavigate()}>goToCategory switchTab</Button>
 
         <View>3.页面传递数据（正向）</View>
-        <Button onClick={() => this.getDetail01WithEventChannel()}>goToDetail01 eventChannel</Button>
+        <Button onClick={() => this.getDetail01WithEventChannel()}>
+          goToDetail01 eventChannel
+        </Button>
 
         <View>4.页面传递数据（逆向）</View>
-        <Button onClick={() => this.goToDetail02WithEventChannel()}>goToDetail02 eventChannel</Button>
+        <Button onClick={() => this.goToDetail02WithEventChannel()}>
+          goToDetail02 eventChannel
+        </Button>
         <Navigator url='/pages/detail03/index' openType='navigate'>
           <Button>goToDetail03 Taro.eventCenter</Button>
         </Navigator>
@@ -116,9 +120,7 @@ export default class Home extends Component {
         <Navigator url='/pages/03-service/index' openType='navigate'>
           <Button>网络请求和数据存储</Button>
         </Navigator>
-
-
-			</View>
-		)
-	}
+      </View>
+    )
+  }
 }

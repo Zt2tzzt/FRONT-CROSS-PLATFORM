@@ -4,7 +4,7 @@
 
 # 二、依赖安装
 
-在项目中安装 *vue3-lazy* 依赖（后续图片懒加载优化时会用到）。
+在项目中安装 _vue3-lazy_ 依赖（后续图片懒加载优化时会用到）。
 
 # 三、全局样式
 
@@ -29,15 +29,15 @@ $gFontSize: 28rpx;
 
 // 定义混合
 @mixin normalFlex($direction: row, $justify: space-between) {
-	display: flex;
-	flex-direction: $direction;
-	justify-content: $justify;
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
 }
 
 @mixin textEllipsis() {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 ```
 
@@ -64,68 +64,68 @@ pages.json
 
 ```json
 {
-	"pages": [
-		{
-			"path": "pages/home/home",
-			"style": {
-				"enablePullDownRefresh": false
-			}
-		},
-		{
-			"path": "pages/category/category",
-			"style": {
-				"enablePullDownRefresh": false
-			}
-		},
-		{
-			"path": "pages/cart/cart",
-			"style": {
-				"enablePullDownRefresh": false
-			}
-		},
-		{
-			"path": "pages/profile/profile",
-			"style": {
-				"enablePullDownRefresh": false
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "购物街", // 标题名称
-		"navigationBarBackgroundColor": "#ff8190", // 背景颜色
-		"backgroundColor": "#F8F8F8"
-	},
-	"uniIdRouter": {},
-	"tabBar": {
-		"selectedColor": "#ff8190",
-		"list": [
-			{
-				"text": "首页",
-				"pagePath": "pages/home/home",
-				"iconPath": "static/images/tabbar/home.png",
-				"selectedIconPath": "static/images/tabbar/home_active.png"
-			},
-			{
-				"text": "分类",
-				"pagePath": "pages/category/category",
-				"iconPath": "static/images/tabbar/category.png",
-				"selectedIconPath": "static/images/tabbar/category_active.png"
-			},
-			{
-				"text": "购物车",
-				"pagePath": "pages/cart/cart",
-				"iconPath": "static/images/tabbar/cart.png",
-				"selectedIconPath": "static/images/tabbar/cart_active.png"
-			},
-			{
-				"text": "首页",
-				"pagePath": "pages/profile/profile",
-				"iconPath": "static/images/tabbar/profile.png",
-				"selectedIconPath": "static/images/tabbar/profile_active.png"
-			}
-		]
-	}
+  "pages": [
+    {
+      "path": "pages/home/home",
+      "style": {
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/category/category",
+      "style": {
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/cart/cart",
+      "style": {
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/profile/profile",
+      "style": {
+        "enablePullDownRefresh": false
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "购物街", // 标题名称
+    "navigationBarBackgroundColor": "#ff8190", // 背景颜色
+    "backgroundColor": "#F8F8F8"
+  },
+  "uniIdRouter": {},
+  "tabBar": {
+    "selectedColor": "#ff8190",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/home/home",
+        "iconPath": "static/images/tabbar/home.png",
+        "selectedIconPath": "static/images/tabbar/home_active.png"
+      },
+      {
+        "text": "分类",
+        "pagePath": "pages/category/category",
+        "iconPath": "static/images/tabbar/category.png",
+        "selectedIconPath": "static/images/tabbar/category_active.png"
+      },
+      {
+        "text": "购物车",
+        "pagePath": "pages/cart/cart",
+        "iconPath": "static/images/tabbar/cart.png",
+        "selectedIconPath": "static/images/tabbar/cart_active.png"
+      },
+      {
+        "text": "首页",
+        "pagePath": "pages/profile/profile",
+        "iconPath": "static/images/tabbar/profile.png",
+        "selectedIconPath": "static/images/tabbar/profile_active.png"
+      }
+    ]
+  }
 }
 ```
 
@@ -140,35 +140,35 @@ const TIME_OUT = 60000
 const BASE_URL = 'http://123.207.32.32:7888/api/hy66'
 
 class ZtRequest {
-	constructor(timeout, baseUrl) {
-		this.timeout = timeout
-		this.baseUrl = baseUrl
-	}
+  constructor(timeout, baseUrl) {
+    this.timeout = timeout
+    this.baseUrl = baseUrl
+  }
 
-	request(url, method = 'GET', data = {}) {
-		return new Promise((resolve, reject) => {
-			uni.request({
-				url: this.timeout + url,
-				method,
-				timeout: this.baseUrl,
-				data,
-				success(res) {
-					resolve(res.data)
-				},
-				fail(err) {
-					reject(err)
-				}
-			})
-		})
-	}
+  request(url, method = 'GET', data = {}) {
+    return new Promise((resolve, reject) => {
+      uni.request({
+        url: this.timeout + url,
+        method,
+        timeout: this.baseUrl,
+        data,
+        success(res) {
+          resolve(res.data)
+        },
+        fail(err) {
+          reject(err)
+        }
+      })
+    })
+  }
 
-	get(url, params) {
-		return this.request(url, 'GET', params)
-	}
+  get(url, params) {
+    return this.request(url, 'GET', params)
+  }
 
-	post(url, data) {
-		return this.request(url, 'POST', data)
-	}
+  post(url, data) {
+    return this.request(url, 'POST', data)
+  }
 }
 
 export default new ZtRequest(TIME_OUT, BASE_URL)
@@ -199,13 +199,13 @@ import * as Pinia from 'pinia'
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
 export function createApp() {
-	const app = createSSRApp(App)
+  const app = createSSRApp(App)
 
-	app.use(Pinia.createPinia())
-	return {
-		app,
-		Pinia
-	}
+  app.use(Pinia.createPinia())
+  return {
+    app,
+    Pinia
+  }
 }
 // #endif
 ```
@@ -221,19 +221,19 @@ import { defineStore } from 'pinia'
 import { getHomeMutidata } from '@/service/home.js'
 
 export const useHomeStore = defineStore('home', {
-	state: () => ({
-		banners: [],
-		recommends: []
-	}),
-	actions: {
-		fetchHomeMultiDataAction() {
-			getHomeMutidata().then(res => {
-				console.log('getHomeMutidata res:', res)
-				this.banners = res.data.banner.list || []
-				this.recommends = res.data.recommend.list || []
-			})
-		}
-	}
+  state: () => ({
+    banners: [],
+    recommends: []
+  }),
+  actions: {
+    fetchHomeMultiDataAction() {
+      getHomeMutidata().then(res => {
+        console.log('getHomeMutidata res:', res)
+        this.banners = res.data.banner.list || []
+        this.recommends = res.data.recommend.list || []
+      })
+    }
+  }
 })
 ```
 
@@ -247,7 +247,7 @@ pages\home\home.vue
 
 ```vue
 <template>
-	<view> home </view>
+  <view> home </view>
 </template>
 
 <script setup>
@@ -259,7 +259,7 @@ const homeStore = useHomeStore()
 const { banners } = storeToRefs(homeStore)
 
 onLoad(() => {
-	homeStore.fetchHomeMultiDataAction()
+  homeStore.fetchHomeMultiDataAction()
 })
 </script>
 ```
@@ -270,42 +270,42 @@ pages\home\cpns\home-banner.vue
 
 ```vue
 <template>
-	<swiper
-		class="banner"
-		:indicator-dots="true"
-		indicator-active-color="#ff8190"
-		:autoplay="true"
-		:interval="3000"
-		:duration="1000"
-	>
-		<template v-for="item of banners" :key="item.title">
-			<swiper-item @click="onBannerItemClick(item)">
-				<image class="image" :src="item.image" mode="widthFix"></image>
-			</swiper-item>
-		</template>
-	</swiper>
+  <swiper
+    class="banner"
+    :indicator-dots="true"
+    indicator-active-color="#ff8190"
+    :autoplay="true"
+    :interval="3000"
+    :duration="1000"
+  >
+    <template v-for="item of banners" :key="item.title">
+      <swiper-item @click="onBannerItemClick(item)">
+        <image class="image" :src="item.image" mode="widthFix"></image>
+      </swiper-item>
+    </template>
+  </swiper>
 </template>
 
 <script setup>
 defineProps({
-	banners: {
-		type: Array,
-		dafault: () => []
-	}
+  banners: {
+    type: Array,
+    dafault: () => []
+  }
 })
 
 const emit = defineEmits(['bannerItemClick'])
 
 const onBannerItemClick = banenrItem => {
-	emit('bannerItemClick', banenrItem.link)
+  emit('bannerItemClick', banenrItem.link)
 }
 </script>
 
 <style lang="less">
 .banner {
-	.image {
-		width: 100%;
-	}
+  .image {
+    width: 100%;
+  }
 }
 </style>
 ```
@@ -318,13 +318,10 @@ pages\home\home.vue
 
 ```vue
 <template>
-	<view>
-		<!-- 轮播图组件 -->
-		<HomeBanner
-			:banners="banners"
-			@bannerItemClick="handleBannerItemClick"
-		></HomeBanner>
-	</view>
+  <view>
+    <!-- 轮播图组件 -->
+    <HomeBanner :banners="banners" @bannerItemClick="handleBannerItemClick"></HomeBanner>
+  </view>
 </template>
 
 <script setup>
@@ -338,14 +335,14 @@ const homeStore = useHomeStore()
 const { banners } = storeToRefs(homeStore)
 
 onLoad(() => {
-	homeStore.fetchHomeMultiDataAction()
+  homeStore.fetchHomeMultiDataAction()
 })
 
 // 轮播图点击
 const handleBannerItemClick = link => {
-	uni.navigateTo({
-		url: '/pages/webview/webview?link=' + link
-	})
+  uni.navigateTo({
+    url: '/pages/webview/webview?link=' + link
+  })
 }
 </script>
 ```
@@ -358,15 +355,15 @@ pages\webview\webview.vue
 
 ```vue
 <template>
-	<web-view :src="link"></web-view>
+  <web-view :src="link"></web-view>
 </template>
 
 <script setup>
 defineProps({
-	link: {
-		type: String,
-		default: ''
-	}
+  link: {
+    type: String,
+    default: ''
+  }
 })
 </script>
 ```
@@ -379,54 +376,54 @@ pages\home\cpns\home-recommend.vue
 
 ```vue
 <template>
-	<view class="recommend">
-		<template v-for="item in recommends" :key="item.title">
-			<view class="recommend-item" @click="onRecommendItemClick(item)">
-				<image class="image" :src="item.image" mode="widthFix"></image>
-				<view class="title">{{ item.title }}</view>
-			</view>
-		</template>
-	</view>
+  <view class="recommend">
+    <template v-for="item in recommends" :key="item.title">
+      <view class="recommend-item" @click="onRecommendItemClick(item)">
+        <image class="image" :src="item.image" mode="widthFix"></image>
+        <view class="title">{{ item.title }}</view>
+      </view>
+    </template>
+  </view>
 </template>
 
 <script setup>
 defineProps({
-	recommends: {
-		type: Array,
-		default: () => []
-	}
+  recommends: {
+    type: Array,
+    default: () => []
+  }
 })
 
 const emit = defineEmits(['recommendItemClick'])
 
 const onRecommendItemClick = item => {
-	emit('recommendItemClick', item)
+  emit('recommendItemClick', item)
 }
 </script>
 
 <style lang="less">
 .recommend {
-	display: flex;
-	justify-content: space-between;
-	padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx;
 
-	.recommend-item {
-		// less 混入
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
-		font-size: var(--gFontSize);
+  .recommend-item {
+    // less 混入
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--gFontSize);
 
-		.image {
-			width: 150rpx;
-			height: 150rpx;
-		}
+    .image {
+      width: 150rpx;
+      height: 150rpx;
+    }
 
-		.title {
-			margin-top: 10rpx;
-		}
-	}
+    .title {
+      margin-top: 10rpx;
+    }
+  }
 }
 </style>
 ```
@@ -437,13 +434,13 @@ pages\home\home.vue
 
 ```vue
 <template>
-	<view>
-		<!-- 推荐 -->
-		<HomeRecommend
-			:recommends="recommends"
-			@recommendItemClick="handleRecommendItemClick"
-		></HomeRecommend>
-	</view>
+  <view>
+    <!-- 推荐 -->
+    <HomeRecommend
+      :recommends="recommends"
+      @recommendItemClick="handleRecommendItemClick"
+    ></HomeRecommend>
+  </view>
 </template>
 
 <script setup>
@@ -457,11 +454,11 @@ const homeStore = useHomeStore()
 const { recommends } = storeToRefs(homeStore)
 
 onLoad(() => {
-	homeStore.fetchHomeMultiDataAction()
+  homeStore.fetchHomeMultiDataAction()
 })
 
 const handleRecommendItemClick = item => {
-	console.log('recommend item:', item)
+  console.log('recommend item:', item)
 }
 </script>
 ```
@@ -480,18 +477,18 @@ pages\home\cpns\home-popular.vue
 
 ```vue
 <template>
-	<view class="popular">
-		<image class="image" src="@/static/recommend_bg.jpg"></image>
-	</view>
+  <view class="popular">
+    <image class="image" src="@/static/recommend_bg.jpg"></image>
+  </view>
 </template>
 
 <script setup></script>
 
 <style lang="less">
 .popular {
-	.image {
-		width: 100%;
-	}
+  .image {
+    width: 100%;
+  }
 }
 </style>
 ```
@@ -502,10 +499,10 @@ pages\home\home.vue
 
 ```vue
 <template>
-	<view>
-		<!-- 热门 -->
-		<HomePopular></HomePopular>
-	</view>
+  <view>
+    <!-- 热门 -->
+    <HomePopular></HomePopular>
+  </view>
 </template>
 ```
 
@@ -521,16 +518,13 @@ components\tab-control\tab-control.vue
 
 ```vue
 <template>
-	<view class="tab-control">
-		<template v-for="(title, index) of titles" :key="title">
-			<view
-				:class="['item', { active: currentIndex === index }]"
-				@click="onTabItemClick(index)"
-			>
-				<text class="title">{{ title }}</text>
-			</view>
-		</template>
-	</view>
+  <view class="tab-control">
+    <template v-for="(title, index) of titles" :key="title">
+      <view :class="['item', { active: currentIndex === index }]" @click="onTabItemClick(index)">
+        <text class="title">{{ title }}</text>
+      </view>
+    </template>
+  </view>
 </template>
 
 <script setup>
@@ -539,44 +533,44 @@ import { ref } from 'vue'
 const currentIndex = ref(0)
 
 defineProps({
-	titles: {
-		type: Array,
-		default: () => []
-	}
+  titles: {
+    type: Array,
+    default: () => []
+  }
 })
 
 const emit = defineEmits(['tabItemClick'])
 
 const onTabItemClick = index => {
-	currentIndex.value = index
-	emit('tabItemClick', index)
+  currentIndex.value = index
+  emit('tabItemClick', index)
 }
 </script>
 
 <style lang="less">
 .tab-control {
-	display: flex;
-	justify-content: space-between;
-	padding: 10rpx;
-	margin-top: 10rpx;
-	text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx;
+  margin-top: 10rpx;
+  text-align: center;
 
-	.item {
-		flex: 1;
+  .item {
+    flex: 1;
 
-		.title {
-			display: inline-block; // 让外侧轮廓变小
-			padding: 16rpx;
-			border-bottom: 6px solid #fff;
-		}
+    .title {
+      display: inline-block; // 让外侧轮廓变小
+      padding: 16rpx;
+      border-bottom: 6px solid #fff;
+    }
 
-		&.active {
-			.title {
-				color: var(--gTintColor);
-				border-bottom-color: var(--gTintColor);
-			}
-		}
-	}
+    &.active {
+      .title {
+        color: var(--gTintColor);
+        border-bottom-color: var(--gTintColor);
+      }
+    }
+  }
 }
 </style>
 ```
@@ -589,13 +583,13 @@ pages\home\home.vue
 
 ```vue
 <template>
-	<view>
-		<!-- 选项卡，easycom 组件，直接使用 -->
-		<tab-control
-			:titles="['流行', '新款', '精选']"
-			@tabItemClick="handleTabControlClick"
-		></tab-control>
-	</view>
+  <view>
+    <!-- 选项卡，easycom 组件，直接使用 -->
+    <tab-control
+      :titles="['流行', '新款', '精选']"
+      @tabItemClick="handleTabControlClick"
+    ></tab-control>
+  </view>
 </template>
 
 <script setup>
@@ -603,7 +597,7 @@ pages\home\home.vue
 
 // 选项卡点击
 const handleTabControlClick = index => {
-	console.log('tab control currentIndex:', index)
+  console.log('tab control currentIndex:', index)
 }
 </script>
 ```

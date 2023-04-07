@@ -4,11 +4,11 @@ import proptypes from 'proptypes'
 import { memo } from 'react'
 import styles from './index.modules.less'
 
-const ZtMultiButtom = memo((props) => {
+const ZtMultiButtom = memo(props => {
   const { type = 'default', ztButtonClick } = props
 
   const onBtnClick = () => {
-    console.log('zt-multi-button 按钮店家了');
+    console.log('zt-multi-button 按钮店家了')
     ztButtonClick && ztButtonClick()
   }
 

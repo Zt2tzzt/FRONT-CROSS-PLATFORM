@@ -1,10 +1,14 @@
-[{
-	"label": "流行",
-	"name": "pop"
-}, {
-	"label": "新款",
-	"name": "new"
-}, {
-	"label": "精选",
-	"name": "sell"
-}]
+[
+  {
+    "label": "流行",
+    "name": "pop"
+  },
+  {
+    "label": "新款",
+    "name": "new"
+  },
+  {
+    "label": "精选",
+    "name": "sell"
+  }
+]

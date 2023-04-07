@@ -5,7 +5,6 @@ import { decrementAction, fetchHomeMutiDataAction, incrementAction } from '@/sto
 import './index.less'
 
 export default memo(() => {
-
   const counter = useSelector(state => state.home.counter)
 
   const dispatch = useDispatch()

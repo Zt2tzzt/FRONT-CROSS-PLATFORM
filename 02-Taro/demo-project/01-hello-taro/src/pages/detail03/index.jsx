@@ -4,18 +4,17 @@ import Taro from '@tarojs/taro'
 import './index.less'
 
 export default class Detail03 extends Component {
+  componentWillMount() {}
 
-  componentWillMount () { }
+  componentDidMount() {}
 
-  componentDidMount () { }
+  componentWillUnmount() {}
 
-  componentWillUnmount () { }
+  componentDidShow() {}
 
-  componentDidShow () { }
+  componentDidHide() {}
 
-  componentDidHide () { }
-
-  $instance = Taro.getCurrentInstance(); // 是可以拿到当前的 app 实例，其中有 page 实例，其中有 router 对象
+  $instance = Taro.getCurrentInstance() // 是可以拿到当前的 app 实例，其中有 page 实例，其中有 router 对象
 
   goBack() {
     Taro.navigateBack({
@@ -25,7 +24,7 @@ export default class Detail03 extends Component {
     Taro.eventCenter.trigger('detail03ToHome', 'detail03 to home')
   }
 
-  render () {
+  render() {
     return (
       <View className='detail02'>
         <Button onClick={() => this.goBack()}>返回!</Button>

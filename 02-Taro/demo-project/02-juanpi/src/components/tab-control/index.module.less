@@ -1,27 +1,27 @@
 @import '@/assets/css/variables.less';
 
 .tab-control {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 
-	height: 98px;
-	background-color: white;
+  height: 98px;
+  background-color: white;
 
-	// 粘性定位
-	position: sticky;
-	top: 0;
-	z-index: 1000;
+  // 粘性定位
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .tab-item {
-	font-size: 36px;
-	margin: 0 20px;
+  font-size: 36px;
+  margin: 0 20px;
 
-	color: @zt-text-color-gray; // 灰色
-	border-bottom: 6px solid transparent;
+  color: @zt-text-color-gray; // 灰色
+  border-bottom: 6px solid transparent;
 
-	&.active {
-		color: @zt-color-primary;
-		border-bottom: 6px solid @zt-color-primary;
-	}
+  &.active {
+    color: @zt-color-primary;
+    border-bottom: 6px solid @zt-color-primary;
+  }
 }

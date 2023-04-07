@@ -46,46 +46,43 @@ import { memo, useEffect } from 'react'
 import styles from './index.modules.less'
 
 const ZtButtom = memo(props => {
-	const { type = 'default', ztButtonClick } = props
+  const { type = 'default', ztButtonClick } = props
 
-	const onBtnClick = () => {
-		ztButtonClick && ztButtonClick()
-	}
+  const onBtnClick = () => {
+    ztButtonClick && ztButtonClick()
+  }
 
-	// 组件生命周期
-	useEffect(() => {
-		console.log('zt-button 挂在完成~')
-		return () => {
-			console.log('zt-button 即将卸载')
-		}
-	}, [])
+  // 组件生命周期
+  useEffect(() => {
+    console.log('zt-button 挂在完成~')
+    return () => {
+      console.log('zt-button 即将卸载')
+    }
+  }, [])
 
-	// 页面的生命周期，
-	useLoad(() => {
-		console.log('zt-button useLoad')
-	})
+  // 页面的生命周期，
+  useLoad(() => {
+    console.log('zt-button useLoad')
+  })
 
-	useDidShow(() => {
-		console.log('zt-button useDidShow')
-	})
+  useDidShow(() => {
+    console.log('zt-button useDidShow')
+  })
 
-	useReady(() => {
-		console.log('zt-button useReady')
-	})
+  useReady(() => {
+    console.log('zt-button useReady')
+  })
 
-	return (
-		<View
-			className={classNames(styles['zt-button'], styles[type])}
-			onClick={onBtnClick}
-		>
-			{props.children}
-		</View>
-	)
+  return (
+    <View className={classNames(styles['zt-button'], styles[type])} onClick={onBtnClick}>
+      {props.children}
+    </View>
+  )
 })
 
 ZtButtom.propTypes = {
-	type: proptypes.string,
-	onBtnClick: proptypes.func
+  type: proptypes.string,
+  onBtnClick: proptypes.func
 }
 
 export default ZtButtom
@@ -97,23 +94,23 @@ src\components\zt-buttom\index.modules.less
 
 ```less
 .zt-button {
-	font-size: 36px;
-	padding: 20px;
-	text-align: center;
-	color: white;
-	border-radius: 10px;
+  font-size: 36px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
 }
 
 .default {
-	background-color: #cdcdcd;
+  background-color: #cdcdcd;
 }
 
 .skyblue {
-	background-color: skyblue;
+  background-color: skyblue;
 }
 
 .primary {
-	background-color: #ff464e;
+  background-color: #ff464e;
 }
 ```
 
@@ -128,18 +125,18 @@ import ZtButton from '@/components/zt-buttom'
 import './index.less'
 
 export default memo(() => {
-	const handleZtButtonClick = () => {
-		console.log('handleZtButtonClick')
-	}
+  const handleZtButtonClick = () => {
+    console.log('handleZtButtonClick')
+  }
 
-	return (
-		<View className="category">
-			<Text>Hello Category!</Text>
-			<ZtButton type="primary" ztButtonClick={handleZtButtonClick}>
-				ZtButton
-			</ZtButton>
-		</View>
-	)
+  return (
+    <View className='category'>
+      <Text>Hello Category!</Text>
+      <ZtButton type='primary' ztButtonClick={handleZtButtonClick}>
+        ZtButton
+      </ZtButton>
+    </View>
+  )
 })
 ```
 
@@ -174,34 +171,34 @@ import ZtButton from '@/components/zt-buttom'
 import './index.less'
 
 export default memo(() => {
-	const handleZtButtonClick = () => {
-		if (process.env.TARO_ENV === 'h5') {
-			console.log('h5 端 ZtButton 点击了~')
-		}
-		if (process.env.TARO_ENV === 'weapp') {
-			console.log('weapp 端 ZtButton 点击了~')
-		}
-	}
+  const handleZtButtonClick = () => {
+    if (process.env.TARO_ENV === 'h5') {
+      console.log('h5 端 ZtButton 点击了~')
+    }
+    if (process.env.TARO_ENV === 'weapp') {
+      console.log('weapp 端 ZtButton 点击了~')
+    }
+  }
 
-	return (
-		<View className="category">
-			<ZtButton type="primary" ztButtonClick={handleZtButtonClick}>
-				ZtButton
-			</ZtButton>
+  return (
+    <View className='category'>
+      <ZtButton type='primary' ztButtonClick={handleZtButtonClick}>
+        ZtButton
+      </ZtButton>
 
-			{process.env.TARO_ENV === 'h5' ? (
-				<>
-					<View>h5 端专有组件</View>
-					<ZtButton type="skyblue">ZtButton h5</ZtButton>
-				</>
-			) : process.env.TARO_ENV === 'weapp' ? (
-				<>
-					<View>weapp 端专有组件</View>
-					<ZtButton type="primary">ZtButton weapp</ZtButton>
-				</>
-			) : undefined}
-		</View>
-	)
+      {process.env.TARO_ENV === 'h5' ? (
+        <>
+          <View>h5 端专有组件</View>
+          <ZtButton type='skyblue'>ZtButton h5</ZtButton>
+        </>
+      ) : process.env.TARO_ENV === 'weapp' ? (
+        <>
+          <View>weapp 端专有组件</View>
+          <ZtButton type='primary'>ZtButton weapp</ZtButton>
+        </>
+      ) : undefined}
+    </View>
+  )
 })
 ```
 
@@ -250,26 +247,23 @@ import { memo } from 'react'
 import styles from './index.modules.less'
 
 const ZtMultiButtom = memo(props => {
-	const { type = 'default', ztButtonClick } = props
+  const { type = 'default', ztButtonClick } = props
 
-	const onBtnClick = () => {
-		console.log('zt-multi-button 按钮店家了')
-		ztButtonClick && ztButtonClick()
-	}
+  const onBtnClick = () => {
+    console.log('zt-multi-button 按钮店家了')
+    ztButtonClick && ztButtonClick()
+  }
 
-	return (
-		<View
-			className={classNames(styles['zt-button'], styles[type])}
-			onClick={onBtnClick}
-		>
-			{props.children}
-		</View>
-	)
+  return (
+    <View className={classNames(styles['zt-button'], styles[type])} onClick={onBtnClick}>
+      {props.children}
+    </View>
+  )
 })
 
 ZtMultiButtom.propTypes = {
-	type: proptypes.string,
-	onBtnClick: proptypes.func
+  type: proptypes.string,
+  onBtnClick: proptypes.func
 }
 
 export default ZtMultiButtom
@@ -280,8 +274,8 @@ src\components\zt-multi-button\index.h5.jsx
 ```jsx
 //...
 const onBtnClick = () => {
-	console.log('h5 端的 zt-multi-button 点击了') // h5 端，打印了
-	ztButtonClick && ztButtonClick()
+  console.log('h5 端的 zt-multi-button 点击了') // h5 端，打印了
+  ztButtonClick && ztButtonClick()
 }
 //...
 ```
@@ -291,8 +285,8 @@ src\components\zt-multi-button\index.weapp.jsx
 ```jsx
 //...
 const onBtnClick = () => {
-	console.log('weapp 端的 zt-multi-button 点击了') // weapp 端打印了
-	ztButtonClick && ztButtonClick()
+  console.log('weapp 端的 zt-multi-button 点击了') // weapp 端打印了
+  ztButtonClick && ztButtonClick()
 }
 //...
 ```
@@ -308,12 +302,12 @@ import ZtMultiButton from '@/components/zt-multi-button'
 import './index.less'
 
 export default memo(() => {
-	return (
-		<View className="category">
-			<View>统一接口的多端文件</View>
-			<ZtMultiButton type="skyblue">ZtMultiButton</ZtMultiButton>
-		</View>
-	)
+  return (
+    <View className='category'>
+      <View>统一接口的多端文件</View>
+      <ZtMultiButton type='skyblue'>ZtMultiButton</ZtMultiButton>
+    </View>
+  )
 })
 ```
 
@@ -329,9 +323,9 @@ src\utils\set-title\index.js
 import Taro from '@tarojs/taro'
 
 export default function () {
-	Taro.setNavigationBarTitle({
-		title: '与平台无关的标题'
-	})
+  Taro.setNavigationBarTitle({
+    title: '与平台无关的标题'
+  })
 }
 ```
 
@@ -339,7 +333,7 @@ src\utils\set-title\index.h5.js
 
 ```js
 export default function () {
-	document.title = 'h5 平台的标题'
+  document.title = 'h5 平台的标题'
 }
 ```
 
@@ -347,9 +341,9 @@ src\utils\set-title\index.weapp.js
 
 ```js
 export default function () {
-	wx.setNavigationBarTitle({
-		title: 'weapp 平台的标题'
-	})
+  wx.setNavigationBarTitle({
+    title: 'weapp 平台的标题'
+  })
 }
 ```
 
@@ -365,18 +359,18 @@ import setTitle from '@/utils/set-title'
 import './index.less'
 
 export default memo(() => {
-	const hadnleZtMultiButtonClick = () => {
-		setTitle()
-	}
+  const hadnleZtMultiButtonClick = () => {
+    setTitle()
+  }
 
-	return (
-		<View className="category">
-			<View>统一接口的多端文件</View>
-			<ZtMultiButton type="skyblue" ztButtonClick={hadnleZtMultiButtonClick}>
-				ZtMultiButton
-			</ZtMultiButton>
-		</View>
-	)
+  return (
+    <View className='category'>
+      <View>统一接口的多端文件</View>
+      <ZtMultiButton type='skyblue' ztButtonClick={hadnleZtMultiButtonClick}>
+        ZtMultiButton
+      </ZtMultiButton>
+    </View>
+  )
 })
 ```
 
@@ -428,37 +422,37 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getHomeMutidata } from '@/service/home'
 
 const homeSlice = createSlice({
-	name: 'home',
-	initialState: {
-		counter: 800,
-		homeData: null
-	},
-	reducers: {
-		incrementAction(state, action) {
-			const { payload } = action
-			state.counter += payload
-		},
-		decrementAction(state, action) {
-			const { payload } = action
-			state.counter -= payload
-		}
-	},
-	extraReducers: builder => {
-		builder.addCase(fetchHomeMutiDataAction.fulfilled, (state, action) => {
-			const { payload } = action
-			state.homeData = payload.data
-		})
-	}
+  name: 'home',
+  initialState: {
+    counter: 800,
+    homeData: null
+  },
+  reducers: {
+    incrementAction(state, action) {
+      const { payload } = action
+      state.counter += payload
+    },
+    decrementAction(state, action) {
+      const { payload } = action
+      state.counter -= payload
+    }
+  },
+  extraReducers: builder => {
+    builder.addCase(fetchHomeMutiDataAction.fulfilled, (state, action) => {
+      const { payload } = action
+      state.homeData = payload.data
+    })
+  }
 })
 
 // 异步 action
 export const fetchHomeMutiDataAction = createAsyncThunk(
-	'home/multidata', // action type 的前缀
-	async (param, { dispatch, getState }) => {
-		const res = await getHomeMutidata()
-		console.log('res=>', res)
-		return res
-	}
+  'home/multidata', // action type 的前缀
+  async (param, { dispatch, getState }) => {
+    const res = await getHomeMutidata()
+    console.log('res=>', res)
+    return res
+  }
 )
 
 export const { incrementAction, decrementAction } = homeSlice.actions
@@ -472,9 +466,9 @@ import { configureStore } from '@reduxjs/toolkit'
 import homeReducer from './modules/home'
 
 const store = configureStore({
-	reducer: {
-		home: homeReducer
-	}
+  reducer: {
+    home: homeReducer
+  }
 })
 
 export default store
@@ -496,32 +490,28 @@ src\pages\cart\index.jsx
 import { memo } from 'react'
 import { View, Text, Button } from '@tarojs/components'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-	decrementAction,
-	fetchHomeMutiDataAction,
-	incrementAction
-} from '@/store/modules/home'
+import { decrementAction, fetchHomeMutiDataAction, incrementAction } from '@/store/modules/home'
 import './index.less'
 
 export default memo(() => {
-	const counter = useSelector(state => state.home.counter)
+  const counter = useSelector(state => state.home.counter)
 
-	const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-	// 派发同步 action
-	const onAddBtnClick = () => dispatch(incrementAction(1))
-	const onSubBtnClick = () => dispatch(decrementAction(1))
+  // 派发同步 action
+  const onAddBtnClick = () => dispatch(incrementAction(1))
+  const onSubBtnClick = () => dispatch(decrementAction(1))
 
-	// 派发异步 action
-	const onFetchDataBtnClick = () => dispatch(fetchHomeMutiDataAction())
+  // 派发异步 action
+  const onFetchDataBtnClick = () => dispatch(fetchHomeMutiDataAction())
 
-	return (
-		<View className="cart">
-			<Text>{counter}</Text>
-			<Button onClick={onAddBtnClick}>+1</Button>
-			<Button onClick={onSubBtnClick}>-1</Button>
-			<Button onClick={onFetchDataBtnClick}>getHomeMutiData</Button>
-		</View>
-	)
+  return (
+    <View className='cart'>
+      <Text>{counter}</Text>
+      <Button onClick={onAddBtnClick}>+1</Button>
+      <Button onClick={onSubBtnClick}>-1</Button>
+      <Button onClick={onFetchDataBtnClick}>getHomeMutiData</Button>
+    </View>
+  )
 })
 ```

@@ -39,7 +39,7 @@ const config = {
 }
 ```
 
-（新版无需启用，否则可能报错）启用 webpack 持久化缓存配置。
+启用 webpack 持久化缓存配置（新版无需启用，否则可能报错）。
 
 config\index.js
 
@@ -103,13 +103,15 @@ const config = {
 
 ## 4.资源引入
 
-引入图片 `src/assets  ` 目录下，引入 `image` 和 `css` 等资源。
+在 `src/assets  ` 目录下，引入 `image` 和 `css` 等资源。
 
 ## 5.页面创建
 
-在 `app.jsx` 中，保留类组件，其它页面或组件，改为函数式组件形式，
+在 `app.jsx` 中，保留类组件，其它页面或组件，使用函数式组件编写，
 
-创建 `home` ，`category`，`cart`，`profile`，`detail` 页面。
+创建 `home`，`category`，`cart`，`profile` 页面，作为 tabbar 页面。
+
+创建 `detail` 页面，作为商品详情页。
 
 ```shell
 Taro create --name home
@@ -452,7 +454,7 @@ src\pages\home\index.jsx
 const Home = memo(function () {
 	const dispatch = useDispatch()
 
-	// 2.从redux store中读取数据
+	// 2.从 redux store 中读取数据
 	const { populars, recommend } = useSelector(state => ({
 		populars: state.home.populars,
 		recommend: state.home.recommend,
@@ -670,7 +672,7 @@ const homeSlice = createSlice({
 
 //...
 
-// 异步的action:  fetchHomeGoodsDataAction({type: 0, page: 1})
+// 异步的 action:  fetchHomeGoodsDataAction({type: 0, page: 1})
 export const fetchHomeGoodsDataAction = createAsyncThunk(
 	'home/goods', // 会用在异步action的type名的前缀
 	async payload => {
@@ -823,7 +825,7 @@ const homeSlice = createSlice({
 })
 ```
 
-在 `home` 中，监听 `tab-control` 点击，改变 `currentTab` 状态，和商品列表数据。
+在 `home` 中，监听 `tab-control` 点击，改变 `currentTabName` 状态，和商品列表数据。
 
 src\pages\home\index.jsx
 
@@ -927,7 +929,7 @@ src\components\grid-view\index.jsx
 
 ```jsx
 const GridView = memo(function (props) {
-//...
+	//...
 	function handleItemClick(goodInfo) {
 		console.log(goodInfo)
 		Taro.navigateTo({

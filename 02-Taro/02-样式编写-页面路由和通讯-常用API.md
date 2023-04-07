@@ -36,8 +36,8 @@ import './index.less'
 export default class extends Component {
   render() {
     return (
-      <View className='02-style'>
-        <Text className='style-taro'>Hello world!</Text>
+      <View className="02-style">
+        <Text className="style-taro">Hello world!</Text>
       </View>
     )
   }
@@ -80,8 +80,8 @@ import './no-transform-unit.less'
 export default class extends Component {
   render() {
     return (
-      <View className='02-style'>
-        <View className='no-transform-unit'>不转换单位</View>
+      <View className="02-style">
+        <View className="no-transform-unit">不转换单位</View>
       </View>
     )
   }
@@ -119,7 +119,7 @@ export default class extends Component {
     }
 
     return (
-      <View className='02-style'>
+      <View className="02-style">
         <View style={lineStyle}>行内样式 px 的转换</View>
       </View>
     )
@@ -199,7 +199,7 @@ import styles from './index.module.less'
 export default class extends Component {
   render() {
     return (
-      <View className='02-style'>
+      <View className="02-style">
         {/* 局部样式，如果使用了 less，也要按照嵌套来写。 */}
         <View className={styles['local-style']}>
           编写局部样式
@@ -230,9 +230,9 @@ import styles from './index.module.less'
 export default class extends Component {
   render() {
     return (
-      <View className='02-style'>
+      <View className="02-style">
         {/* 全局和局部样式 */}
-        <View className='title'>局部样式中编写的全局样式</View>
+        <View className="title">局部样式中编写的全局样式</View>
       </View>
     )
   }
@@ -304,7 +304,7 @@ import styles from './index.module.less'
 export default class extends Component {
   render() {
     return (
-      <View className='02-style'>
+      <View className="02-style">
         {/* 背景图片 */}
         <View className={styles['bg-img']}></View>
       </View>
@@ -345,10 +345,10 @@ import './index.less'
 export default class extends Component {
   render() {
     return (
-      <View className='02-style'>
+      <View className="02-style">
         {/* 字体图标 */}
-        <Text className='text iconfont icon-shouye'></Text>
-        <Text className='text iconfont icon-touxiang-kong'></Text>
+        <Text className="text iconfont icon-shouye"></Text>
+        <Text className="text iconfont icon-touxiang-kong"></Text>
       </View>
     )
   }
@@ -381,31 +381,31 @@ C:\Users\xxx\AppData\Roaming\Code\User\snippets\javascriptreact.json
 
 ```json
 {
-	"taro function component": {
-		"prefix": "taro-rmcp",
-		"body": [
-			"import PropTypes from 'prop-types'",
-			"import { memo } from 'react'",
-			"import { View, Text } from '@tarojs/components'",
-			"import './index.less'",
-			"",
-			"const ${1:App} = memo((props) => {",
-			"",
-			"  return (",
-			"    <View className='home'>",
-			"      <Text>Hello ${1:App}!</Text>",
-			"    </View>",
-			"  )",
-			"})",
-			"",
-			"${1:App}.propTypes = {}",
-			"",
-			"export default ${1:App}",
-			"",
-			""
-		],
-		"description": "taro function component"
-	}
+  "taro function component": {
+    "prefix": "taro-rmcp",
+    "body": [
+      "import PropTypes from 'prop-types'",
+      "import { memo } from 'react'",
+      "import { View, Text } from '@tarojs/components'",
+      "import './index.less'",
+      "",
+      "const ${1:App} = memo((props) => {",
+      "",
+      "  return (",
+      "    <View className='home'>",
+      "      <Text>Hello ${1:App}!</Text>",
+      "    </View>",
+      "  )",
+      "})",
+      "",
+      "${1:App}.propTypes = {}",
+      "",
+      "export default ${1:App}",
+      "",
+      ""
+    ],
+    "description": "taro function component"
+  }
 }
 ```
 
@@ -498,15 +498,15 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View className='home'>
+      <View className="home">
         <View>1.页面跳转（组件）</View>
-        <Navigator url='/pages/detail01/index' openType='navigate'>
+        <Navigator url="/pages/detail01/index" openType="navigate">
           <Button>goToDetail01 navigate</Button>
         </Navigator>
-        <Navigator url='/pages/detail01/index' openType='redirect'>
+        <Navigator url="/pages/detail01/index" openType="redirect">
           <Button>goToDetail01 redirect</Button>
         </Navigator>
-        <Navigator url='/pages/category/index' openType='switchTab'>
+        <Navigator url="/pages/category/index" openType="switchTab">
           <Button>goToCategory switchTab</Button>
         </Navigator>
 
@@ -568,7 +568,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View className='home'>
+      <View className="home">
         <View>3.页面传递参数（正向）</View>
         <Button onClick={() => this.getDetail01WithEventChannel()}>
           goToDetail01 eventChannel
@@ -602,7 +602,7 @@ export default class Detail01 extends Component {
 
   render() {
     return (
-      <View className='detail01'>
+      <View className="detail01">
         <Text>Hello world!</Text>
       </View>
     )
@@ -639,7 +639,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View className='home'>
+      <View className="home">
         <View>3.页面传递参数（正向）</View>
         <Button onClick={() => this.getDetail01WithEventChannel()}>
           goToDetail01 eventChannel
@@ -672,7 +672,7 @@ export default class Detail01 extends Component {
 
   render() {
     return (
-      <View className='detail01'>
+      <View className="detail01">
         <Text>Hello world!</Text>
       </View>
     )
@@ -715,7 +715,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View className='home'>
+      <View className="home">
         <View>4.页面传递数据（逆向）</View>
         <Button onClick={() => this.goToDetail02WithEventChannel()}>
           goToDetail02 eventChannel
@@ -754,7 +754,7 @@ export default class Detail02 extends Component {
 
   render() {
     return (
-      <View className='detail02'>
+      <View className="detail02">
         <Button onClick={() => this.goBack()}>返回!</Button>
       </View>
     )
@@ -802,9 +802,9 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View className='home'>
+      <View className="home">
         <View>4.页面传递数据（逆向）</View>
-        <Navigator url='/pages/detail02/index' openType='navigate'>
+        <Navigator url="/pages/detail02/index" openType="navigate">
           <Button>goToDetail02 Taro.eventCenter</Button>
         </Navigator>
       </View>
@@ -832,7 +832,7 @@ export default class Detail03 extends Component {
 
   render() {
     return (
-      <View className='detail02'>
+      <View className="detail02">
         <Button onClick={() => this.goBack()}>返回!</Button>
       </View>
     )
@@ -879,9 +879,9 @@ import { View, Navigator, Button } from '@tarojs/components'
 export default class Home extends Component {
   render() {
     return (
-      <View className='home'>
+      <View className="home">
         <View>5.页面生命周期</View>
-        <Navigator url='/pages/detail04/index' openType='navigate'>
+        <Navigator url="/pages/detail04/index" openType="navigate">
           <Button>goToDetail04 class</Button>
         </Navigator>
       </View>
@@ -926,22 +926,22 @@ export default class Detail04 extends Component {
 
   render() {
     return (
-      <View className='detail04'>
-        <View className='item'>item1</View>
-        <View className='item'>item2</View>
-        <View className='item'>item3</View>
-        <View className='item'>item4</View>
-        <View className='item'>item5</View>
-        <View className='item'>item6</View>
-        <View className='item'>item7</View>
-        <View className='item'>item8</View>
-        <View className='item'>item9</View>
-        <View className='item'>item10</View>
-        <View className='item'>item11</View>
-        <View className='item'>item12</View>
-        <View className='item'>item13</View>
-        <View className='item'>item14</View>
-        <View className='item'>item15</View>
+      <View className="detail04">
+        <View className="item">item1</View>
+        <View className="item">item2</View>
+        <View className="item">item3</View>
+        <View className="item">item4</View>
+        <View className="item">item5</View>
+        <View className="item">item6</View>
+        <View className="item">item7</View>
+        <View className="item">item8</View>
+        <View className="item">item9</View>
+        <View className="item">item10</View>
+        <View className="item">item11</View>
+        <View className="item">item12</View>
+        <View className="item">item13</View>
+        <View className="item">item14</View>
+        <View className="item">item15</View>
       </View>
     )
   }
@@ -967,9 +967,9 @@ import { View, Navigator, Button } from '@tarojs/components'
 export default class Home extends Component {
   render() {
     return (
-      <View className='home'>
+      <View className="home">
         <View>5.页面生命周期</View>
-        <Navigator url='/pages/detail05/index' openType='navigate'>
+        <Navigator url="/pages/detail05/index" openType="navigate">
           <Button>goToDetail05 hook</Button>
         </Navigator>
       </View>
@@ -1036,22 +1036,22 @@ function Detail05() {
   })
 
   return (
-    <View className='detail04'>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
-      <View className='detail01-item'>item1</View>
+    <View className="detail04">
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
+      <View className="detail01-item">item1</View>
     </View>
   )
 }
@@ -1172,7 +1172,7 @@ export default class Detail01 extends Component {
   }
   render() {
     return (
-      <View className='detail01'>
+      <View className="detail01">
         <View>1.发起网络请求</View>
         <Button onClick={() => this.getHomeData()}>getHomeData</Button>
         <View>2.本地数据的存储</View>

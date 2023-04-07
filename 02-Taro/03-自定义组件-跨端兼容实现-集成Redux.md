@@ -1,6 +1,6 @@
 # 一、组件生命周期
 
-在 Taro 中，除了应用、页面有生命周期之外， 组件也有生命周期。
+在 Taro 中，除了应用程序、页面有生命周期外，组件也有生命周期。
 
 类组件生命周期，对应函数式组件中的 Hooks，如下表：
 
@@ -130,9 +130,9 @@ export default memo(() => {
   }
 
   return (
-    <View className='category'>
+    <View className="category">
       <Text>Hello Category!</Text>
-      <ZtButton type='primary' ztButtonClick={handleZtButtonClick}>
+      <ZtButton type="primary" ztButtonClick={handleZtButtonClick}>
         ZtButton
       </ZtButton>
     </View>
@@ -142,9 +142,9 @@ export default memo(() => {
 
 # 二、跨端兼容方案
 
-Taro 的设计初衷，是为了统一跨平台；
+Taro 的设计初衷，是为了跨平台统一；
 
-即使 Taro 尽力通过运行时、抹平组件、API 的多端差异；不同的平台之间，还是存在一些无法消除的差异；
+即使 Taro 尽力通过运行时、抹平组件、API 的多平台差异；不同的平台之间，还是存在一些无法消除的差异；
 
 为了更好的实现跨平台开发，Taro 提供了如下两种方案。
 
@@ -181,20 +181,20 @@ export default memo(() => {
   }
 
   return (
-    <View className='category'>
-      <ZtButton type='primary' ztButtonClick={handleZtButtonClick}>
+    <View className="category">
+      <ZtButton type="primary" ztButtonClick={handleZtButtonClick}>
         ZtButton
       </ZtButton>
 
       {process.env.TARO_ENV === 'h5' ? (
         <>
           <View>h5 端专有组件</View>
-          <ZtButton type='skyblue'>ZtButton h5</ZtButton>
+          <ZtButton type="skyblue">ZtButton h5</ZtButton>
         </>
       ) : process.env.TARO_ENV === 'weapp' ? (
         <>
           <View>weapp 端专有组件</View>
-          <ZtButton type='primary'>ZtButton weapp</ZtButton>
+          <ZtButton type="primary">ZtButton weapp</ZtButton>
         </>
       ) : undefined}
     </View>
@@ -303,9 +303,9 @@ import './index.less'
 
 export default memo(() => {
   return (
-    <View className='category'>
+    <View className="category">
       <View>统一接口的多端文件</View>
-      <ZtMultiButton type='skyblue'>ZtMultiButton</ZtMultiButton>
+      <ZtMultiButton type="skyblue">ZtMultiButton</ZtMultiButton>
     </View>
   )
 })
@@ -364,9 +364,9 @@ export default memo(() => {
   }
 
   return (
-    <View className='category'>
+    <View className="category">
       <View>统一接口的多端文件</View>
-      <ZtMultiButton type='skyblue' ztButtonClick={hadnleZtMultiButtonClick}>
+      <ZtMultiButton type="skyblue" ztButtonClick={hadnleZtMultiButtonClick}>
         ZtMultiButton
       </ZtMultiButton>
     </View>
@@ -382,7 +382,7 @@ export default memo(() => {
 
 - 比如：`constants.ts`、`action.ts`、`reducer.ts` 等。
 
-这种代码组织方式，过于繁琐麻烦，不利于管理。并且 `createStore` 方法已标为过时，
+这种代码组织方式，过于繁琐麻烦，不利于管理。并且 `createStore` 方法已标记为过时，
 
 Redux Toolkit 是目前官方推荐的编写 Redux 逻辑的方案。 为了解决上述问题而诞生。
 
@@ -396,9 +396,9 @@ _Redux Toolkit_ 的核心 API 主要是如下几个：
 
 `configureStore`：包装 `createStore`，以提供简化的配置选项和良好的默认值，有以下属性：
 
-- `reducer`：可自动组合 slice reducer
-- `middleware`：可添加其它 Redux 中间件（默认包含 redux-thunk）。
-- `devTools`：默认启用 Redux DevTools Extension
+- `reducer`：可自动组合 slice reducer；
+- `middleware`：可添加其它 Redux 中间件（默认包含 redux-thunk）；
+- `devTools`：默认启用 Redux DevTools Extension；
 
 `createSlice`：自动生成切片 reducer，且带有相应的 actions，接收以下属性：
 
@@ -448,7 +448,7 @@ const homeSlice = createSlice({
 // 异步 action
 export const fetchHomeMutiDataAction = createAsyncThunk(
   'home/multidata', // action type 的前缀
-  async (param, { dispatch, getState }) => {
+  async (params, { dispatch, getState }) => {
     const res = await getHomeMutidata()
     console.log('res=>', res)
     return res
@@ -474,7 +474,7 @@ const store = configureStore({
 export default store
 ```
 
-在 `App.jsx` 中，使用 `<Provider>` 组件，提供 store。
+在 `App.jsx` 中，使用 `<Provider>` 组件，提供 `store`。
 
 src\app.js
 
@@ -506,7 +506,7 @@ export default memo(() => {
   const onFetchDataBtnClick = () => dispatch(fetchHomeMutiDataAction())
 
   return (
-    <View className='cart'>
+    <View className="cart">
       <Text>{counter}</Text>
       <Button onClick={onAddBtnClick}>+1</Button>
       <Button onClick={onSubBtnClick}>-1</Button>

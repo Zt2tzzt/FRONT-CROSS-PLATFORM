@@ -18,13 +18,13 @@ Taro 中单位建议使用 px 或百分比 %；
 
 ### 1.尺寸单位自动转换
 
-Taro 默认会按照设计稿，对所有单位进行转换。
+Taro 默认会按照设计稿尺寸，对所有单位进行转换。
 
 通常按照 1:1 关系来编写尺寸大小；
 
-- 即设计稿长度 100px，那么尺寸就写 100px;
-- 当转成微信小程序时，尺寸则为 100rpx；
-- 当转成 H5 时，尺寸则以 rem 为单位。
+- 即在设计稿中的长度为 100px，那么尺寸就写 100px;
+- 编译到微信小程序平台时，尺寸则为 100rpx；
+- 编译到 H5 端时，尺寸则以 rem 为单位。
 
 src\pages\02-style\index.jsx
 
@@ -137,7 +137,7 @@ export default class extends Component {
 
 首先明确，React 项目流行的 _styled-components_ 方案，在小程序中无效，
 
-在 Taro 项目中，一般使用要 CSS Modules 方案，编写局部样式。
+在 Taro 项目中，一般使用 CSS Modules 方案，编写局部样式。
 
 1. 在 `config/index.js` 配置文件中，启用 H5 和小程序的 CSS Modules 的功能。
 2. 编写的样式文件需要加上 `.module` 关键字。
@@ -241,7 +241,7 @@ export default class extends Component {
 
 ## 3.背景图片
 
-Taro 支持使用在 css 里设置背景图片，使用方式与普通 web 项目大体相同：
+Taro 支持在 css 里设置背景图片，使用方式与普通 web 项目大体相同：
 
 - 支持 base64 格式图片，
 - 支持网络路径图片。
@@ -249,8 +249,11 @@ Taro 支持使用在 css 里设置背景图片，使用方式与普通 web 项�
 使用本地资源（图片、字体）需注意：
 
 - 小程序不支持在 css 中使用本地文件（背景图、字体）。须以 base64 格式替换。
-- 为了方便开发，Taro 提供了在样式文件中，直接引用本地资源的方式；
-  - 其原理是通过 _PostCSS_ 的 _postcss-url_ 插件，将样式中本地资源引用，转换成 Base64 格式，从而能正常加载。
+
+为了方便开发，Taro 提供了在样式文件中，直接引用本地资源的方式；
+
+- 其原理是通过 _PostCSS_ 的 _postcss-url_ 插件，将样式中本地资源引用，转换成 Base64 格式，从而能正常加载。
+
 - 不建议使用太大的背景图，大图需挪到服务器上，从网络地址引用。
 
 在 `config/index.js` 中配置最大转 base64 格式的文件大小。
@@ -315,8 +318,8 @@ export default class extends Component {
 Taro 支持使用字体图标，使用方式与普通 web 项目相同，步骤如下：
 
 1. 先生成字体图标文件；
-2. `app.lcss` 引入字体图标；
-3. 组件中使用自定义字体
+2. 在全局样式文件 `app.lcss` 中，引入字体图标；
+3. 在页面/组件中，使用自定义字体。
 
 src\app.less
 
@@ -371,6 +374,40 @@ Taro create --name [页面名称]
 在目录根目录下的 pages 目录下新建即可。
 
 > 【注意】：两种方式：新建的页面，都需在 `app.config.json` 中的 `pages` 列表上配置注册。
+
+3. 在 VSCode 中，新增 taro 项目页面/组件的 user snippet；
+
+C:\Users\xxx\AppData\Roaming\Code\User\snippets\javascriptreact.json
+
+```json
+{
+	"taro function component": {
+		"prefix": "taro-rmcp",
+		"body": [
+			"import PropTypes from 'prop-types'",
+			"import { memo } from 'react'",
+			"import { View, Text } from '@tarojs/components'",
+			"import './index.less'",
+			"",
+			"const ${1:App} = memo((props) => {",
+			"",
+			"  return (",
+			"    <View className='home'>",
+			"      <Text>Hello ${1:App}!</Text>",
+			"    </View>",
+			"  )",
+			"})",
+			"",
+			"${1:App}.propTypes = {}",
+			"",
+			"export default ${1:App}",
+			"",
+			""
+		],
+		"description": "taro function component"
+	}
+}
+```
 
 ## 2.删除
 
@@ -736,7 +773,7 @@ export default class Detail02 extends Component {
 注意事项：
 
 - 需先监听，再触发事件；
-  - 比如：在 A 界面触发，然后跳转到 B 页面后才监听是不行的。
+  - 比如：在 A 界面触发，跳转到 B 页面后才监听，是不行的。
 - 通常有 `on` 就要有 `off`，可以避免多次重复监听；
 - 适合页面返回传递参数（逆向传递）、适合跨组件通讯，不适合界面跳转传递参数；
 
@@ -803,17 +840,17 @@ export default class Detail03 extends Component {
 }
 ```
 
-> Taro 和 uni-app 的编程范式是类似的，只有语法和兼容性不同。
+> Taro 和 uni-app 的编程范式，是类似的，只有语法和兼容性不同。
 
 # 六、页面生命周期
 
 ## 1.class
 
-Taro 页面组件，除了支持 React 组件生命周期外，还根据小程序的标准，额外支持以下页面生命周期：
+Taro 页面/组件，除了支持 React 组件生命周期外，按照小程序的标准，额外支持以下页面生命周期：
 
 `onLoad(options)` 在小程序环境中对应页面的 `onLoad`。
 
-- 通过访问 `options` 参数，或调用 `getCurrentInstance().router`，可以访问到页面路由参数。
+- 通过访问 `options` 参数，或调用 `getCurrentInstance().router.params`，可以访问到页面路由参数。
 
 `componentDidShow()` 在小程序环境中对应页面的 `onShow`。
 
@@ -825,7 +862,7 @@ Taro 页面组件，除了支持 React 组件生命周期外，还根据小程�
 
 `onUnload()` 在小程序环境中对应页面的 `onUnload`。
 
-- 一般情况下建议使用 React 的 `componentWillUnmount` 生命周期，处理页面卸载时的逻辑。
+- 一般情况下建议使用 React 的 `componentWillUnmount` 组件生命周期，处理页面卸载时的逻辑。
 
 `onPullDownRefresh()` 监听用户下拉动作。
 
@@ -913,7 +950,9 @@ export default class Detail04 extends Component {
 
 ## 2.Hooks
 
-Taro 使用 Hooks 很简单。Taro 专有 Hooks，例如 `usePageScroll`, `useReachBottom`，须从 `@tarojs/taro` 中引入；
+Taro 项目中，可使用如下 Hooks：
+
+Taro 专有 Hooks，例如 `usePageScroll`, `useReachBottom`，须从 `@tarojs/taro` 中引入；
 
 React 框架自己的 Hooks ，例如 `useEffect`, `useState`，从 `react` 引入。
 

@@ -469,9 +469,7 @@ const handleRecommendItemClick = item => {
 
 使用 `<image>` 组件展示图片后，小程序服务，可能需要重启才能正常展示。
 
-> [注意】：小程序在 css 中引用本地背景图片，才需要将图片放到 static 根目录，
->
-> 这样才能自动编译成 base64 格式。
+> [注意】：小程序在 **css** 中引用本地背景图片，才需要将图片放到 static 根目录，这样才能自动编译成 base64 格式。
 
 pages\home\cpns\home-popular.vue
 

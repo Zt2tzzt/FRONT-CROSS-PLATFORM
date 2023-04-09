@@ -226,7 +226,7 @@ export const useHomeStore = defineStore('home', {
 }
 ```
 
-在 `home.vue` 中进行实现。
+在 `home.vue` 中进行实现，点击选项卡，切换商品列表数据。
 
 02-shopping-street\pages\home\home.vue
 

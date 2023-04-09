@@ -54,9 +54,9 @@ src\pages\02-style\index.less
 
 ### 2.CSS 编译时忽略
 
-忽略单个属性：
+#### 1.忽略单个属性：
 
-如希望部分 px 单位不被进行转换（转成 rpx 或 rem），最简单做法，“px” 单位使用大写字母，如 “Px”。
+如希望部分 px 单位，不被进行转换（转成 rpx 或 rem），最简单做法，“px” 单位使用大写字母，如 “Px”。
 
 src\pages\02-style\index.less
 
@@ -66,10 +66,11 @@ src\pages\02-style\index.less
 }
 ```
 
-忽略样式文件：
+#### 2.忽略样式文件：
 
-- 对于头部包含注释 `/* postcss-pxtransform disable */` 的文件，插件不予转换处理。
-- 通常会把不需要转换的单位，抽取到一个文件中，如 `no-transform-unit.less`：
+对于头部包含注释 `/* postcss-pxtransform disable */` 的文件，插件不予转换处理。
+
+通常会把不需要转换的单位，抽取到一个文件中，如 `no-transform-unit.less`：
 
 src\pages\02-style\index.jsx
 
@@ -246,9 +247,7 @@ Taro 支持在 css 里设置背景图片，使用方式与普通 web 项目大�
 - 支持 base64 格式图片，
 - 支持网络路径图片。
 
-使用本地资源（图片、字体）需注意：
-
-- 小程序不支持在 css 中使用本地文件（背景图、字体）。须以 base64 格式替换。
+小程序不支持在 css 中使用本地文件（背景图、字体）。须以 base64 格式替换。
 
 为了方便开发，Taro 提供了在样式文件中，直接引用本地资源的方式；
 
@@ -467,7 +466,7 @@ Taro 页面路由跳转方式，有两种：
 
 - 组件：`<Navigator>`；
 
-- 常用 API：`navigate`、`redirectTo`、`switchTab`、`navigateBack`。
+- 常用 API：`navigateTo`、`redirectTo`、`switchTab`、`navigateBack`。
 
 创建 `detail01.jsx` 页面，进行测试。从 `home.jsx` 跳转到 `detail01.jsx`.
 
@@ -612,7 +611,7 @@ export default class Detail01 extends Component {
 
 ### 2.EventChannel
 
-该方式仅支持小程序。
+**该方式仅支持小程序**。
 
 src\pages\home\index.jsx
 
@@ -686,7 +685,7 @@ export default class Detail01 extends Component {
 
 ### 1.EventChannel
 
-该方式仅支持小程序。
+**该方式仅支持小程序**。
 
 创建 `detail02.jsx` 页面，`home.jsx` 跳转 `detail02.jsx` 页面；
 
@@ -702,15 +701,17 @@ import './index.less'
 
 export default class Home extends Component {
   goToDetail02WithEventChannel() {
-    Taro.navigateTo({
-      url: '/pages/detail02/index',
-      // 仅支持小程序
-      events: {
-        detail02ToHome(data) {
-          console.log('home accept detail02 data:', data)
+    if (process.env.TARO_ENV === 'weapp') {
+      Taro.navigateTo({
+        url: '/pages/detail02/index',
+        // 仅支持小程序
+        events: {
+          detail02ToHome(data) {
+            console.log('home accept detail02 data:', data)
+          }
         }
-      }
-    })
+      })
+    }
   }
 
   render() {
@@ -978,7 +979,7 @@ export default class Home extends Component {
 }
 ```
 
-在 `detail05.jsx` 中，通过实例拿页面参数，实例用 ref 引用。
+在 `detail05.jsx` 中，通过实例，拿页面参数，实例用 ref 引用。
 
 src\pages\detail05\index.jsx
 

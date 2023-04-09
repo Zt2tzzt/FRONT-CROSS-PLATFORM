@@ -16,9 +16,13 @@ _@reduxjs/toolkit_、_react-redux_、_classnames_、_proptypes_、_prettier_
 
 ```shell
 pnpm add @reduxjs/toolkit react-redux
+
 pnpm add classnames
+
 pnpm add proptypes
+
 pnpm add prettier -D
+
 pnpm add eslint-plugin-prettier eslint-config-prettier -D
 ```
 
@@ -31,6 +35,8 @@ pnpm add eslint-plugin-prettier eslint-config-prettier -D
 config\index.js
 
 ```js
+import path from 'path'
+
 const config = {
   //...
   alias: {
@@ -224,11 +230,11 @@ export default new ZtRequest()
 src\service\home.js
 
 ```js
-import hyRequest from './index'
+import ztRequest from './index'
 
 // 1.拿到首页bannber的数据
 export const getHomeInfoData = () => {
-  return hyRequest.get('/homeinfo', {})
+  return ztRequest.get('/homeinfo', {})
 }
 ```
 
@@ -825,7 +831,7 @@ const homeSlice = createSlice({
 })
 ```
 
-在 `home` 中，监听 `tab-control` 点击，改变 `currentTabName` 状态，和商品列表数据。
+在 `home` 中，监听 `tab-control` 组件点击，改变 `currentTabName` 状态，和商品列表数据。
 
 src\pages\home\index.jsx
 
@@ -904,7 +910,7 @@ const Detail = memo(() => {
 export default Detail
 ```
 
-在 `grid-view` 中，监听 `grid-view-item` 点击（练习事件传递）；
+在 `grid-view` 中，监听 `grid-view-item` 点击（非必要，用于练习事件传递）；
 
 跳转到 `detail` 页面，并传递 `WebView` 的 `url`。
 
@@ -948,13 +954,13 @@ const GridView = memo(function (props) {
 
 # 五、项目打包部署
 
-多端同步调试，在 dist 目录下，创建一个与打包的目标平台，同名的目录，并将结果放在这个目录下；
+多端同步调试，在 `dist` 目录下，创建一个与打包的目标平台，同名的目录，并将结果放在这个目录下；
 
-- 例如：微信小程序，打包在 dist/weapp 目录下； H5 打包在 dist/h5 目录下；
+- 例如：微信小程序，打包在 `dist/weapp` 目录下； H5 打包在 `dist/h5` 目录下；
 
 只有这样，各个平台才能在打包后，使用独立的目录互不影响，从而达到多端同步调试的目的；
 
-在 config/index.js 配置如下：
+在 `config/index.js` 配置如下：
 
 ```js
 const config = {

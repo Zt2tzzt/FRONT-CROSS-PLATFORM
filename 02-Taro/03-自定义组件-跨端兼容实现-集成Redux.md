@@ -399,8 +399,8 @@ _Redux Toolkit_ 的核心 API 主要是如下几个：
 `configureStore`：包装 `createStore`，以提供简化的配置选项和良好的默认值，有以下属性：
 
 - `reducer`：可自动组合 slice reducer；
-- `middleware`：可添加其它 Redux 中间件（默认包含 *redux-thunk*）；
-- `devTools`：默认启用 *Redux DevTools Extension*；
+- `middleware`：可添加其它 Redux 中间件（默认包含 _redux-thunk_）；
+- `devTools`：默认启用 _Redux DevTools Extension_；
 
 `createSlice`：自动生成切片 reducer，且带有相应的 actions，接收以下属性：
 

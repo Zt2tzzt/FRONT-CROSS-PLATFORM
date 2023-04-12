@@ -47,9 +47,13 @@ export default {
 </script>
 ```
 
-在触发事件前，一定要先监听。在 `home.vue` 中监听（`uni.$on`）。
+在触发事件前，一定要先监听：
 
-有事件监听，一定有取消监听，在 `home.vue` 的 `onUnload` 中取消监听（`uni.$off`）。
+在 `home.vue` 中监听（`uni.$on`）。
+
+有事件监听，一定有取消监听：
+
+在 `home.vue` 的 `onUnload` 中取消监听（`uni.$off`）。
 
 01-hello-uniapp\pages\home\home.vue
 
@@ -75,9 +79,9 @@ export default {
 >
 > 事件总线的 API 是全局的，可以跨组件通讯。
 >
-> 先监听，再触发；否则无法监听。
+> 遵循“先监听，再触发”的规则；否则无法监听。
 >
-> 通常”有 on 就有 off“，避免重复监听，更加规范。
+> 遵循”有 on 就有 off“的规范，避免重复监听，更加规范。
 >
 > 全局事件总线，适合页面返回传递参数（即”逆向“传递）、不适合界面跳转传递参数（即”正向“传递）。
 >
@@ -224,9 +228,9 @@ export default {
 
 > 【注意】：
 >
-> tabbar 页面不会销毁，只是隐藏。
+> - tabbar 页面不会销毁，只是隐藏。
 >
-> 通过 overflow 进行的滚动，不会触发 `onReachBottom` 回调。
+> - 通过 overflow 进行的滚动，不会触发 `onReachBottom` 回调。
 
 ### 2.Composition API
 
@@ -722,7 +726,7 @@ home.vue
     <view class="">2.页面传递数据(逆向)</view>
     <button type="default" @click="goToDetail02">01-detail02 navigate</button>
 
-    <view class="">3.页面逆向传递数据(全局事件总线)</view>
+    <view class="">3.页面传递数据(逆向，全局事件总线)</view>
     <button type="default" @click="goToDetail03">01-detail03 navigate</button>
   </view>
 </template>

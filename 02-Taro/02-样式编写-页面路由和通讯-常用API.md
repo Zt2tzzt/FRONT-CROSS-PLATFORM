@@ -8,6 +8,8 @@ Taro 默认以 750px 作为换算尺寸标准；
 
 - 比如：设计稿是 640px：
 
+config\index.js
+
 ```js
 const config = {
   designWidth: 640
@@ -132,7 +134,7 @@ export default class extends Component {
 
 全局样式：
 
-- 无论是 Taro 页面、还是普通组件，其中导入的样式文件，默认都在全局生效。
+- 无论是 Taro 页面、还是普通组件，其中导入的样式文件，默认都在**全局生效**。
 
 局部样式：
 
@@ -546,7 +548,7 @@ export default class Home extends Component {
 - `onLoad`、`useLoad` 生命周期获取路由参数；
 - `Taro.getCurrentInstance().router.params` 获取路由参数。
 
-:egg:案例理解：
+:egg: 案例理解：
 
 `home.jsx` 页面传递给 `detail01.jsx` 页面。
 
@@ -773,9 +775,9 @@ export default class Detail02 extends Component {
 
 注意事项：
 
-- 需先监听，再触发事件；
+- 须先监听，再触发事件；
   - 比如：在 A 界面触发，跳转到 B 页面后才监听，是不行的。
-- 通常有 `on` 就要有 `off`，可以避免多次重复监听；
+- 通常”有 `on` 就要有 `off`“，可以避免多次重复监听；
 - 适合页面返回传递参数（逆向传递）、适合跨组件通讯，不适合界面跳转传递参数；
 
 创建 `detail03.jsx` 页面。

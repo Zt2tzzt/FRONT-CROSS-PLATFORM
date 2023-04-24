@@ -2,7 +2,7 @@
 
 ## 1.项目创建
 
-创建项目 `02-juanpi`
+创建项目 `02-juanpi`。
 
 ```shell
 npx @tarojs/cli init 02-juanpi

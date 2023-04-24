@@ -22,7 +22,6 @@ pnpm add classnames
 pnpm add proptypes
 
 pnpm add prettier -D
-
 pnpm add eslint-plugin-prettier eslint-config-prettier -D
 ```
 

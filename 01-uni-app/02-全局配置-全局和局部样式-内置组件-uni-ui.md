@@ -1,6 +1,8 @@
-# 一、App.vue 文件
+# 全局配置 & 全局和局部样式 & 内置组件 & uni-ui
 
-## 1.globalData 全局变量
+## 一、App.vue 文件
+
+### 1.globalData 全局变量
 
 在 `App.vue` 中。定义全局变量 `globalData`
 
@@ -48,7 +50,7 @@ export default {
 </script>
 ```
 
-## 2.页面路由（页面栈）
+### 2.页面路由（页面栈）
 
 使用 `getCurrentPages` 拿到当前页面的路由。
 
@@ -72,9 +74,9 @@ export default {
 ```
 
 > 【注意】：`getApp` 和 `getCurrentPages` 都是跨端 api。兼容 h5、weapp、app.
-
+>
 > 【注意】：在 `App.vue` 中要使用 _Option API_，在页面/组件中可使用 _Composition API_。
-
+>
 > 【注意】：`<style>` 标签不支持写 `scope`，默认已有作用域。
 
 在 `App.vue` 中，一般定义全局样式，使用 `page` 选择器：
@@ -95,9 +97,9 @@ page {
 >
 > 在原生调试页面，看不到元素，需要将文件改为 `.nvue` 格式的文件。
 
-# 二、uni.scss 文件
+## 二、uni.scss 文件
 
-`uni.scss` 是全局样式文件。是为了方便整体控制应用风格。
+`uni.scss` 是全局样式文件。用于整体控制应用风格。
 
 其中默认定义了 uni-app 框架内置全局变量，也可以存放自定义的全局变量。
 
@@ -112,9 +114,9 @@ page {
 然后在该组件的 `<style>` 上加 `lang=“scss”`。
 
 > 【注意】：修改 `uni.scss` 后，重启才能生效。
-
+>
 > 【注意】：这里的 _uni-app_ 框架内置变量，和 _uni-ui_ 组件库的内置变量是不一样的。
-
+>
 > 【注意】：`App.vue` 中放的是公共样式，对全局生效。
 >
 > `uni.scss` 中放的是全局样式变量。
@@ -137,7 +139,7 @@ $zt-color: orange;
 $uni-color-primary: #007aff;
 ```
 
-# 三、全局和局部样式
+## 三、全局和局部样式
 
 App.vue 全局样式：
 
@@ -161,7 +163,7 @@ uni.scss 全局样式：
 
 不支持 `scoped`，不要写，否则样式不生效。
 
-# 四、page.json 文件
+## 四、page.json 文件
 
 类似于小程序中的 `app.json` 文件。
 
@@ -195,7 +197,7 @@ uni.scss 全局样式：
 }
 ```
 
-# 五、manifest.json 文件
+## 五、manifest.json 文件
 
 [manifest.json](https://uniapp.dcloud.net.cn/collocation/manifest.html#) 应用配置，在 HBuilderX 中，支持可视化的配置，用于：
 
@@ -211,11 +213,11 @@ uni.scss 全局样式：
 
 01-hello-uniapp\manifest.json
 
-# 六、常用内置组件
+## 六、常用内置组件
 
 接近小程序的规范，有如下组件：
 
-## 1.view 组件
+### 1.view 组件
 
 [\<view\>](https://uniapp.dcloud.net.cn/component/view.html#)：视图容器。
 
@@ -236,7 +238,7 @@ uni.scss 全局样式：
 </template>
 ```
 
-## 2.text 组件
+### 2.text 组件
 
 [\<text\>](https://uniapp.dcloud.net.cn/component/text.html)：文本组件。
 
@@ -253,7 +255,7 @@ uni.scss 全局样式：
 </template>
 ```
 
-## 3.button 组件
+### 3.button 组件
 
 [\<button\>](https://uniapp.dcloud.net.cn/component/button.html#)：按钮组件；
 
@@ -269,7 +271,7 @@ uni.scss 全局样式：
 </template>
 ```
 
-## 4.image 组件
+### 4.image 组件
 
 [\<image\>](https://uniapp.dcloud.net.cn/component/image.html)：图片。默认宽度 `320px`、高度 `240px`；
 
@@ -294,7 +296,7 @@ import cvy from '@/static/images/cvy.png'
 </script>
 ```
 
-## 5.scroll-viwe 组件
+### 5.scroll-viwe 组件
 
 [\<scroll-view\>](https://uniapp.dcloud.net.cn/component/scroll-view.html)：可滚动视图区域。
 
@@ -353,8 +355,8 @@ import cvy from '@/static/images/cvy.png'
 
   /* 隐藏原生实现的滚动条。*/
   /* &::-webkit-scrollbar {
-			display: none;
-		} */
+      display: none;
+    } */
 
   :deep(.x-scroll .uni-scroll-view::-webkit-scrollbar) {
     display: none;
@@ -373,7 +375,7 @@ import cvy from '@/static/images/cvy.png'
 
 > 【注意】：选中全局选择器，需要用 `:global`；选中深层选择器，需要用 `:deep`
 
-## 6.swiper 组件
+### 6.swiper 组件
 
 [\<swiper\>](https://uniapp.dcloud.net.cn/component/swiper.html)：滑块视图容器，一般用于左右或上下区域滚动，比如轮播图。
 
@@ -415,7 +417,7 @@ import cvy from '@/static/images/cvy.png'
 </style>
 ```
 
-# 七、尺寸单位（rpx）
+## 七、尺寸单位（rpx）
 
 uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 
@@ -427,17 +429,17 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
 - `750rpx = 375px = 750物理像素`；
 - `1rpx = 0.5px = 1物理像素`。
 
-建议：开发微信小程序时，设计师用 iPhone6 作为设计稿的标准（即：设计稿宽度为 `750px`）。
+建议：开发微信小程序时，用 iPhone6 作为设计稿（即：设计稿宽度为 `750px`）。
 
-# 八、样式导入
+## 八、样式导入
 
-使用 `@import` 语句可以导入外联样式（css、less、scss、...），用 `;` 表示语句结束。
+使用 `@import` 语句，可以导入外联样式（css、less、scss、...），用 `;` 表示语句结束。
 
 支持相对路径，如 `import ‘../../common/base.css’;`
 
 支持绝对路径，即 `@` 别名前缀。如 `import '@/static/common/base.css';`
 
-# 九、背景图片
+## 九、背景图片
 
 在 `page.json` 文件中，对项目新建一个页面，
 
@@ -482,7 +484,7 @@ uni-app 支持的通用 css 单位包括：px、rpx（推荐）、vh、vw。
   height: 200rpx;
   border: 1px #f00 solid;
 
-  background-image: url('../../static/images/cvy.png');
+  background-image: url('~@/static/images/cvy.png');
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -499,7 +501,7 @@ uni-app 支持在 css 里设置背景图片，使用方式与普通 web 项目�
   - 不支持本地的图片，也不能自动转 base64 格式，除非将图片直接放在 static 目录下.
 - 本地背景图片的引用路径推荐使用以 `~@` 开头的绝对路径。
 
-# 十、字体图标
+## 十、字体图标
 
 uni-app 支持使用字体图标，使用方式与普通 web 项目相同，
 
@@ -537,9 +539,9 @@ uni-app 支持使用字体图标，使用方式与普通 web 项目相同，
 </style>
 ```
 
-# 十一、扩展组件 uni-ui
+## 十一、扩展组件 uni-ui
 
-## 1.是什么？
+### 1.是什么？
 
 uni-ui 是 DCloud 提供的一个 UI 组件库；
 
@@ -547,7 +549,7 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 
 不包括 uni-app 框架提供的基础组件，而是基础组件的补充。[详情](https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html)
 
-## 2.特点
+### 2.特点
 
 高性能：
 
@@ -570,7 +572,7 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 - uni-ui 的默认风格与 uni-app 基础组件风格一致。
 - 支持 `uni.scss`，可以方便的扩展和切换应用的风格。
 
-## 3.安装
+### 3.安装
 
 方式一（推荐）：通过 `uni_modules`（插件模块化规范）**按需安装**组件。
 
@@ -595,7 +597,7 @@ uni-ui 是 DCloud 提供的一个 UI 组件库；
 - 在 vue-cli 项目中可用 npm 安装 uni-ui 库
 - 或直接在 HBuilderX 项目中用 npm 安装 。
 
-## 4.使用
+### 4.使用
 
 安装 `<uni-badge>` 徽章组件；`<uni-countdown>` 倒计时组件；`<uni-goods-nav>` 商品导航组件。
 

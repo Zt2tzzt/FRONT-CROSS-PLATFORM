@@ -1,6 +1,8 @@
-# 一、页面通讯
+# 页面通讯 & 生命周期 & API & 组件
 
-## 1.事件总线
+## 一、页面通讯
+
+### 1.事件总线
 
 API 总结：
 
@@ -12,7 +14,7 @@ API 总结：
 
 - `uni.$off(eventName, callback)` - 移除全局自定义事件监听器。如果没有提供参数，则移除所有的事件监听器；
 
-新建 `Detail03.vue` 页面，在其中发射事件（`uni.$emit`）
+新建 `Detail03.vue` 页面，在其中发射事件（`uni.$emit`）：
 
 01-hello-uniapp\pages\Detail03\Detail03.vue
 
@@ -87,11 +89,11 @@ export default {
 >
 > - 因为要先监听事件，后发射事件。
 
-# 二、生命周期
+## 二、生命周期
 
 uni-app 中的生命周期，分为**页面生命周期**和**组件生命周期**。
 
-## 1.页面
+### 1.页面
 
 uni-app 常用的页面生命周期函数：[更多](https://uniapp.dcloud.net.cn/tutorial/page.html#lifecycle)
 
@@ -109,7 +111,7 @@ uni-app 常用的页面生命周期函数：[更多](https://uniapp.dcloud.net.c
 
 - `onReachBottom`
 
-### 1.Options API
+#### 1.页面 Options API
 
 在 `home.vue` 中进行页面跳转。
 
@@ -161,7 +163,7 @@ export default {
 </script>
 ```
 
-在 `detail04.vue` 中进行测试页面的生命周期。
+在 `detail04.vue` 中，进行测试页面的生命周期。
 
 01-hello-uniapp\pages\detail04\detail04.vue
 
@@ -232,7 +234,7 @@ export default {
 >
 > - 通过 overflow 进行的滚动，不会触发 `onReachBottom` 回调。
 
-### 2.Composition API
+#### 2.页面 Composition API
 
 在 `home.vue` 中进行页面跳转。
 
@@ -261,7 +263,7 @@ export default {
 </script>
 ```
 
-在 `detail05.vue `中进行页面生命周期的测试。
+在 `detail05.vue` 中进行页面生命周期的测试。
 
 01-hello-uniapp\pages\detail05\detail05.vue
 
@@ -340,7 +342,7 @@ onReachBottom(() => {
 > import { ref } from 'vue'
 > ```
 
-## 2.组件
+### 2.组件
 
 uni-app 中，常用组件生命周期有：
 
@@ -354,7 +356,7 @@ uni-app 中，常用组件生命周期有：
 - `destroyed`（对应 Vue 中 `unmounted`）
 - `errorCaptured`
 
-### 1.Options API
+#### 1.组件 Options API
 
 在 `zt-button.vue` 中，进行测试。
 
@@ -413,7 +415,7 @@ export default {
 </script>
 ```
 
-### 2.Composition API
+#### 2.组件 Composition API
 
 在 `zt-button-setup.vue` 中，进行测试。
 
@@ -474,7 +476,7 @@ onReady(() => {
 </script>
 ```
 
-# 三、网络请求
+## 三、网络请求
 
 [官方文档](https://uniapp.dcloud.net.cn/api/request/request.html)
 
@@ -490,9 +492,9 @@ onReady(() => {
 
 - 运行到手机时，资源没有出来时可以打开手机的调试模式。
 
-## 1.封装
+### 1.封装
 
-在 service 目录下，对网络请求进行封装。
+在 `/service` 目录下，对网络请求进行封装。
 
 01-hello-uniapp\service\index.js
 
@@ -501,36 +503,36 @@ const TIMEOUT = 60000
 const BASE_URL = 'http://152.136.185.210:7878/api/hy66'
 
 class ZtRequest {
-	request(url, method = 'GET', data = {}) {
-		return new Promise((resolve, reject) => {
-			uni.request({
-				url: BASE_URL + url,
-				method,
-				timeout: TIMEOUT,
-				data,
-				success(res) {
-					resolve(res.data)
-				},
-				fail(err) {
-					reject(err)
-				}
-			})
-		})
-	},
+  request(url, method = 'GET', data = {}) {
+    return new Promise((resolve, reject) => {
+      uni.request({
+        url: BASE_URL + url,
+        method,
+        timeout: TIMEOUT,
+        data,
+        success(res) {
+          resolve(res.data)
+        },
+        fail(err) {
+          reject(err)
+        }
+      })
+    })
+  },
 
-	get(url, params) {
-		return this.request(url, 'GET', params)
-	}
+  get(url, params) {
+    return this.request(url, 'GET', params)
+  }
 
-	post(url, data) {
-		return this.request(url, 'POST', data)
-	}
+  post(url, data) {
+    return this.request(url, 'POST', data)
+  }
 }
 
 export default new ZtRequest()
 ```
 
-## 2.使用
+### 2.使用
 
 在 `category.vue` 页面中，测试发送网络请求。
 
@@ -566,7 +568,7 @@ export default {
 </script>
 ```
 
-# 四、数据缓存
+## 四、数据缓存
 
 常用 API（类似于微信小程序的 API）。
 
@@ -623,11 +625,12 @@ export default {
 </script>
 ```
 
-# 五、组件（easycom 规范）
+## 五、组件（easycom 规范）
 
 uni-app 组件与 Vue 标准组件基本相同，但是也有区别，比如：
 
-Vue 标准组件，需要”创建“、”引用“、”注册“后才能使用；而 uni-app 的 **easycom 组件**规范，可以将其精简为一步。
+- Vue 标准组件，需要”创建“、”引用“、”注册“后才能使用；
+- uni-app 的 **easycom 组件规范**，可以将其精简为一步。
 
 easycom 组件规范：
 
@@ -711,7 +714,7 @@ export default {
 </script>
 ```
 
-# 六、页面通讯（Composition API）
+## 六、页面通讯（Composition API）
 
 在 `home.vue` 中进行测试（项目中未测试）。
 
@@ -777,7 +780,7 @@ function goToDetail02() {
 </script>
 ```
 
-## 1.正向传递
+### 1.正向传递
 
 接收有两种方式。
 
@@ -816,7 +819,7 @@ onLoad(options => {
 
 > 【注意】：使用 `getCurrentInstance().proxy.getOpenerEventChannel()` 拿到 `eventChannel` 对象。
 
-## 2.逆向传递
+### 2.逆向传递
 
 detail02.vue
 
@@ -846,7 +849,7 @@ function goBack() {
 </script>
 ```
 
-## 3.事件总线（逆向传递）
+### 3.事件总线（逆向传递）
 
 detail03.vue
 

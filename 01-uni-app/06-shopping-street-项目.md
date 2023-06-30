@@ -1,12 +1,18 @@
-# 一、创建项目
+# shopping-street-项目
+
+## 一、创建项目
 
 创建一个新的项目 `02-shopping-street`
 
-# 二、依赖安装
+## 二、依赖安装
 
 在项目中安装 _vue3-lazy_ 依赖（后续图片懒加载优化时会用到）。
 
-# 三、全局样式
+```shell
+npm install vue3-lazy
+```
+
+## 三、全局样式
 
 在 static 目录下，存放图片。
 
@@ -52,11 +58,11 @@ App.vue
 </style>
 ```
 
-# 四、项目目录结构
+## 四、项目目录结构
 
 新建 `home.vue`、`category.vue`、`cart.vue`、`profile.vue` 页面。
 
-配置 App 应用（每个页面）的头部的标题名称和背景颜色。
+配置 App 应用（每个页面）的头部标题名称、背景颜色。
 
 配置 tabbar。
 
@@ -129,7 +135,7 @@ pages.json
 }
 ```
 
-# 五、网络请求
+## 五、网络请求
 
 封装网络请求。
 
@@ -186,7 +192,7 @@ export const getHomeMutidata = () => ztRequest.get('/home/multidata')
 
 在 `home.vue` 中发送轮播图的网络请求，进行测试（项目中未测试）。
 
-# 六、状态管理
+## 六、状态管理
 
 在项目中集成 Pinia。
 
@@ -237,11 +243,11 @@ export const useHomeStore = defineStore('home', {
 })
 ```
 
-# 七、home 页面
+## 七、home 页面
 
 ## 1.HomeBanner 组件
 
-在 `home.vue` 中，派发 action 获取轮播图和推荐数据。
+在 `home.vue` 中，派发 action 获取轮播图、推荐数据。
 
 pages\home\home.vue
 

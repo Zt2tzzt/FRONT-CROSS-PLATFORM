@@ -213,16 +213,16 @@ onLoad(options => {
 import goodsType from '@/static/data/home-goods-type.json'
 
 export const useHomeStore = defineStore('home', {
-	state: () => ({
+  state: () => ({
     //...
-		currentType: goodsType[0].name,
+    currentType: goodsType[0].name,
   }),
-	actions: {
+  actions: {
     //...
-		changeGoodsType(type) {
-			this.currentType = type
-		}
-	}
+    changeGoodsType(type) {
+      this.currentType = type
+    }
+  }
 }
 ```
 
@@ -311,7 +311,7 @@ onReachBottom(() => {
 - 非 H5 端（小程序、App）、
 - H5 端：
 
-### 1.非 H5 端：
+### 1.非 H5 端
 
 在 `grid-item-view.vue` 组件中，使用条件编译；
 
@@ -325,7 +325,7 @@ onReachBottom(() => {
 <!-- #endif -->
 ```
 
-### 2.H5 端：
+### 2.H5 端
 
 需要使用 npm 安装插件 _vue3-lazy_ 插件。
 

@@ -1,8 +1,10 @@
-# 一、Taro 是什么？
+# 邂逅Taro-环境搭建-编码规范-项目配置-内置组件
+
+## 一、Taro 是什么？
 
 Taro 是由京东凹凸实验室，打造的一个开放式跨端、跨框架解决方案，并于 2018 年 6 月 7 日正式开源；
 
-Taro 支持使用【React / Vue / Preact】等框架来开发【微信/京东/百度/支付宝/字节跳动/ QQ 等小程序/ H5 / RN 等应用】。
+Taro 支持使用【React / Vue / Preact】等框架来开发【微信/京东/百度/支付宝/字节跳动/QQ 等小程序/ H5 / RN 等应用】。
 
 - 在 Taro 中，使用 Vue 只能开发 H5、小程序；
 - 在 Taro 中，使用 React 可借助 ReactNative 开发 APP 端。
@@ -13,7 +15,7 @@ Taro 支持使用【React / Vue / Preact】等框架来开发【微信/京东/�
 >
 > 虽然 uni-app 支持开发原生 App，但主要还是用来做小程序多平台兼容，很少有多端兼容的需求。
 
-# 二、跨平台发展历史
+## 二、跨平台发展历史
 
 早期，IphoneGap Cordova
 
@@ -27,7 +29,7 @@ Taro 支持使用【React / Vue / Preact】等框架来开发【微信/京东/�
 
 2018，Taro
 
-# 三、Taro 历史版本
+## 三、Taro 历史版本
 
 Taro 1.x / 2.x 版的文档，现已**不再积极维护**。
 
@@ -41,7 +43,7 @@ Taro 1.x / 2.x 版的文档，现已**不再积极维护**。
 
 目前 Taro 团队的迭代重心在于 Taro 3。
 
-# 四、Taro 的特点
+## 四、Taro 的特点
 
 多端支持：
 
@@ -61,7 +63,7 @@ Taro 有自己 UI 的组件库：_Taro UI_；
 
 - 仅对 weapp、h5 适配，目前不支持 RN。
 
-# 五、Taro 对比 uni-app
+## 五、Taro 对比 uni-app
 
 跨端支持度（仅供参考，Taro 本身也在不断完善）：
 
@@ -86,7 +88,7 @@ Taro 有自己 UI 的组件库：_Taro UI_；
 
 资料完善度：
 
-- Taro：官方文档较完整，但不是很丰富，资料一般。
+- Taro：官方文档相对完整，但不是很丰富，资料一般。
 
 - uni-app：官方文档和各种专题内容很丰富，资料齐全。
 
@@ -100,14 +102,14 @@ Taro 有自己 UI 的组件库：_Taro UI_；
 - uni-app 在资料、生态、工具、开发效率、跨端数会比 Taro 略胜一筹。
 - 当然 Taro 也有独特的优势，如：用 React 开发非常的灵活。
 
-## 1.如何选择？
+### 1.如何选择？
 
 如需要跨平台（特别是小程序之间），并且应用不是很复杂，可选 Taro 和 uni-app。
 
 - 如熟悉 Vue 优先选择 uni-app；
 - 如熟悉 React 推荐使用 Taro。
 
-# 六、Taro 架构理解
+## 六、Taro 架构理解
 
 Taro 当前的架构主要分为：**编译时**和**运行时**。
 
@@ -115,9 +117,9 @@ Taro 当前的架构主要分为：**编译时**和**运行时**。
 
 运行时：主要是进行一些：生命周期、事件、data 等部分的处理和对接，以保证和宿主平台数据的一致性。
 
-<img src="NodeAssets/Taro架构.jpg" alt="Taro架构" style="zoom:80%;" />
+![Taro架构](NodeAssets/Taro架构.jpg)
 
-# 七、开发工具选择
+## 七、开发工具选择
 
 推荐 _VSCode_ 或 _WebStorm_。
 
@@ -131,25 +133,25 @@ WebStorm 收费，但基本不需要配置。
 
 不管使用 _VSCode_ 还是 _WebStrom_，安装了上述插件之后，Taro 项目都能实现自动补全和代码实时检查（linting）的功能。
 
-# 八、Taro 安装
+## 八、Taro 安装
 
 Taro 项目基于 node（>=12.0.0）；
 
 Taro CLI 工具安装：
 
-1. 全局安装 _@tarojs/cli_ 脚手架。
+1.全局安装 _@tarojs/cli_ 脚手架。
 
 ```shell
 npm i @tarojs/cli -g
 ```
 
-2. 查看 Taro CLI 工具版本。
+2.查看 Taro CLI 工具版本。
 
 ```shell
 npm info @tarojs/cli
 ```
 
-# 九、项目初始化
+## 九、项目初始化
 
 使用安装的脚手架，创建项目：
 
@@ -170,7 +172,7 @@ npx @tarojs/cli init [my-app]
 - RN 暂不支持 React18，需要等待 RN 官方输出支持方案。
 - 官方文档：“为了顺利地用 Taro 来开发 App，我们强烈地建议您，先对 React Native 开发进行学习”。
 
-# 十、项目编译运行
+## 十、项目编译运行
 
 Taro 编译分为 dev 和 build 模式：
 
@@ -211,22 +213,22 @@ build 命令，可以把 Taro 代码编译成不同端的代码，然后在对�
 
 需要手动打开小程序，并指定目录（dist 文件夹下)。
 
-# 十一、目录结构分析
+## 十一、目录结构分析
 
-<img src="NodeAssets/Taro目录结构.jpg" alt="Taro目录结构" style="zoom:80%;" />
+![Taro目录结构.jpg](NodeAssets/Taro目录结构.jpg)
 
 Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`，小程序项目中的 `app.json`；
 
 是整个项目的配置文件。
 
-# 十二、Taro + React 开发规范
+## 十二、Taro + React 开发规范
 
 为了实现多端兼容，综合考虑编译速度、运行性能等因素，Taro 可以约定了如下开发规范：
 
 组件规范：
 
 - 页面文件，遵循 React 组件（JSX）规范；
-- 组件标签靠近小程序规范（但遵从**大驼峰**，且必须**导包**，属性遵循**小驼峰**）；
+- 组件标签靠近小程序规范（但遵从**大驼峰**，且必须**导包**)，属性遵循**小驼峰**；
 - 在 React 中使用 Taro 内置组件前，必须从 `@tarojs/components` 进行引入（导包）。
 
 接口规范：
@@ -240,7 +242,7 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 
 查看更多 [Taro 的官网文档](https://docs.taro.zone/docs)。
 
-# 十三、Webpack 编译配置
+## 十三、Webpack 编译配置
 
 编译配置存放于项目根目录下的 config 目录中，包含三个文件：
 
@@ -265,6 +267,8 @@ Taro 项目中的 `app.config.json` 相当于 uni-app 项目中的 `pages.json`�
 
 在 `config\index.js` 定义项目中的全局常量：
 
+config\index.js
+
 ```json
 defineConstants: {
   VERSION: "'1.0.0'"
@@ -272,6 +276,8 @@ defineConstants: {
 ```
 
 在 `config\index.js` 中为项目路径配置别名：
+
+config\index.js
 
 ```js
 import path from 'path'
@@ -283,9 +289,9 @@ const config = {
 }
 ```
 
-# 十四、全局配置文件（app.config.js）
+## 十四、全局配置文件（app.config.js）
 
-`app.config.js` 用来对小程序进行全局配置，配置项遵循微信小程序规范；
+src 目录下的 `app.config.js` 文件，用来对小程序进行全局配置，配置项遵循微信小程序规范；
 
 类似微信小程序的 `app.json`，并对所有平台进行统一；
 
@@ -300,7 +306,7 @@ const config = {
 
 > 【注意】：`window` 选项中的配置，h5 端大多不支持。
 
-# 十五、页面配置文件（xxx.config.js）
+## 十五、页面配置文件（xxx.config.js）
 
 小程序页面，使用 `xxx.config.js` 文件，来对窗口表现进行配置。
 
@@ -320,7 +326,7 @@ export default definePageConfig({
 })
 ```
 
-# 十七、项目配置（project.xxx.json）
+## 十七、项目配置（project.xxx.json）
 
 为了适配不同的小程序平台， Taro 支持为各小程序平台添加各自项目配置文件。
 
@@ -333,15 +339,15 @@ export default definePageConfig({
 
 各类小程序平台均有自己的项目配置文件，例如：
 
-- 微信小程序，`project.config.json`
-- 百度小程序，`project.swan.json`
-- 字节跳动小程序，`project.tt.json`
-- 支付宝小程序，`project.alipay.json`
+- 微信小程序，`project.config.json`。
+- 百度小程序，`project.swan.json`。
+- 字节跳动小程序，`project.tt.json`。
+- 支付宝小程序，`project.alipay.json`。
 - ...
 
 [更多项目配置](https://docs.taro.zone/docs/next/project-config)
 
-# 十六、入口组件（app.js）
+## 十六、入口组件（app.js）
 
 每一个 Taro 应用，都需要一个入口组件（类似 React 组件）用来注册应用。
 
@@ -483,7 +489,7 @@ src\pages\index\index.jsx
 </View>
 ```
 
-# 十七、常用内置组件
+## 十七、常用内置组件
 
 `View`：视图容器。用于包裹各种元素内容（Taro3.3 以后支持使用 HTML 标签进行开发）。
 
@@ -507,7 +513,9 @@ src\pages\index\index.jsx
 
 ---
 
-新建一个页面 `01-cpns` 进行测试，在 `app.config.json` 文件中，注册该页面（放在第一位）。
+新建一个页面 `01-cpns` 进行测试；
+
+在 `app.config.json` 文件中，注册该页面（放在第一位）。
 
 src\app.config.js
 
@@ -638,7 +646,7 @@ src\pages\01-cpn\index.less
 
 Taro UI 是 Taro 提供的 UI 组件库，使用时，要按需引入。
 
-# 十八、配置 prettier
+## 十八、配置 prettier
 
 安装 _prettier_：
 
